@@ -122,7 +122,7 @@
     <div class="header-logo">
       <span class="header-sub">Tommy's Game Portal</span>
       <h1 class="header-title">とみやんの<span>ゲームランド</span></h1>
-      <p class="header-tagline">遊びながら学ぶ、トミーが作ったゲームコレクション</p>
+      <p class="header-tagline">遊びながら学べるゲームコレクション</p>
     </div>
     <div class="header-divider"></div>
     <div class="header-badge">
@@ -140,7 +140,7 @@
       どれも「遊びながら学べる」をコンセプトに、楽しく知識が身につくよう工夫しています。
       これからも新しいゲームを増やしていく予定なので、ぜひお気に入りを見つけてください！
     </p>
-    <p class="message-sig">— とみやん</p>
+  
   </div>
 </section>
 
@@ -158,7 +158,7 @@
 </nav>
 
 <main class="games-section">
-  <div class="section-label" id="grid-label">ALL GAMES — 9 titles</div>
+  <div class="section-label" id="grid-label">ALL GAMES — <span id="grid-count"></span> titles</div>
   <div class="games-grid" id="games-grid">
 
     <a class="game-card" href="https://pecpec37-gift.github.io/igo-dojo/" target="_blank" rel="noopener" data-cat="board" data-key="igo-dojo" data-new="true">
@@ -418,7 +418,12 @@ const catLabels = { all:'ALL GAMES', board:'BOARD GAME', geo:'地理・旅行', 
 function updateFilter(f) {
   let n = 0;
   cards.forEach(c => { const ok = f==='all'||c.dataset.cat===f; c.classList.toggle('hidden',!ok); if(ok)n++; });
-  label.textContent = (catLabels[f]||f) + ' \u2014 ' + n + ' title' + (n!==1?'s':'');
+  const lbl = catLabels[f] || f;
+  if (f === 'all') {
+    label.innerHTML = lbl + ' &mdash; <span id="grid-count">' + n + '</span> titles';
+  } else {
+    label.innerHTML = lbl + ' &mdash; ' + n + ' title' + (n!==1?'s':'');
+  }
 }
 filterBtns.forEach(btn => btn.addEventListener('click', () => {
   filterBtns.forEach(b=>b.classList.remove('active'));
@@ -426,6 +431,7 @@ filterBtns.forEach(btn => btn.addEventListener('click', () => {
   updateFilter(btn.dataset.filter);
 }));
 countEl.textContent = cards.length;
+updateFilter('all');
 
 /* ---- admin panel ---- */
 function openAdmin() {
