@@ -228,6 +228,10 @@
       <span class="ranking-title">⭐ 花形スタンプ TOP10</span>
       <span class="ranking-sub">// Hall of Fame</span>
     </div>
+    <div style="display:flex;align-items:center;gap:10px;background:rgba(240,208,96,0.1);border:1.5px dashed rgba(240,208,96,0.4);border-radius:4px;padding:12px 16px;margin-bottom:12px;">
+      <span style="font-size:20px;">🚧</span>
+      <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,0.6);letter-spacing:0.06em;">花形スタンプ TOP10 は現在調整中です。もうしばらくお待ちください。</span>
+    </div>
     <p class="ranking-desc">
       各ゲームのジャンルで<strong>9問以上正解</strong>すると花形スタンプ ⭐ を1個獲得！<br>
       プレーヤー名を登録してゲームをプレイすると自動的にカウントされます。
@@ -618,7 +622,7 @@ playerInput.addEventListener('keydown', e => {
 
 /* ---- TOP10 ranking ---- */
 // ★ GASデプロイ後にURLをここに書き換えてください ★
-const GAS_RANKING_URL = 'YOUR_GAS_URL_HERE?action=top10';
+const GAS_RANKING_URL = 'https://script.google.com/macros/s/AKfycbwFZUaCcEX03EjYd4zM0rXCdb6v97BJHDwU9M8sCbY2vQRaDcMKthULXOed1FotE29w/exec?action=top10';
 
 const RANK_ICONS = ['🥇','🥈','🥉'];
 
