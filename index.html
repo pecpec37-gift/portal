@@ -653,64 +653,18 @@ function loadRanking() {
   const loadingEl = document.getElementById('ranking-loading');
   loadingEl.style.display = 'block';
   loadingEl.textContent = '// Loading...';
-  // GASはリダイレクトが発生するためno-corsではJSONが読めない
-  // scriptタグ方式（JSONP的）で取得する
-  const callbackName = 'gasRankingCallback_' + Date.now();
-  const script = document.createElement('script');
-  const url = GAS_RANKING_URL + '&callback=' + callbackName;
-  let done = false;
-
-  window[callbackName] = function(data) {
-    done = true;
-    delete window[callbackName];
-    document.body.removeChild(script);
-    loadingEl.style.display = 'none';
-    if (data && data.ok) {
-      renderRanking(data.top10);
-    } else {
+  fetch(GAS_RANKING_URL, { redirect: 'follow' })
+    .then(r => r.json())
+    .then(data => {
+      loadingEl.style.display = 'none';
+      if (data.ok) renderRanking(data.top10);
+      else renderRanking([]);
+    })
+    .catch(err => {
+      console.error('[ranking] fetch error:', err);
+      loadingEl.style.display = 'none';
       renderRanking([]);
-    }
-  };
-
-  script.onerror = function() {
-    if (done) return;
-    delete window[callbackName];
-    // fallback: 通常fetchで試みる
-    fetch(GAS_RANKING_URL)
-      .then(r => r.json())
-      .then(data => {
-        loadingEl.style.display = 'none';
-        if (data.ok) renderRanking(data.top10);
-        else renderRanking([]);
-      })
-      .catch(() => {
-        loadingEl.style.display = 'none';
-        renderRanking([]);
-      });
-  };
-
-  script.src = url;
-  document.body.appendChild(script);
-
-  // 5秒タイムアウト
-  setTimeout(function() {
-    if (done) return;
-    done = true;
-    delete window[callbackName];
-    try { document.body.removeChild(script); } catch(e) {}
-    // 通常fetchでリトライ
-    fetch(GAS_RANKING_URL)
-      .then(r => r.json())
-      .then(data => {
-        loadingEl.style.display = 'none';
-        if (data.ok) renderRanking(data.top10);
-        else renderRanking([]);
-      })
-      .catch(() => {
-        loadingEl.style.display = 'none';
-        renderRanking([]);
-      });
-  }, 5000);
+    });
 }
 
 document.getElementById('ranking-refresh').addEventListener('click', loadRanking);
