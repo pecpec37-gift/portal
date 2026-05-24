@@ -227,11 +227,9 @@
     <div class="ranking-header">
       <span class="ranking-title">⭐ 花形スタンプ TOP10</span>
       <span class="ranking-sub">// Hall of Fame</span>
+      <button id="stamp-help-btn" onclick="document.getElementById('stamp-help-popup').classList.add('open')" style="margin-left:auto;background:rgba(250,248,243,0.1);border:1px solid rgba(250,248,243,0.2);color:rgba(250,248,243,0.6);font-family:'Share Tech Mono',monospace;font-size:12px;width:26px;height:26px;border-radius:50%;cursor:pointer;transition:all 0.15s;flex-shrink:0;" onmouseover="this.style.background='rgba(250,248,243,0.2)';this.style.color='white'" onmouseout="this.style.background='rgba(250,248,243,0.1)';this.style.color='rgba(250,248,243,0.6)'">?</button>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;background:rgba(240,208,96,0.1);border:1.5px dashed rgba(240,208,96,0.4);border-radius:4px;padding:12px 16px;margin-bottom:12px;">
-      <span style="font-size:20px;">🚧</span>
-      <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,0.6);letter-spacing:0.06em;">花形スタンプ TOP10 は現在調整中です。もうしばらくお待ちください。</span>
-    </div>
+    
     <p class="ranking-desc">
       各ゲームのジャンルで<strong>9問以上正解</strong>すると花形スタンプ ⭐ を1個獲得！<br>
       プレーヤー名を登録してゲームをプレイすると自動的にカウントされます。
@@ -455,7 +453,83 @@
   <span>とみやんのゲームランド</span> &nbsp;|&nbsp; Games will keep growing!
 </footer>
 
-<!-- ADMIN PANEL -->
+<!-- ⭐ スタンプガイド ポップアップ -->
+<div id="stamp-help-popup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;padding:40px 20px;overflow-y:auto;">
+  <div style="background:#111;color:#faf8f3;max-width:520px;margin:0 auto;border-radius:4px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7);">
+
+    <!-- ヘッダー -->
+    <div style="background:#0a0a0a;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.08);">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.18em;color:#e74c3c;text-transform:uppercase;">// ⭐ 花形スタンプ 参加ガイド</span>
+      <button onclick="document.getElementById('stamp-help-popup').classList.remove('open')" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:20px;cursor:pointer;line-height:1;padding:0 4px;">✕</button>
+    </div>
+
+    <!-- 本文 -->
+    <div style="padding:20px;display:flex;flex-direction:column;gap:20px;">
+
+      <!-- 獲得条件 -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">// スタンプの獲得条件</div>
+        <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.75);">
+          ・各ゲームのジャンルで <strong style="color:#f0d060;">10問中9問以上正解</strong> でスタンプ1個獲得<br>
+          ・囲碁棋譜・将棋棋譜は <strong style="color:#f0d060;">満点の90%以上</strong> で獲得<br>
+          ・何度プレイしても獲得のたびに <strong style="color:#f0d060;">加算</strong> されます
+        </div>
+      </div>
+
+      <!-- プレーヤー名 -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">// プレーヤー名の注意点</div>
+        <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.75);">
+          ・<strong style="color:#f0d060;">ポータルサイトで登録した名前</strong>が各ゲームに自動入力されます<br>
+          ・ゲーム側で名前を変えると<strong style="color:#e74c3c;">別人として集計</strong>されます<br>
+          ・名前を変えたい場合は <strong style="color:#f0d060;">必ずポータルサイトで変更</strong> してください<br>
+          ・名前はブラウザに保存されるため、<strong style="color:#e74c3c;">別のブラウザ・スマホでは再登録</strong>が必要です
+        </div>
+      </div>
+
+      <!-- 複数端末 -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">// 複数端末を使う場合</div>
+        <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.75);">
+          ・スマホとPCで <strong style="color:#f0d060;">同じ名前を登録</strong> すれば合算されます<br>
+          ・名前の全角・半角・スペルが違うと<strong style="color:#e74c3c;">別人扱い</strong>になります<br>
+          　例：<span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#e74c3c;">「とみやん」と「トミやん」は別カウント</span>
+        </div>
+      </div>
+
+      <!-- ランキング更新 -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">// ランキングの更新</div>
+        <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.75);">
+          ・「<strong style="color:#f0d060;">↻ 更新する</strong>」ボタンを押すと最新データが表示されます<br>
+          ・ゲームプレイ直後は <strong style="color:#f0d060;">数秒待ってから</strong> 更新してください
+        </div>
+      </div>
+
+    </div>
+
+    <!-- フッター -->
+    <div style="padding:12px 20px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;">
+      <button onclick="document.getElementById('stamp-help-popup').classList.remove('open')" style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.12em;padding:7px 20px;border-radius:2px;border:1px solid rgba(255,255,255,0.15);background:none;color:rgba(255,255,255,0.5);cursor:pointer;">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ポップアップ表示制御
+const helpPopup = document.getElementById('stamp-help-popup');
+helpPopup.addEventListener('click', function(e) {
+  if (e.target === helpPopup) helpPopup.classList.remove('open');
+});
+helpPopup.style.display = '';
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') helpPopup.classList.remove('open');
+});
+// openクラスで表示切替
+const helpStyle = document.createElement('style');
+helpStyle.textContent = '#stamp-help-popup { display:none !important; } #stamp-help-popup.open { display:block !important; }';
+document.head.appendChild(helpStyle);
+</script>
 <div id="admin-panel" role="dialog" aria-modal="true" aria-label="管理画面">
   <div class="admin-box">
     <div class="admin-header">
