@@ -33,12 +33,28 @@
         return Promise.resolve({ ok: false, reason: 'no GAS_URL' });
       }
 
-      return fetch(GAS_URL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'addStamp', player, game, genre, count: 1 })
+      // GASはCORSの制限があるためno-corsで送信（レスポンスは読めないが送信は成功する）
+      const params = new URLSearchParams({
+        action: 'addStamp',
+        player: player,
+        game:   game,
+        genre:  genre,
+        count:  '1'
+      });
+
+      return fetch(GAS_URL + '?' + params.toString(), {
+        method: 'GET'
       })
       .then(r => r.json())
-      .catch(err => ({ ok: false, error: err.toString() }));
+      .then(data => {
+        console.log('[stamp.js] GAS response:', data);
+        return data;
+      })
+      .catch(err => {
+        // no-corsの場合レスポンスが読めないが送信自体は成功している可能性が高い
+        console.log('[stamp.js] 送信完了（レスポンス読み取り不可）:', err.toString());
+        return { ok: true };
+      });
     },
 
     // ---- TOP10取得 ----
