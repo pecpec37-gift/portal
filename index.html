@@ -281,8 +281,7 @@ function toggleRanking() {
     <button class="filter-btn" data-filter="business">ビジネス</button>
     <button class="filter-btn" data-filter="tech">テクノロジー</button>
     <button class="filter-btn" data-filter="entertainment">エンタメ</button>
-    <button class="filter-btn" data-filter="learning">グルメ・教養</button>
-    <button class="filter-btn" data-filter="language">語学</button>
+    <button class="filter-btn" data-filter="learning">語学・学習</button>
   </div>
 </nav>
 
@@ -376,7 +375,7 @@ function toggleRanking() {
       </div>
     </a>
 
-    <a class="game-card" href="https://pecpec37-gift.github.io/korean-quiz/" target="_blank" rel="noopener" data-cat="language" data-key="korean-quiz">
+    <a class="game-card" href="https://pecpec37-gift.github.io/korean-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="korean-quiz">
       <div class="game-card-accent" style="background:#c0392b;"></div>
       <div class="game-card-body">
         <span class="game-card-tag" style="background:#fde8e8;color:#8b2020;">語学・学習</span>
@@ -468,7 +467,7 @@ function toggleRanking() {
       <div class="game-card-accent" style="background:#8e3a1a;"></div>
       <div class="new-badge">NEW</div>
       <div class="game-card-body">
-        <span class="game-card-tag" style="background:#f5e6e0;color:#6b2510;">グルメ・教養</span>
+        <span class="game-card-tag" style="background:#f5e6e0;color:#6b2510;">語学・学習</span>
         <span class="game-card-icon">🍶</span>
         <h2 class="game-card-title">お酒クイズ道場</h2>
         <p class="game-card-desc">日本酒・ワイン・ビール・ウイスキー・カクテルなど7ジャンル176問収録。遊びながらお酒の知識を深めよう。</p>
@@ -682,7 +681,7 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.game-card');
 const label = document.getElementById('grid-label');
 const countEl = document.getElementById('game-count');
-const catLabels = { all:'ALL GAMES', board:'BOARD GAME', geo:'地理・旅行', sports:'SPORTS', learning:'グルメ・教養', language:'語学', business:'BUSINESS', tech:'TECHNOLOGY', entertainment:'エンタメ' };
+const catLabels = { all:'ALL GAMES', board:'BOARD GAME', geo:'地理・旅行', sports:'SPORTS', learning:'語学・学習', business:'BUSINESS', tech:'TECHNOLOGY', entertainment:'エンタメ' };
 
 function updateFilter(f) {
   let n = 0;
