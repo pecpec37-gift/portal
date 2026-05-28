@@ -1042,21 +1042,38 @@ function fetchRanking(url, callback) {
   const script = document.createElement('script');
   let done = false;
 
-  window[callbackName] = function(data) {
+  function finish(top10) {
+    if (done) return;
     done = true;
     delete window[callbackName];
-    if (document.body.contains(script)) document.body.removeChild(script);
-    callback(data && data.ok ? (data.top10 || []) : []);
+    try { if (document.body.contains(script)) document.body.removeChild(script); } catch(e){}
+    callback(top10 || []);
+  }
+
+  window[callbackName] = function(data) {
+    finish(data && data.ok ? (data.top10 || []) : []);
+  };
+
+  // scriptが読み込まれたがcallbackが呼ばれない場合（GASリダイレクト等）はfetchで再試行
+  script.onload = function() {
+    setTimeout(function() {
+      if (done) return;
+      fetch(url)
+        .then(r => r.json())
+        .then(data => finish(data.ok ? (data.top10 || []) : []))
+        .catch(() => finish([]));
+    }, 600);
   };
 
   script.onerror = function() {
-    if (done) return;
-    delete window[callbackName];
     fetch(url)
       .then(r => r.json())
-      .then(data => callback(data.ok ? (data.top10 || []) : []))
-      .catch(() => callback([]));
+      .then(data => finish(data.ok ? (data.top10 || []) : []))
+      .catch(() => finish([]));
   };
+
+  // 10秒タイムアウト
+  setTimeout(function() { finish([]); }, 10000);
 
   script.src = url + '&callback=' + callbackName;
   document.body.appendChild(script);
@@ -1065,9 +1082,9 @@ function fetchRanking(url, callback) {
 function loadRankingPeriod(period) {
   const listId = 'ranking-list-' + period;
   const list = document.getElementById(listId);
-  if (list) list.innerHTML = '<div class="ranking-loading">// Loading...</div>';
+  if (!list) return; // 要素が存在しない場合はスキップ
+  list.innerHTML = '<div class="ranking-loading">// Loading...</div>';
 
-  // GASにperiodパラメータを追加（GAS側が未対応でも全期間データが返る）
   const url = GAS_BASE_URL + '?action=top10&period=' + period;
   fetchRanking(url, function(top10) {
     rankingCache[period] = top10;
@@ -1086,7 +1103,7 @@ if (rankingRefreshBtn) rankingRefreshBtn.addEventListener('click', () => {
   rankingCache['all'] = null;
   loadRanking();
 });
-loadRanking(); // 初期ロード
+// ※ 初期ロードはtoggleRankingで開いたときに呼ぶ（DOM生成後）
 
 countVisit();
 </script>
