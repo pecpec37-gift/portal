@@ -5,7 +5,7 @@
 
 (function() {
   // ★ GASデプロイ後にURLをここに貼り付けてください
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzbOiR2e4mYfMSNXRBEbl87kOSdSf9oKsIN6OON93tZB-i02ybqsDaq6JzY9DWECRTosQ/exec';
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzwiYh4_U0NSzrrqTqOoRqZskDB6P57Z760w0QQikOscAZbrq_7-U2BkSh2kqmQCjY5/exec';
 
   const PLAYER_KEY = 'tomy_player_name';
 
