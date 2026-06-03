@@ -48,10 +48,17 @@
       .then(r => r.json())
       .then(data => {
         console.log('[stamp.js] GAS response:', data);
+        // ok:trueならトーストを表示
+        if (data && data.ok) {
+          const toast = document.createElement('div');
+          toast.textContent = '🌸 花丸スタンプ獲得！ランキングに反映されます';
+          toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#f48fb1;padding:10px 20px;border-radius:6px;font-size:13px;z-index:99999;border:1px solid rgba(244,143,177,0.6);white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,0.4);';
+          document.body.appendChild(toast);
+          setTimeout(() => { if (document.body.contains(toast)) document.body.removeChild(toast); }, 3000);
+        }
         return data;
       })
       .catch(err => {
-        // no-corsの場合レスポンスが読めないが送信自体は成功している可能性が高い
         console.log('[stamp.js] 送信完了（レスポンス読み取り不可）:', err.toString());
         return { ok: true };
       });
