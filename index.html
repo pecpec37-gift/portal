@@ -179,8 +179,8 @@
   .ranking-loading { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; padding: 20px 0; }
   .ranking-refresh { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 7px 14px; background: none; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.35); border-radius: 3px; cursor: pointer; transition: all 0.15s; margin-top: 16px; }
   .ranking-refresh:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
-/* ---- 花形スタンプ SVG ---- */
-.hanagata-stamp-sm,.hanagata-stamp-xs,.hanagata-stamp-row{display:inline-block;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23fff0f5'/%3E%3Cstop offset='100%25' stop-color='%23ffd6e7'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='40' cy='40' r='38' fill='url(%23bg)' stroke='%23e8507a' stroke-width='2'/%3E%3Cg fill='%23f06292'%3E%3Cellipse cx='40' cy='12' rx='7' ry='12' transform='rotate(0 40 40)'/%3E%3Cellipse cx='40' cy='12' rx='7' ry='12' transform='rotate(45 40 40)'/%3E%3Cellipse cx='40' cy='12' rx='7' ry='12' transform='rotate(90 40 40)'/%3E%3Cellipse cx='40' cy='12' rx='7' ry='12' transform='rotate(135 40 40)'/%3E%3Cellipse cx='40' cy='12' rx='7' ry='12' transform='rotate(180 40 40)'/%3E%3Cellipse cx='40' cy='12' rx='7' ry='12' transform='rotate(225 40 40)'/%3E%3Cellipse cx='40' cy='12' rx='7' ry='12' transform='rotate(270 40 40)'/%3E%3Cellipse cx='40' cy='12' rx='7' ry='12' transform='rotate(315 40 40)'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='18' fill='%23fff0f5' stroke='%23e8507a' stroke-width='1.5'/%3E%3Ctext x='40' y='36' text-anchor='middle' font-size='7.5' font-family='sans-serif' fill='%23c2185b' font-weight='bold'%3Eよくでき%3C/text%3E%3Ctext x='40' y='46' text-anchor='middle' font-size='7.5' font-family='sans-serif' fill='%23c2185b' font-weight='bold'%3Eました%3C/text%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat;background-position:center;vertical-align:middle;}
+/* ---- 花丸スタンプ SVG ---- */
+.hanagata-stamp-sm,.hanagata-stamp-xs,.hanagata-stamp-row{display:inline-block;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9J3JnJyBjeD0nNTAlJyBjeT0nNTAlJyByPSc1MCUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyNmZmY1ZjgnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyNmZmMwZDAnLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48ZyB0cmFuc2Zvcm09J3RyYW5zbGF0ZSg1MCw1MCkgcm90YXRlKDE4MCknPjxnIGZpbGw9JyNmNDhmYjEnIHN0cm9rZT0nI2Q4MWI2MCcgc3Ryb2tlLXdpZHRoPScyJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJz48cGF0aCBkPSdNMCwtMTAgQy00LC0zMCAtMjIsLTM4IC0yOCwtMjQgQy0zNCwtMTAgLTIwLDQgMCwxOCBDMjAsNCAzNCwtMTAgMjgsLTI0IEMyMiwtMzggNCwtMzAgMCwtMTBaJyB0cmFuc2Zvcm09J3JvdGF0ZSgwKScvPjxwYXRoIGQ9J00wLC0xMCBDLTQsLTMwIC0yMiwtMzggLTI4LC0yNCBDLTM0LC0xMCAtMjAsNCAwLDE4IEMyMCw0IDM0LC0xMCAyOCwtMjQgQzIyLC0zOCA0LC0zMCAwLC0xMFonIHRyYW5zZm9ybT0ncm90YXRlKDcyKScvPjxwYXRoIGQ9J00wLC0xMCBDLTQsLTMwIC0yMiwtMzggLTI4LC0yNCBDLTM0LC0xMCAtMjAsNCAwLDE4IEMyMCw0IDM0LC0xMCAyOCwtMjQgQzIyLC0zOCA0LC0zMCAwLC0xMFonIHRyYW5zZm9ybT0ncm90YXRlKDE0NCknLz48cGF0aCBkPSdNMCwtMTAgQy00LC0zMCAtMjIsLTM4IC0yOCwtMjQgQy0zNCwtMTAgLTIwLDQgMCwxOCBDMjAsNCAzNCwtMTAgMjgsLTI0IEMyMiwtMzggNCwtMzAgMCwtMTBaJyB0cmFuc2Zvcm09J3JvdGF0ZSgyMTYpJy8+PHBhdGggZD0nTTAsLTEwIEMtNCwtMzAgLTIyLC0zOCAtMjgsLTI0IEMtMzQsLTEwIC0yMCw0IDAsMTggQzIwLDQgMzQsLTEwIDI4LC0yNCBDMjIsLTM4IDQsLTMwIDAsLTEwWicgdHJhbnNmb3JtPSdyb3RhdGUoMjg4KScvPjwvZz48Y2lyY2xlIHI9JzI2JyBmaWxsPScjZmZmNWY4JyBzdHJva2U9JyNkODFiNjAnIHN0cm9rZS13aWR0aD0nMicvPjwvZz48dGV4dCB4PSc1MCcgeT0nNDYnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nMTEnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJyBmaWxsPScjYWQxNDU3JyBmb250LXdlaWdodD0nYm9sZCc+44KI44GP44Gn44GNPC90ZXh0Pjx0ZXh0IHg9JzUwJyB5PSc2MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1zaXplPScxMScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZpbGw9JyNhZDE0NTcnIGZvbnQtd2VpZ2h0PSdib2xkJz7jgb7jgZfjgZ88L3RleHQ+PC9zdmc+");background-size:contain;background-repeat:no-repeat;background-position:center;vertical-align:middle;}
 .hanagata-stamp-sm{width:28px;height:28px;}
 .hanagata-stamp-xs{width:20px;height:20px;}
 .hanagata-stamp-row{width:26px;height:26px;flex-shrink:0;}
@@ -251,7 +251,7 @@ function toggleTommyMsg() {
   <div class="ranking-inner">
     <button id="ranking-toggle-btn" onclick="toggleRanking()" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:0;width:100%;">
       <div class="ranking-header" style="margin-bottom:0;flex:1;">
-        <span class="ranking-title"><span class="hanagata-stamp-sm" aria-hidden="true"></span> 花形スタンプ TOP10</span>
+        <span class="ranking-title"><span class="hanagata-stamp-sm" aria-hidden="true"></span> 花丸スタンプ TOP10</span>
         <span class="ranking-sub">// Hall of Fame</span>
         <button id="stamp-help-btn" onclick="event.stopPropagation();document.getElementById('stamp-help-popup').classList.add('open')" style="margin-left:auto;background:rgba(250,248,243,0.1);border:1px solid rgba(250,248,243,0.2);color:rgba(250,248,243,0.6);font-family:'Share Tech Mono',monospace;font-size:12px;width:26px;height:26px;border-radius:50%;cursor:pointer;transition:all 0.15s;flex-shrink:0;" onmouseover="this.style.background='rgba(250,248,243,0.2)';this.style.color='white'" onmouseout="this.style.background='rgba(250,248,243,0.1)';this.style.color='rgba(250,248,243,0.6)'">?</button>
       </div>
@@ -260,7 +260,7 @@ function toggleTommyMsg() {
 
     <div id="ranking-body" style="display:none;margin-top:20px;">
       <p class="ranking-desc">
-        各ゲームのジャンルで<strong>9問以上正解</strong>すると花形スタンプ <span class="hanagata-stamp-xs" aria-hidden="true"></span> を1個獲得！<br>
+        各ゲームのジャンルで<strong>9問以上正解</strong>すると花丸スタンプ <span class="hanagata-stamp-xs" aria-hidden="true"></span> を1個獲得！<br>
         プレーヤー名を登録してゲームをプレイすると自動的にカウントされます。
       </p>
 
@@ -726,7 +726,7 @@ function toggleRanking() {
 
     <!-- ヘッダー -->
     <div style="background:#0a0a0a;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.08);">
-      <span style="font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.18em;color:#e74c3c;text-transform:uppercase;">// ⭐ 花形スタンプ 参加ガイド</span>
+      <span style="font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.18em;color:#e74c3c;text-transform:uppercase;">// ⭐ 花丸スタンプ 参加ガイド</span>
       <button onclick="document.getElementById('stamp-help-popup').classList.remove('open')" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:20px;cursor:pointer;line-height:1;padding:0 4px;">✕</button>
     </div>
 
@@ -982,8 +982,8 @@ const GAS_RANKING_URL = GAS_BASE_URL + '?action=top10';
 
 const RANK_ICONS = ['🥇','🥈','🥉'];
 
-// 花形スタンプSVGのHTML（インライン）
-const STAMP_HTML = '<span class="hanagata-stamp-row" aria-label="花形スタンプ"></span>';
+// 花丸スタンプSVGのHTML（インライン）
+const STAMP_HTML = '<span class="hanagata-stamp-row" aria-label="花丸スタンプ"></span>';
 
 function renderRanking(top10, listId) {
   const list = document.getElementById(listId);
