@@ -207,11 +207,9 @@
 .hanagata-stamp-sm{width:28px;height:28px;}
 .hanagata-stamp-xs{width:20px;height:20px;}
 .hanagata-stamp-row{width:26px;height:26px;flex-shrink:0;}
-/* ---- ランキング タブ ---- */
-.ranking-tabs-wrap{display:flex;gap:8px;margin-bottom:16px;}
-.ranking-tab-btn{flex:1;padding:8px 10px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.06em;background:rgba(250,248,243,0.06);border:1px solid rgba(250,248,243,0.18);color:rgba(250,248,243,0.55);border-radius:4px;cursor:pointer;transition:all 0.15s;}
-.ranking-tab-btn.active{background:rgba(232,80,122,0.18);border-color:rgba(232,80,122,0.5);color:#ffd6e7;}
-.ranking-tab-btn:hover:not(.active){border-color:rgba(250,248,243,0.35);color:rgba(250,248,243,0.8);}
+/* ---- ランキング 並列パネル ---- */
+.ranking-panels-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+@media(max-width:600px){.ranking-panels-wrap{grid-template-columns:1fr;}}
 .ranking-panel-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.14em;color:rgba(250,248,243,0.45);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(250,248,243,0.1);text-transform:uppercase;}
 </style>
 </head>
@@ -287,21 +285,15 @@ function toggleTommyMsg() {
         プレーヤー名を登録してゲームをプレイすると自動的にカウントされます。
       </p>
 
-      <!-- タブ切り替え -->
-      <div class="ranking-tabs-wrap">
-        <button class="ranking-tab-btn active" id="tab-btn-30" onclick="switchRankingTab('30')">📅 直近30日間</button>
-        <button class="ranking-tab-btn" id="tab-btn-all" onclick="switchRankingTab('all')">🏆 累積</button>
-      </div>
-
-      <!-- 2パネル -->
-      <div class="ranking-panels">
-        <div class="ranking-panel" id="panel-30">
+      <!-- 直近10日間 / 直近30日間 並列表示 -->
+      <div class="ranking-panels-wrap">
+        <div class="ranking-panel">
+          <div class="ranking-panel-title">📅 直近10日間 TOP10</div>
+          <div class="ranking-list" id="ranking-list-10"><div class="ranking-loading">// Loading...</div></div>
+        </div>
+        <div class="ranking-panel">
           <div class="ranking-panel-title">📅 直近30日間 TOP10</div>
           <div class="ranking-list" id="ranking-list-30"><div class="ranking-loading">// Loading...</div></div>
-        </div>
-        <div class="ranking-panel" id="panel-all" style="display:none">
-          <div class="ranking-panel-title">🏆 累積 TOP10</div>
-          <div class="ranking-list" id="ranking-list-all"><div class="ranking-loading">// Loading...</div></div>
         </div>
       </div>
 
@@ -1686,21 +1678,7 @@ function renderRanking(top10, listId) {
 }
 
 let currentTab = '30';
-const rankingCache = { '30': null, 'all': null };
-
-function switchRankingTab(period) {
-  currentTab = period;
-  document.getElementById('tab-btn-30').classList.toggle('active', period === '30');
-  document.getElementById('tab-btn-all').classList.toggle('active', period === 'all');
-  document.getElementById('panel-30').style.display = period === '30' ? 'block' : 'none';
-  document.getElementById('panel-all').style.display = period === 'all' ? 'block' : 'none';
-
-  if (rankingCache[period]) {
-    renderRanking(rankingCache[period], 'ranking-list-' + period);
-  } else {
-    loadRankingPeriod(period);
-  }
-}
+const rankingCache = { '10': null, '30': null };
 
 function fetchRanking(url, callback) {
   const callbackName = 'gasRankingCallback_' + Date.now();
@@ -1719,7 +1697,6 @@ function fetchRanking(url, callback) {
     finish(data && data.ok ? (data.top10 || []) : []);
   };
 
-  // scriptが読み込まれたがcallbackが呼ばれない場合（GASリダイレクト等）はfetchで再試行
   script.onload = function() {
     setTimeout(function() {
       if (done) return;
@@ -1737,7 +1714,6 @@ function fetchRanking(url, callback) {
       .catch(() => finish([]));
   };
 
-  // 10秒タイムアウト
   setTimeout(function() { finish([]); }, 10000);
 
   script.src = url + '&callback=' + callbackName;
@@ -1747,7 +1723,7 @@ function fetchRanking(url, callback) {
 function loadRankingPeriod(period) {
   const listId = 'ranking-list-' + period;
   const list = document.getElementById(listId);
-  if (!list) return; // 要素が存在しない場合はスキップ
+  if (!list) return;
   list.innerHTML = '<div class="ranking-loading">// Loading...</div>';
 
   const url = GAS_BASE_URL + '?action=top10&period=' + period;
@@ -1758,14 +1734,14 @@ function loadRankingPeriod(period) {
 }
 
 function loadRanking() {
+  loadRankingPeriod('10');
   loadRankingPeriod('30');
-  loadRankingPeriod('all');
 }
 
 const rankingRefreshBtn = document.getElementById('ranking-refresh');
 if (rankingRefreshBtn) rankingRefreshBtn.addEventListener('click', () => {
+  rankingCache['10'] = null;
   rankingCache['30'] = null;
-  rankingCache['all'] = null;
   loadRanking();
 });
 // ※ 初期ロードはtoggleRankingで開いたときに呼ぶ（DOM生成後）
