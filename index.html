@@ -1681,7 +1681,7 @@ let currentTab = '30';
 const rankingCache = { '10': null, '30': null };
 
 function fetchRanking(url, callback) {
-  const callbackName = 'gasRankingCallback_' + Date.now();
+  const callbackName = 'gasRankingCallback_' + Date.now() + '_' + Math.random().toString(36).slice(2);
   const script = document.createElement('script');
   let done = false;
 
