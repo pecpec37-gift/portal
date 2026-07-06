@@ -211,7 +211,64 @@
 .ranking-panels-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
 @media(max-width:600px){.ranking-panels-wrap{grid-template-columns:1fr;}}
 .ranking-panel-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.14em;color:rgba(250,248,243,0.45);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(250,248,243,0.1);text-transform:uppercase;}
+
+/* ===== 対戦モード ===== */
+.battle-banner{max-width:1100px;margin:0 auto;padding:20px 24px 4px;display:flex;gap:12px;flex-wrap:wrap;}
+.battle-banner-btn{flex:1;min-width:200px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:16px;padding:16px 20px;border:none;border-radius:4px;cursor:pointer;transition:transform .15s,box-shadow .15s,filter .15s;}
+.battle-banner-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(26,26,26,.18);filter:brightness(1.05);}
+.battle-banner-btn.primary{background:linear-gradient(135deg,#be123c,#7c1d3a);color:#fff;}
+.battle-banner-btn.secondary{background:#1a1a1a;color:#faf8f3;}
+.battle-banner-btn small{font-family:'Share Tech Mono',monospace;font-size:10px;font-weight:400;letter-spacing:.08em;opacity:.75;}
+#battle-overlay{position:fixed;inset:0;z-index:9999;background:#14110f;color:#faf8f3;overflow-y:auto;display:none;}
+#battle-overlay.show{display:block;}
+.bt-wrap{max-width:560px;margin:0 auto;padding:32px 22px 60px;min-height:100%;}
+.bt-top{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+.bt-top h2{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:22px;flex:1;color:#f4d06a;}
+.bt-close{font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(250,248,243,.6);background:none;border:1px solid rgba(250,248,243,.25);border-radius:3px;padding:7px 14px;cursor:pointer;transition:all .15s;}
+.bt-close:hover{border-color:#f4d06a;color:#f4d06a;}
+.bt-view{display:none;}
+.bt-view.show{display:block;}
+.bt-lead{font-size:13px;color:rgba(250,248,243,.7);line-height:1.7;margin-bottom:20px;}
+.bt-input{width:100%;box-sizing:border-box;font-family:'Zen Kaku Gothic New',sans-serif;font-size:16px;padding:14px 16px;background:#221d19;border:1px solid rgba(250,248,243,.2);border-radius:6px;color:#faf8f3;margin-bottom:16px;}
+.bt-input:focus{outline:none;border-color:#f4d06a;}
+.bt-btn{width:100%;box-sizing:border-box;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:16px;padding:15px;border:none;border-radius:6px;cursor:pointer;background:linear-gradient(135deg,#be123c,#7c1d3a);color:#fff;transition:filter .15s,transform .15s;}
+.bt-btn:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.bt-btn.ghost{background:none;border:1px solid rgba(250,248,243,.25);color:rgba(250,248,243,.8);margin-top:10px;}
+.bt-section-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(250,248,243,.45);text-transform:uppercase;margin:22px 0 10px;}
+.bt-players{display:flex;flex-direction:column;gap:8px;}
+.bt-player{display:flex;align-items:center;gap:12px;background:#221d19;border:1px solid rgba(250,248,243,.14);border-radius:8px;padding:14px 16px;transition:all .15s;}
+.bt-player.self{border-color:rgba(244,208,106,.45);background:rgba(244,208,106,.06);}
+.bt-player.pickable{cursor:pointer;}
+.bt-player.pickable:hover{border-color:#be123c;background:rgba(190,18,60,.1);transform:translateX(2px);}
+.bt-player-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;background:#3a322b;flex-shrink:0;}
+.bt-player-name{flex:1;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;font-size:16px;}
+.bt-player-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.08em;color:rgba(250,248,243,.5);}
+.bt-player-pick{font-family:'Share Tech Mono',monospace;font-size:11px;color:#f4d06a;}
+.bt-empty{text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(250,248,243,.4);padding:24px;line-height:1.8;}
+.bt-spinner{width:14px;height:14px;border:2px solid rgba(250,248,243,.2);border-top-color:#f4d06a;border-radius:50%;display:inline-block;animation:btspin 0.8s linear infinite;vertical-align:middle;}
+@keyframes btspin{to{transform:rotate(360deg);}}
+.bt-count-box{text-align:center;padding:30px 0;}
+.bt-count-vs{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:20px;margin-bottom:6px;}
+.bt-count-vs .me{color:#f4d06a;}
+.bt-count-vs .op{color:#ff7a90;}
+.bt-count-genre{font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,.6);margin-bottom:24px;}
+.bt-count-num{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:80px;line-height:1;color:#f4d06a;animation:btpulse 1s infinite;}
+@keyframes btpulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.12);opacity:.7;}}
+.bt-count-msg{font-size:14px;color:rgba(250,248,243,.75);margin-top:18px;}
+.bt-result-card{background:#221d19;border:1px solid rgba(250,248,243,.14);border-radius:10px;padding:18px 18px;display:flex;align-items:center;gap:14px;margin-bottom:10px;position:relative;overflow:hidden;}
+.bt-result-card.winner{border-color:#f4d06a;background:rgba(244,208,106,.08);}
+.bt-result-rank{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:22px;}
+.bt-result-info{flex:1;}
+.bt-result-name{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:18px;}
+.bt-result-meta{font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(250,248,243,.5);letter-spacing:.06em;margin-top:2px;}
+.bt-result-score{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:34px;color:#f4d06a;}
+.bt-winstamp{position:absolute;top:8px;right:10px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:13px;color:#14110f;background:#f4d06a;border-radius:20px;padding:3px 12px;transform:rotate(6deg);box-shadow:0 3px 8px rgba(0,0,0,.3);}
+.bt-verdict{text-align:center;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:26px;margin:18px 0 6px;}
+.bt-verdict.win{color:#f4d06a;}
+.bt-verdict.lose{color:#ff7a90;}
+.bt-verdict.draw{color:#9fd6c0;}
 </style>
+<script src="https://pecpec37-gift.github.io/portal/battle.js"></script>
 </head>
 <body>
 
@@ -230,6 +287,11 @@
     </div>
   </div>
 </header>
+
+<div class="battle-banner">
+  <button class="battle-banner-btn primary" onclick="btOpen()">⚔️ 対戦モード<small>ONLINE VS</small></button>
+  <button class="battle-banner-btn secondary" onclick="btOpenResults()">🏆 対戦結果<small>RESULTS</small></button>
+</div>
 
 <section class="message-section">
   <div class="message-inner">
@@ -1811,5 +1873,265 @@ if (rankingRefreshBtn) rankingRefreshBtn.addEventListener('click', () => {
 
 countVisit();
 </script>
+<!-- ===== 対戦モード オーバーレイ ===== -->
+<div id="battle-overlay">
+  <div class="bt-wrap">
+    <div class="bt-top">
+      <h2 id="bt-title">⚔️ 対戦モード</h2>
+      <button class="bt-close" onclick="btClose()">✕ 閉じる</button>
+    </div>
+
+    <!-- 名前入力 -->
+    <div class="bt-view" id="bt-view-name">
+      <p class="bt-lead">対戦に使うプレーヤー名を入力してください。<br>（ランキングや対戦相手一覧に表示されます）</p>
+      <input class="bt-input" id="bt-name-input" type="text" maxlength="20" placeholder="プレーヤー名">
+      <button class="bt-btn" onclick="btSubmitName()">この名前で対戦ロビーへ ▶</button>
+    </div>
+
+    <!-- ロビー -->
+    <div class="bt-view" id="bt-view-lobby">
+      <p class="bt-lead">対戦したい相手を選んでください。相手を選ぶとすぐに対戦が始まります。<br>ゲームは <strong>神経衰弱道場</strong>、テーマはランダムで両者共通です。</p>
+      <div class="bt-section-label">■ 対戦を待っているプレーヤー</div>
+      <div class="bt-players" id="bt-players"></div>
+      <button class="bt-btn ghost" onclick="btClose()">ロビーから退出する</button>
+    </div>
+
+    <!-- マッチ成立・カウントダウン -->
+    <div class="bt-view" id="bt-view-count">
+      <div class="bt-count-box">
+        <div class="bt-count-vs"><span class="me" id="bt-count-me">あなた</span> <span style="opacity:.6">VS</span> <span class="op" id="bt-count-op">相手</span></div>
+        <div class="bt-count-genre" id="bt-count-genre">テーマ：—</div>
+        <div class="bt-count-num" id="bt-count-num">10</div>
+        <div class="bt-count-msg">対戦者が決まりました。まもなく開始します！</div>
+      </div>
+    </div>
+
+    <!-- 対戦結果 -->
+    <div class="bt-view" id="bt-view-result">
+      <div id="bt-result-body"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== 対戦モード グルー ===== */
+(function(){
+  var overlay=document.getElementById('battle-overlay');
+  var titleEl=document.getElementById('bt-title');
+  var views={name:'bt-view-name',lobby:'bt-view-lobby',count:'bt-view-count',result:'bt-view-result'};
+  var countTimer=null, resultUnsub=null;
+
+  function showView(v){
+    Object.keys(views).forEach(function(k){
+      document.getElementById(views[k]).classList.toggle('show',k===v);
+    });
+  }
+  function openOverlay(){ overlay.classList.add('show'); document.body.style.overflow='hidden'; }
+  function closeOverlay(){
+    overlay.classList.remove('show'); document.body.style.overflow='';
+    if(countTimer){clearInterval(countTimer);countTimer=null;}
+    if(resultUnsub){try{resultUnsub();}catch(e){}resultUnsub=null;}
+  }
+
+  function notConfigured(){
+    titleEl.textContent='⚔️ 対戦モード';
+    showView('name');
+    document.getElementById('bt-view-name').innerHTML=
+      '<p class="bt-lead">対戦モードはまだ準備中です。<br>（Firebaseの設定が必要です。設定ガイドをご確認ください）</p>'+
+      '<button class="bt-btn ghost" onclick="btClose()">閉じる</button>';
+    openOverlay();
+  }
+
+  // ⚔️ 対戦モードを開く
+  window.btOpen=function(){
+    if(!window.TomyBattle||!TomyBattle.isConfigured()){ notConfigured(); return; }
+    titleEl.textContent='⚔️ 対戦モード';
+    var name=TomyBattle.getName();
+    openOverlay();
+    if(name){ enterLobby(name); }
+    else { showView('name'); setTimeout(function(){var i=document.getElementById('bt-name-input');if(i)i.focus();},80); }
+  };
+
+  window.btSubmitName=function(){
+    var v=document.getElementById('bt-name-input').value.trim();
+    if(!v){ alert('プレーヤー名を入力してください'); return; }
+    enterLobby(v);
+  };
+
+  function enterLobby(name){
+    showView('lobby');
+    document.getElementById('bt-players').innerHTML='<div class="bt-empty"><span class="bt-spinner"></span> ロビーに接続中…</div>';
+    TomyBattle.joinLobby(name, renderPlayers, onMatched).catch(function(){
+      document.getElementById('bt-players').innerHTML='<div class="bt-empty">接続に失敗しました。<br>時間をおいて再度お試しください。</div>';
+    });
+  }
+
+  function renderPlayers(list){
+    var box=document.getElementById('bt-players');
+    var others=list.filter(function(p){return !p.self;});
+    var me=list.filter(function(p){return p.self;})[0];
+    var html='';
+    if(me){
+      html+='<div class="bt-player self"><div class="bt-player-avatar">🙋</div>'+
+            '<div class="bt-player-name">'+esc(me.name)+'</div>'+
+            '<div class="bt-player-tag">待機中・本人</div></div>';
+    }
+    if(others.length===0){
+      html+='<div class="bt-empty"><span class="bt-spinner"></span> ほかのプレーヤーを待っています…<br>友だちにも「対戦モード」を開いてもらってください。</div>';
+    } else {
+      others.forEach(function(p){
+        html+='<div class="bt-player pickable" onclick="btPick(\''+p.id+'\',\''+escAttr(p.name)+'\')">'+
+              '<div class="bt-player-avatar">🎮</div>'+
+              '<div class="bt-player-name">'+esc(p.name)+'</div>'+
+              '<div class="bt-player-pick">対戦する ▶</div></div>';
+      });
+    }
+    box.innerHTML=html;
+  }
+
+  window.btPick=function(oppId,oppName){
+    showView('count');
+    document.getElementById('bt-count-me').textContent=TomyBattle.getName()||'あなた';
+    document.getElementById('bt-count-op').textContent=oppName;
+    TomyBattle.pickOpponent(oppId,oppName,{}).then(function(r){
+      startCountdown(r.matchId, r.match);
+    }).catch(function(){
+      alert('対戦の開始に失敗しました。相手がすでに別の対戦に入った可能性があります。');
+      showView('lobby');
+    });
+  };
+
+  // 相手に選ばれた側
+  function onMatched(matchId, match){
+    if(!match) return;
+    var opName='相手';
+    var myPid=TomyBattle.getPid();
+    Object.keys(match.players||{}).forEach(function(id){ if(id!==myPid) opName=match.players[id]; });
+    document.getElementById('bt-count-me').textContent=TomyBattle.getName()||'あなた';
+    document.getElementById('bt-count-op').textContent=opName;
+    showView('count');
+    startCountdown(matchId, match);
+  }
+
+  function startCountdown(matchId, match){
+    var g=(TomyBattle.GENRES||[]).filter(function(x){return x.id===match.genre;})[0];
+    document.getElementById('bt-count-genre').textContent='テーマ：'+(g?g.icon+' '+g.name:match.genre);
+    var target = match.startAt || (Date.now()+10000);
+    if(countTimer) clearInterval(countTimer);
+    function tick(){
+      var sec=Math.max(0,Math.ceil((target-Date.now())/1000));
+      document.getElementById('bt-count-num').textContent=sec;
+      if(sec<=0){
+        clearInterval(countTimer); countTimer=null;
+        // 対戦結果を後で見られるよう記録
+        localStorage.setItem('tommygo_last_match', matchId);
+        // ゲームへ遷移（テーマ・matchId・pidを渡す）
+        var url=TomyBattle.GAME_URL+'?battle=1&match='+encodeURIComponent(matchId)+
+                '&pid='+encodeURIComponent(TomyBattle.getPid())+
+                '&genre='+encodeURIComponent(match.genre)+
+                '&name='+encodeURIComponent(TomyBattle.getName()||'');
+        window.location.href=url;
+      }
+    }
+    tick(); countTimer=setInterval(tick,250);
+  }
+
+  // 🏆 対戦結果を開く
+  window.btOpenResults=function(){
+    if(!window.TomyBattle||!TomyBattle.isConfigured()){ notConfigured(); return; }
+    titleEl.textContent='🏆 対戦結果';
+    openOverlay();
+    showView('result');
+    var mid=getParam('battleResult')||localStorage.getItem('tommygo_last_match');
+    var body=document.getElementById('bt-result-body');
+    if(!mid){
+      body.innerHTML='<div class="bt-empty">まだ対戦結果がありません。<br>「対戦モード」から対戦を始めてください。</div>';
+      return;
+    }
+    body.innerHTML='<div class="bt-empty"><span class="bt-spinner"></span> 結果を読み込み中…</div>';
+    if(resultUnsub){try{resultUnsub();}catch(e){}resultUnsub=null;}
+    TomyBattle.listenMatch(mid,function(match){ renderResult(match,mid); }).then(function(un){resultUnsub=un;}).catch(function(){
+      body.innerHTML='<div class="bt-empty">結果の読み込みに失敗しました。</div>';
+    });
+  };
+
+  function renderResult(match, matchId){
+    var body=document.getElementById('bt-result-body');
+    if(!match){ body.innerHTML='<div class="bt-empty">対戦データが見つかりません。</div>'; return; }
+    var myPid=TomyBattle.getPid();
+    var players=match.players||{};
+    var scores=match.scores||{};
+    var ids=Object.keys(players);
+    var rows=ids.map(function(id){
+      var s=scores[id];
+      return {id:id,name:players[id],score:s?s.score:null,pairs:s?s.pairs:null,done:!!s,self:id===myPid};
+    });
+    var allDone=rows.every(function(r){return r.done;});
+    var g=(TomyBattle.GENRES||[]).filter(function(x){return x.id===match.genre;})[0];
+
+    var html='<p class="bt-lead" style="text-align:center">テーマ：'+(g?g.icon+' '+g.name:match.genre)+'</p>';
+
+    if(!allDone){
+      var waiting=rows.filter(function(r){return !r.done;}).map(function(r){return esc(r.name);}).join('、');
+      html+='<div class="bt-empty"><span class="bt-spinner"></span> '+waiting+' さんのプレー結果を待っています…</div>';
+    }
+
+    // 勝敗判定
+    var sorted=rows.slice().sort(function(a,b){return (b.score||0)-(a.score||0);});
+    var topScore=sorted.length?sorted[0].score:null;
+    var winners=sorted.filter(function(r){return r.done&&r.score===topScore;});
+    var isDraw=allDone&&winners.length>1;
+
+    if(allDone){
+      var me=rows.filter(function(r){return r.self;})[0];
+      if(isDraw){ html+='<div class="bt-verdict draw">🤝 引き分け！</div>'; }
+      else if(me&&me.score===topScore){ html+='<div class="bt-verdict win">🎉 あなたの勝ち！</div>'; }
+      else { html+='<div class="bt-verdict lose">😢 あなたの負け…</div>'; }
+    }
+
+    sorted.forEach(function(r,i){
+      var isWin=allDone&&!isDraw&&r.done&&r.score===topScore;
+      html+='<div class="bt-result-card'+(isWin?' winner':'')+'">'+
+        (isWin?'<div class="bt-winstamp">👑 WIN</div>':'')+
+        '<div class="bt-result-rank">'+(r.done?(i+1):'-')+'</div>'+
+        '<div class="bt-result-info"><div class="bt-result-name">'+esc(r.name)+(r.self?' <span style="font-size:11px;color:#f4d06a">(あなた)</span>':'')+'</div>'+
+        '<div class="bt-result-meta">'+(r.done?(r.pairs+'/10組 そろえた'):'プレー中…')+'</div></div>'+
+        '<div class="bt-result-score">'+(r.done?r.score:'—')+'</div></div>';
+    });
+
+    html+='<button class="bt-btn" onclick="btContinue()">⚔️ 対戦を続ける</button>'+
+          '<button class="bt-btn ghost" onclick="btQuit()">対戦をやめる</button>';
+    body.innerHTML=html;
+  }
+
+  window.btContinue=function(){
+    if(resultUnsub){try{resultUnsub();}catch(e){}resultUnsub=null;}
+    TomyBattle.clearMyMatchFlag();
+    var name=TomyBattle.getName();
+    if(name){ titleEl.textContent='⚔️ 対戦モード'; enterLobby(name); }
+    else { showView('name'); }
+  };
+  window.btQuit=function(){
+    TomyBattle.clearMyMatchFlag();
+    TomyBattle.leaveLobby();
+    closeOverlay();
+  };
+
+  window.btClose=function(){
+    try{ if(window.TomyBattle) TomyBattle.leaveLobby(); }catch(e){}
+    closeOverlay();
+  };
+
+  function getParam(k){ try{ return new URLSearchParams(window.location.search).get(k); }catch(e){ return null; } }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function escAttr(s){ return String(s==null?'':s).replace(/['"\\]/g,'\\$&').replace(/[<>]/g,''); }
+
+  // ゲームから ?battleResult=... で戻ってきたら自動で結果画面を開く
+  window.addEventListener('DOMContentLoaded',function(){
+    if(getParam('battleResult')){ setTimeout(function(){ btOpenResults(); },300); }
+  });
+})();
+</script>
+
 </body>
 </html>
