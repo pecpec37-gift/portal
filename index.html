@@ -1920,7 +1920,7 @@ countVisit();
   var overlay=document.getElementById('battle-overlay');
   var titleEl=document.getElementById('bt-title');
   var views={name:'bt-view-name',lobby:'bt-view-lobby',count:'bt-view-count',result:'bt-view-result'};
-  var countTimer=null, resultUnsub=null;
+  var countTimer=null, resultUnsub=null, activeMatchId=null;
 
   function showView(v){
     Object.keys(views).forEach(function(k){
@@ -1932,6 +1932,7 @@ countVisit();
     overlay.classList.remove('show'); document.body.style.overflow='';
     if(countTimer){clearInterval(countTimer);countTimer=null;}
     if(resultUnsub){try{resultUnsub();}catch(e){}resultUnsub=null;}
+    activeMatchId=null;
   }
 
   function notConfigured(){
@@ -2015,6 +2016,9 @@ countVisit();
   }
 
   function startCountdown(matchId, match){
+    if(!match) return;
+    if(activeMatchId===matchId) return; // 同じ対戦の二重起動を防止
+    activeMatchId=matchId;
     var game=(TomyBattle.gameById&&TomyBattle.gameById(match.game))||null;
     var g=(TomyBattle.genreOf&&TomyBattle.genreOf(match.game,match.genre))||null;
     var gameLabel=game?(game.icon+' '+game.name):'対戦';
@@ -2113,6 +2117,7 @@ countVisit();
 
   window.btContinue=function(){
     if(resultUnsub){try{resultUnsub();}catch(e){}resultUnsub=null;}
+    activeMatchId=null;
     TomyBattle.clearMyMatchFlag();
     var name=TomyBattle.getName();
     if(name){ titleEl.textContent='⚔️ 対戦モード'; enterLobby(name); }

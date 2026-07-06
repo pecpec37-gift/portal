@@ -166,31 +166,52 @@
   }
 
   /* ---- 相手を選んで対戦開始（テーマはここでランダム決定して両者に渡す） ---- */
+  // 2人のIDから決まる「共有マッチID」を作る（どちらが選んでも同じIDになる）
+  function pairMatchId(a, b) {
+    var ids = [a, b].sort();
+    return 'm_' + ids[0] + '__' + ids[1];
+  }
+  // 既存マッチを作り直すべきか（前回が完了済み or 放置で古い なら作り直す）
+  function shouldRecreate(current, now) {
+    if (!current || !current.startAt) return true;
+    var pc = current.players ? Object.keys(current.players).length : 0;
+    var sc = current.scores ? Object.keys(current.scores).length : 0;
+    if (pc > 0 && sc >= pc) return true;              // 前回の対戦が完了 → 新しい対戦
+    if (now - current.startAt > 120000) return true;   // 古い（放置）→ 作り直す
+    return false;                                       // 進行中の対戦に「参加」＝同じゲームになる
+  }
+
   function pickOpponent(oppId, oppName, opts) {
     opts = opts || {};
     return ready.then(function () {
       var pid = getPid();
       var myName = getName() || 'プレーヤー';
-      // 対戦対象ゲームからランダムに1つ選び、そのゲームのジャンルもランダムで決定
-      var game = opts.gameId ? gameById(opts.gameId) : GAMES[Math.floor(Math.random() * GAMES.length)];
-      if (!game) game = GAMES[0];
-      var genre = opts.genreId || game.genres[Math.floor(Math.random() * game.genres.length)].id;
-      var matchRef = db.ref('matches').push();
-      var matchId = matchRef.key;
-      var players = {};
-      players[pid] = myName;
-      players[oppId] = oppName;
-      var match = {
-        players: players,
-        game: game.id,
-        genre: genre,
-        status: 'starting',
-        createdBy: pid,
-        createdAt: firebase.database.ServerValue.TIMESTAMP,
-        startAt: Date.now() + 10000
-      };
-      return matchRef.set(match).then(function () {
-        // 両者のロビーにmatchIdを書き込む → 双方が検知して開始画面へ
+      var matchId = pairMatchId(pid, oppId);
+      var matchRef = db.ref('matches/' + matchId);
+      // トランザクションで「1つのマッチだけ」を作る／既にあれば参加する
+      return matchRef.transaction(function (current) {
+        var now = Date.now();
+        if (shouldRecreate(current, now)) {
+          var game = opts.gameId ? gameById(opts.gameId) : GAMES[Math.floor(Math.random() * GAMES.length)];
+          if (!game) game = GAMES[0];
+          var genre = opts.genreId || game.genres[Math.floor(Math.random() * game.genres.length)].id;
+          var players = {};
+          players[pid] = myName;
+          players[oppId] = oppName;
+          return {
+            players: players,
+            game: game.id,
+            genre: genre,
+            status: 'starting',
+            createdBy: pid,
+            createdAt: now,
+            startAt: now + 10000
+          };
+        }
+        // 既存の対戦が有効 → そのまま参加（上書きしない＝両者が同じゲーム・同じジャンル）
+        return current;
+      }).then(function (res) {
+        var match = res.snapshot ? res.snapshot.val() : null;
         var updates = {};
         updates['lobby/' + pid + '/matchId'] = matchId;
         updates['lobby/' + oppId + '/matchId'] = matchId;
