@@ -22,17 +22,46 @@
   };
   /* =================================================== */
 
-  // 神経衰弱道場のテーマ一覧（ポータル側で相手決定時にランダム選択して渡す）
-  var GENRES = [
-    { id: 'number',  icon: '🔢', name: '数字' },
-    { id: 'animal',  icon: '🐶', name: '動物' },
-    { id: 'fruit',   icon: '🍓', name: 'フルーツ' },
-    { id: 'food',    icon: '🍜', name: 'たべもの' },
-    { id: 'vehicle', icon: '🚗', name: 'のりもの' },
-    { id: 'sport',   icon: '⚽', name: 'スポーツ' },
-    { id: 'face',    icon: '😀', name: 'かお' },
-    { id: 'nature',  icon: '🌸', name: 'しぜん' }
+  // ===== 対戦対象ゲームの登録（ここに追加すれば対戦対象が増えます） =====
+  // 相手が決まると、この中から1ゲームをランダム選択し、そのゲームのジャンルもランダムで両者に渡します。
+  var GAMES = [
+    {
+      id: 'shinkei',
+      name: '神経衰弱道場',
+      icon: '🃏',
+      url: 'https://pecpec37-gift.github.io/shinkei-suijaku/',
+      genres: [
+        { id: 'number',  icon: '🔢', name: '数字' },
+        { id: 'animal',  icon: '🐶', name: '動物' },
+        { id: 'fruit',   icon: '🍓', name: 'フルーツ' },
+        { id: 'food',    icon: '🍜', name: 'たべもの' },
+        { id: 'vehicle', icon: '🚗', name: 'のりもの' },
+        { id: 'sport',   icon: '⚽', name: 'スポーツ' },
+        { id: 'face',    icon: '😀', name: 'かお' },
+        { id: 'nature',  icon: '🌸', name: 'しぜん' }
+      ]
+    },
+    {
+      id: 'meigen',
+      name: '名言・スピーチクイズ道場',
+      icon: '💬',
+      url: 'https://pecpec37-gift.github.io/meigen-quiz/',
+      genres: [
+        { id: 'ijin',   icon: '🏛️', name: '偉人・歴史の名言' },
+        { id: 'kagaku', icon: '🔬', name: '科学者・発明家の名言' },
+        { id: 'keiei',  icon: '💼', name: '経営者・起業家の名言' },
+        { id: 'sports', icon: '🏅', name: 'スポーツ選手の名言' },
+        { id: 'bunka',  icon: '✒️', name: '作家・哲学者・芸術家' },
+        { id: 'speech', icon: '🎤', name: '名スピーチ・名演説' }
+      ]
+    }
   ];
+  function gameById(id){ for(var i=0;i<GAMES.length;i++){ if(GAMES[i].id===id) return GAMES[i]; } return null; }
+  function genreOf(gameId, genreId){
+    var g=gameById(gameId); if(!g) return null;
+    for(var i=0;i<g.genres.length;i++){ if(g.genres[i].id===genreId) return g.genres[i]; }
+    return null;
+  }
 
   var SDK_BASE = 'https://www.gstatic.com/firebasejs/10.12.2/';
   var db = null;
@@ -142,7 +171,10 @@
     return ready.then(function () {
       var pid = getPid();
       var myName = getName() || 'プレーヤー';
-      var genre = opts.genreId || GENRES[Math.floor(Math.random() * GENRES.length)].id;
+      // 対戦対象ゲームからランダムに1つ選び、そのゲームのジャンルもランダムで決定
+      var game = opts.gameId ? gameById(opts.gameId) : GAMES[Math.floor(Math.random() * GAMES.length)];
+      if (!game) game = GAMES[0];
+      var genre = opts.genreId || game.genres[Math.floor(Math.random() * game.genres.length)].id;
       var matchRef = db.ref('matches').push();
       var matchId = matchRef.key;
       var players = {};
@@ -150,6 +182,7 @@
       players[oppId] = oppName;
       var match = {
         players: players,
+        game: game.id,
         genre: genre,
         status: 'starting',
         createdBy: pid,
@@ -169,13 +202,13 @@
   }
 
   /* ---- スコア送信（ゲーム終了時にゲーム側から呼ぶ） ---- */
-  function submitScore(matchId, score, pairs) {
+  function submitScore(matchId, score, detail) {
     return ready.then(function () {
       var pid = getPid();
       var name = getName() || 'プレーヤー';
       var upd = {};
       upd['matches/' + matchId + '/scores/' + pid] = {
-        name: name, score: score, pairs: pairs,
+        name: name, score: score, detail: (detail || ''),
         ts: firebase.database.ServerValue.TIMESTAMP
       };
       return db.ref().update(upd);
@@ -206,7 +239,9 @@
   window.TomyBattle = {
     ready: ready,
     isConfigured: isConfigured,
-    GENRES: GENRES,
+    GAMES: GAMES,
+    gameById: gameById,
+    genreOf: genreOf,
     getPid: getPid,
     getName: getName,
     setName: setName,
@@ -217,8 +252,6 @@
     listenMatch: listenMatch,
     getMatch: getMatch,
     clearMyMatchFlag: clearMyMatchFlag,
-    // 神経衰弱ゲームのURL（対戦開始時にリダイレクト）
-    GAME_URL: 'https://pecpec37-gift.github.io/shinkei-suijaku/',
     PORTAL_URL: 'https://pecpec37-gift.github.io/portal/'
   };
 })();

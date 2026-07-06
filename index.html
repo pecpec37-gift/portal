@@ -374,7 +374,7 @@ function toggleRanking() {
   <p class="genre-subheading">遊びたいジャンルを選んでください</p>
   <div class="genre-grid" id="genre-grid"></div>
   <div class="battle-mini">
-    <span class="battle-mini-label">🃏 神経衰弱道場で対戦できます</span>
+    <span class="battle-mini-label">🃏 神経衰弱道場・💬 名言クイズ道場で対戦できます</span>
     <div class="battle-mini-btns">
       <button class="battle-mini-btn" onclick="btOpen()">⚔️ 対戦モード</button>
       <button class="battle-mini-btn" onclick="btOpenResults()">🏆 対戦結果</button>
@@ -2015,8 +2015,11 @@ countVisit();
   }
 
   function startCountdown(matchId, match){
-    var g=(TomyBattle.GENRES||[]).filter(function(x){return x.id===match.genre;})[0];
-    document.getElementById('bt-count-genre').textContent='テーマ：'+(g?g.icon+' '+g.name:match.genre);
+    var game=(TomyBattle.gameById&&TomyBattle.gameById(match.game))||null;
+    var g=(TomyBattle.genreOf&&TomyBattle.genreOf(match.game,match.genre))||null;
+    var gameLabel=game?(game.icon+' '+game.name):'対戦';
+    var genreLabel=g?(g.icon+' '+g.name):match.genre;
+    document.getElementById('bt-count-genre').textContent=gameLabel+'（'+genreLabel+'）';
     var target = match.startAt || (Date.now()+10000);
     if(countTimer) clearInterval(countTimer);
     function tick(){
@@ -2024,11 +2027,11 @@ countVisit();
       document.getElementById('bt-count-num').textContent=sec;
       if(sec<=0){
         clearInterval(countTimer); countTimer=null;
-        // 対戦結果を後で見られるよう記録
         localStorage.setItem('tommygo_last_match', matchId);
-        // ゲームへ遷移（テーマ・matchId・pidを渡す）
-        var url=TomyBattle.GAME_URL+'?battle=1&match='+encodeURIComponent(matchId)+
+        var base=(game&&game.url)||'https://pecpec37-gift.github.io/shinkei-suijaku/';
+        var url=base+'?battle=1&match='+encodeURIComponent(matchId)+
                 '&pid='+encodeURIComponent(TomyBattle.getPid())+
+                '&game='+encodeURIComponent(match.game||'')+
                 '&genre='+encodeURIComponent(match.genre)+
                 '&name='+encodeURIComponent(TomyBattle.getName()||'');
         window.location.href=url;
@@ -2065,12 +2068,15 @@ countVisit();
     var ids=Object.keys(players);
     var rows=ids.map(function(id){
       var s=scores[id];
-      return {id:id,name:players[id],score:s?s.score:null,pairs:s?s.pairs:null,done:!!s,self:id===myPid};
+      return {id:id,name:players[id],score:s?s.score:null,detail:s?(s.detail||''):null,done:!!s,self:id===myPid};
     });
     var allDone=rows.every(function(r){return r.done;});
-    var g=(TomyBattle.GENRES||[]).filter(function(x){return x.id===match.genre;})[0];
+    var game=(TomyBattle.gameById&&TomyBattle.gameById(match.game))||null;
+    var g=(TomyBattle.genreOf&&TomyBattle.genreOf(match.game,match.genre))||null;
+    var gameLabel=game?(game.icon+' '+game.name):'対戦';
+    var genreLabel=g?(g.icon+' '+g.name):match.genre;
 
-    var html='<p class="bt-lead" style="text-align:center">テーマ：'+(g?g.icon+' '+g.name:match.genre)+'</p>';
+    var html='<p class="bt-lead" style="text-align:center">'+esc(gameLabel)+'<br><span style="font-size:11px;color:rgba(250,248,243,.55)">'+esc(genreLabel)+'</span></p>';
 
     if(!allDone){
       var waiting=rows.filter(function(r){return !r.done;}).map(function(r){return esc(r.name);}).join('、');
@@ -2096,7 +2102,7 @@ countVisit();
         (isWin?'<div class="bt-winstamp">👑 WIN</div>':'')+
         '<div class="bt-result-rank">'+(r.done?(i+1):'-')+'</div>'+
         '<div class="bt-result-info"><div class="bt-result-name">'+esc(r.name)+(r.self?' <span style="font-size:11px;color:#f4d06a">(あなた)</span>':'')+'</div>'+
-        '<div class="bt-result-meta">'+(r.done?(r.pairs+'/10組 そろえた'):'プレー中…')+'</div></div>'+
+        '<div class="bt-result-meta">'+(r.done?esc(r.detail||'完了'):'プレー中…')+'</div></div>'+
         '<div class="bt-result-score">'+(r.done?r.score:'—')+'</div></div>';
     });
 
