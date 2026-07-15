@@ -222,6 +222,11 @@
 .popular-unit{font-size:9px;color:rgba(250,248,243,0.35);margin-left:2px;}
 .popular-note{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.08em;color:rgba(255,255,255,0.28);margin-bottom:8px;}
 @media(max-width:600px){.popular-bar-wrap{display:none;}}
+a.ranking-row{text-decoration:none;color:inherit;cursor:pointer;}
+a.ranking-row:hover{background:rgba(232,150,60,0.10);border-color:rgba(232,150,60,0.35);}
+a.ranking-row .popular-go{font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(232,150,60,0.8);margin-left:8px;flex-shrink:0;opacity:0;transition:opacity 0.15s;}
+a.ranking-row:hover .popular-go{opacity:1;}
+@media(hover:none){a.ranking-row .popular-go{opacity:0.8;}}
 
 /* ===== 対戦モード ===== */
 .battle-mini{max-width:1100px;margin:36px auto 0;padding:22px 24px 0;border-top:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:12px;}
@@ -1714,7 +1719,7 @@ function getLocalPopular(days) {
     Object.keys(day).forEach(g => { totals[g] = (totals[g] || 0) + (day[g] || 0); });
   });
   return Object.keys(totals)
-    .map(k => ({ name: GAME_NAMES[k] || k, count: totals[k] }))
+    .map(k => ({ key: k, name: GAME_NAMES[k] || k, count: totals[k] }))
     .filter(x => x.count > 0)
     .sort((a, b) => (b.count - a.count) || a.name.localeCompare(b.name, 'ja'))
     .slice(0, 10);
@@ -1745,27 +1750,43 @@ function sendClickToGas(key) {
   } catch (e) {}
 }
 
-/* ---- game click count ---- */
+/* ゲームID -> 起動URL の対応表（人気メニューTOP10のクリック起動に使用） */
+const GAME_URLS = {};
+
+/* クリック1回分を記録（ゲームカード / 人気ランキング 共通） */
+function recordClick(key) {
+  if (!key) return;
+
+  // (1) 通算カウント（?admin 用・従来どおり）
+  const c = JSON.parse(localStorage.getItem(KEY_CLICKS) || '{}');
+  c[key] = (c[key] || 0) + 1;
+  localStorage.setItem(KEY_CLICKS, JSON.stringify(c));
+
+  // (2) 日付別ログ（ローカル予備集計）
+  const log = pruneClickLog(loadClickLog());
+  const t = dayKey();
+  if (!log[t]) log[t] = {};
+  log[t][key] = (log[t][key] || 0) + 1;
+  saveClickLog(log);
+
+  // (3) GASへ送信（全ユーザー合算の人気ランキング）
+  sendClickToGas(key);
+}
+
+/* ---- game click count + URL登録 ---- */
 document.querySelectorAll('.game-card[data-key]').forEach(card => {
-  card.addEventListener('click', () => {
-    const key = card.dataset.key;
-
-    // (1) 通算カウント（?admin 用・従来どおり）
-    const c = JSON.parse(localStorage.getItem(KEY_CLICKS) || '{}');
-    c[key] = (c[key] || 0) + 1;
-    localStorage.setItem(KEY_CLICKS, JSON.stringify(c));
-
-    // (2) 日付別ログ（ローカル予備集計）
-    const log = pruneClickLog(loadClickLog());
-    const t = dayKey();
-    if (!log[t]) log[t] = {};
-    log[t][key] = (log[t][key] || 0) + 1;
-    saveClickLog(log);
-
-    // (3) GASへ送信（全ユーザー合算の人気ランキング）
-    sendClickToGas(key);
-  });
+  const key = card.dataset.key;
+  GAME_URLS[key] = {
+    url:    card.getAttribute('href') || '',
+    target: card.getAttribute('target') || '_self'
+  };
+  card.addEventListener('click', () => recordClick(key));
 });
+
+/* 人気メニューTOP10の行クリック時（起動はhrefで行われ、ここではカウントのみ） */
+function popularRowClick(key) {
+  recordClick(key);
+}
 
 /* ---- filter ---- */
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -2040,12 +2061,23 @@ function paintPopular(rows, listId, noteId, noteText) {
       ? '<span class="ranking-pos ' + ['gold','silver','bronze'][i] + '">' + RANK_ICONS[i] + '</span>'
       : '<span class="ranking-pos">' + (i + 1) + '</span>';
     const pct = Math.max(6, Math.round(g.count / mx * 100));
-    return '<div class="ranking-row ' + rankClass + '">' +
-             posHtml +
-             '<span class="ranking-name popular-name">' + g.name + '</span>' +
-             '<div class="popular-bar-wrap"><div class="popular-bar" style="width:' + pct + '%"></div></div>' +
-             '<span class="popular-count">' + g.count + '<span class="popular-unit">回</span></span>' +
-           '</div>';
+
+    const info = (typeof GAME_URLS !== 'undefined') ? GAME_URLS[g.key] : null;
+    const link = info && info.url;
+    const inner =
+      posHtml +
+      '<span class="ranking-name popular-name">' + g.name + '</span>' +
+      '<div class="popular-bar-wrap"><div class="popular-bar" style="width:' + pct + '%"></div></div>' +
+      '<span class="popular-count">' + g.count + '<span class="popular-unit">回</span></span>' +
+      (link ? '<span class="popular-go">PLAY &#8594;</span>' : '');
+
+    if (link) {
+      const safeKey = String(g.key).replace(/[^a-zA-Z0-9_-]/g, '');
+      return '<a class="ranking-row ' + rankClass + '" href="' + info.url + '"' +
+             ' target="' + (info.target || '_self') + '" rel="noopener"' +
+             ' onclick="popularRowClick(\'' + safeKey + '\')">' + inner + '</a>';
+    }
+    return '<div class="ranking-row ' + rankClass + '">' + inner + '</div>';
   }).join('');
 }
 
@@ -2061,6 +2093,7 @@ function loadPopularPeriod(days) {
     if (rows && rows.length) {
       // GASの戻り値: [{ game, name, clicks }]
       const norm = rows.map(r => ({
+        key:   r.game,
         name:  GAME_NAMES[r.game] || r.name || r.game,
         count: parseInt(r.clicks, 10) || 0
       })).filter(x => x.count > 0);
