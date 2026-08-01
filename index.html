@@ -462,6 +462,7 @@ function toggleRanking() {
     <button class="filter-btn" data-filter="tech">テクノロジー</button>
     <button class="filter-btn" data-filter="business">ビジネス</button>
     <button class="filter-btn" data-filter="board">ボードゲーム</button>
+    <button class="filter-btn" data-filter="other">おまけ</button>
   </div>
 </nav>
 
@@ -469,6 +470,21 @@ function toggleRanking() {
   <button class="back-to-genres" id="back-to-genres" type="button">&#x2190; ジャンルに戻る</button>
   <div class="section-label" id="grid-label">ALL GAMES — <span id="grid-count"></span> titles</div>
   <div class="games-grid" id="games-grid">
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/FlowMind/" target="_blank" rel="noopener" data-cat="other" data-key="FlowMind" data-new="true">
+      <div class="game-card-accent" style="background:#6366f1;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e7ff;color:#3730a3;">おまけ</span>
+        <span class="game-card-icon">&#x1F32C;&#xFE0F;</span>
+        <h2 class="game-card-title">息のことば</h2>
+        <p class="game-card-desc">毎日の呼吸に合わせて、心にそっと届くアファメーション。１４カテゴリーの肯定の言葉と環境音で、静かに整えるお守りのようなアプリ。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="おだやか"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">OPEN <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
 
     <a class="game-card" href="https://pecpec37-gift.github.io/sokudoku/" target="_blank" rel="noopener" data-cat="learning" data-key="sokudoku" data-new="true">
       <div class="game-card-accent" style="background:#2f5d8f;"></div>
@@ -1605,6 +1621,7 @@ const KEY_CLICKS = 'tomy_gl_clicks';
 
 const GAME_NAMES = {
   'sokudoku':       '速読道場',
+  'FlowMind':       '息のことば',
   'igo-dojo':       '囲碁棋譜道場',
   'quiz-app':       '地理クイズ',
   'goto-ilands':    '五島列島クイズ道場',
@@ -1794,7 +1811,7 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.game-card');
 const label = document.getElementById('grid-label');
 const countEl = document.getElementById('game-count');
-const catLabels = { all:'ALL GAMES', board:'BOARD GAME', geo:'地理・旅行', sports:'SPORTS', learning:'学習・雑学', business:'BUSINESS', tech:'TECHNOLOGY', entertainment:'エンタメ', kanken:'漢字検定' };
+const catLabels = { all:'ALL GAMES', board:'BOARD GAME', geo:'地理・旅行', sports:'SPORTS', learning:'学習・雑学', business:'BUSINESS', tech:'TECHNOLOGY', entertainment:'エンタメ', kanken:'漢字検定', other:'おまけ' };
 
 function updateFilter(f) {
   let n = 0;
@@ -1823,7 +1840,8 @@ const GENRES = [
   { cat:'geo',           name:'地理・旅行',    icon:'🗺️', accent:'#0284c7' },
   { cat:'tech',          name:'テクノロジー',   icon:'💻',  accent:'#0891b2' },
   { cat:'business',      name:'ビジネス',      icon:'💼',  accent:'#b8860b' },
-  { cat:'board',         name:'ボードゲーム',   icon:'♟️', accent:'#1a7a6e' }
+  { cat:'board',         name:'ボードゲーム',   icon:'♟️', accent:'#1a7a6e' },
+  { cat:'other',         name:'おまけ',        icon:'✨',  accent:'#6366f1' }
 ];
 const genreSection = document.getElementById('genre-section');
 const gamesSection = document.querySelector('.games-section');
