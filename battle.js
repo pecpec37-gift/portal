@@ -229,7 +229,7 @@
             status: 'starting',
             createdBy: pid,
             createdAt: now,
-            startAt: now + 10000
+            startAt: now + 5000
           };
         }
         // 既存の対戦が有効 → そのまま参加（上書きしない＝両者が同じゲーム・同じジャンル）

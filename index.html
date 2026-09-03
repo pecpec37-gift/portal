@@ -2252,7 +2252,7 @@ countVisit();
       <div class="bt-count-box">
         <div class="bt-count-vs"><span class="me" id="bt-count-me">あなた</span> <span style="opacity:.6">VS</span> <span class="op" id="bt-count-op">相手</span></div>
         <div class="bt-count-genre" id="bt-count-genre">テーマ：—</div>
-        <div class="bt-count-num" id="bt-count-num">10</div>
+        <div class="bt-count-num" id="bt-count-num">5</div>
         <div class="bt-count-msg">対戦者が決まりました。まもなく開始します！</div>
       </div>
     </div>
@@ -2398,7 +2398,7 @@ countVisit();
     var gameLabel=game?(game.icon+' '+game.name):'対戦';
     var genreLabel=g?(g.icon+' '+g.name):match.genre;
     document.getElementById('bt-count-genre').textContent=gameLabel+'（'+genreLabel+'）';
-    var target = match.startAt || (Date.now()+10000);
+    var target = match.startAt || (Date.now()+5000);
     if(countTimer) clearInterval(countTimer);
     function tick(){
       var sec=Math.max(0,Math.ceil((target-Date.now())/1000));
