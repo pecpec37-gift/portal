@@ -54,6 +54,17 @@
         { id: 'bunka',  icon: '✒️', name: '作家・哲学者・芸術家' },
         { id: 'speech', icon: '🎤', name: '名スピーチ・名演説' }
       ]
+    },
+    {
+      id: 'hitblow',
+      name: 'ヒット＆ブロー推理道場',
+      icon: '🔢',
+      url: 'https://pecpec37-gift.github.io/hitblow/',
+      // ヒット＆ブローの「ジャンル」＝桁数（3桁 / 4桁）
+      genres: [
+        { id: 'd3', icon: '3️⃣', name: '3桁' },
+        { id: 'd4', icon: '4️⃣', name: '4桁' }
+      ]
     }
   ];
   function gameById(id){ for(var i=0;i<GAMES.length;i++){ if(GAMES[i].id===id) return GAMES[i]; } return null; }
