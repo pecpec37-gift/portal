@@ -65,6 +65,19 @@
         { id: 'd3', icon: '3️⃣', name: '3桁' },
         { id: 'd4', icon: '4️⃣', name: '4桁' }
       ]
+    },
+    {
+      id: 'satsumabeef',
+      name: '薩摩牛クイズ道場',
+      icon: '🐂',
+      url: 'https://pecpec37-gift.github.io/satsuma-beef-quiz-dojo/',
+      genres: [
+        { id: 'satsuma', icon: '🐂', name: '薩摩牛の基礎' },
+        { id: 'gi',      icon: '🏅', name: '鹿児島黒牛とGI' },
+        { id: 'brand',   icon: '🥩', name: '和牛ブランド比較' },
+        { id: 'science', icon: '🔬', name: '脂と香りの科学' },
+        { id: 'bui',     icon: '🍖', name: '牛肉の部位・全般' }
+      ]
     }
   ];
   function gameById(id){ for(var i=0;i<GAMES.length;i++){ if(GAMES[i].id===id) return GAMES[i]; } return null; }
