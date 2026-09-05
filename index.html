@@ -396,10 +396,10 @@ function togglePopular() {
 <section class="ranking-section">
   <div class="ranking-inner">
     <button id="ranking-toggle-btn" onclick="toggleRanking()" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:0;width:100%;">
-      <div class="ranking-header" style="margin-bottom:0;flex:1;">
-        <span class="ranking-title"><span class="hanagata-stamp-sm" aria-hidden="true"></span> 花丸スタンプ TOP10</span>
-        <span class="ranking-sub">// Hall of Fame</span>
-        <button id="stamp-help-btn" onclick="event.stopPropagation();document.getElementById('stamp-help-popup').classList.add('open')" style="margin-left:auto;background:rgba(250,248,243,0.1);border:1px solid rgba(250,248,243,0.2);color:rgba(250,248,243,0.6);font-family:'Share Tech Mono',monospace;font-size:12px;width:26px;height:26px;border-radius:50%;cursor:pointer;transition:all 0.15s;flex-shrink:0;" onmouseover="this.style.background='rgba(250,248,243,0.2)';this.style.color='white'" onmouseout="this.style.background='rgba(250,248,243,0.1)';this.style.color='rgba(250,248,243,0.6)'">?</button>
+      <div class="ranking-header" style="margin-bottom:0;flex:1;flex-wrap:nowrap;gap:10px;min-width:0;">
+        <span class="ranking-title" style="flex-shrink:0;"><span class="hanagata-stamp-sm" aria-hidden="true"></span> 花丸スタンプ TOP10</span>
+        <span class="ranking-sub" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">// Hall of Fame</span>
+        <button id="stamp-help-btn" onclick="event.stopPropagation();document.getElementById('stamp-help-popup').classList.add('open')" style="background:rgba(250,248,243,0.1);border:1px solid rgba(250,248,243,0.2);color:rgba(250,248,243,0.6);font-family:'Share Tech Mono',monospace;font-size:12px;width:26px;height:26px;border-radius:50%;cursor:pointer;transition:all 0.15s;flex-shrink:0;" onmouseover="this.style.background='rgba(250,248,243,0.2)';this.style.color='white'" onmouseout="this.style.background='rgba(250,248,243,0.1)';this.style.color='rgba(250,248,243,0.6)'">?</button>
       </div>
       <span id="ranking-arrow" style="font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,0.4);transition:transform 0.2s;flex-shrink:0;">▶</span>
     </button>
