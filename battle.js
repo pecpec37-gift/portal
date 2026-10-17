@@ -78,6 +78,19 @@
         { id: 'science', icon: '🔬', name: '脂と香りの科学' },
         { id: 'bui',     icon: '🍖', name: '牛肉の部位・全般' }
       ]
+    },
+    {
+      id: 'kojiki',
+      name: '古事記クイズ道場',
+      icon: '⛩️',
+      url: 'https://pecpec37-gift.github.io/kojiki-quiz/',
+      genres: [
+        { id: 'kamiyo', icon: '🌊', name: '国生み・神代' },
+        { id: 'takama', icon: '☀️', name: '天岩戸と大蛇' },
+        { id: 'izumo',  icon: '🐰', name: '出雲神話' },
+        { id: 'tenson', icon: '⛩️', name: '天孫降臨' },
+        { id: 'jinmu',  icon: '🏹', name: '神武と英雄' }
+      ]
     }
   ];
   function gameById(id){ for(var i=0;i<GAMES.length;i++){ if(GAMES[i].id===id) return GAMES[i]; } return null; }
@@ -205,6 +218,58 @@
     return false;                                       // 進行中の対戦に「参加」＝同じゲームになる
   }
 
+  // N人のIDから決まる「共有マッチID」（並べ替えるので、誰が作っても同じIDになる）
+  function multiMatchId(ids) {
+    return 'm_' + ids.slice().sort().join('__');
+  }
+
+  // 複数の相手を選んで対戦開始（2人でも3人でも可）。oppList = [{id,name}, ...]
+  // テーマ（ゲーム・ジャンル）はここで決定し、参加者全員に渡す。
+  function pickOpponents(oppList, opts) {
+    opts = opts || {};
+    oppList = oppList || [];
+    return ready.then(function () {
+      var pid = getPid();
+      var myName = getName() || 'プレーヤー';
+      var names = {}; names[pid] = myName;
+      var ids = [pid];
+      oppList.forEach(function (o) {
+        if (o && o.id) { ids.push(o.id); names[o.id] = o.name || 'プレーヤー'; }
+      });
+      var matchId = multiMatchId(ids);
+      var matchRef = db.ref('matches/' + matchId);
+      // トランザクションで「1つのマッチだけ」を作る／既にあれば参加する
+      return matchRef.transaction(function (current) {
+        var now = Date.now();
+        if (shouldRecreate(current, now)) {
+          var game = opts.gameId ? gameById(opts.gameId) : GAMES[Math.floor(Math.random() * GAMES.length)];
+          if (!game) game = GAMES[0];
+          var genre = opts.genreId || game.genres[Math.floor(Math.random() * game.genres.length)].id;
+          var players = {};
+          ids.forEach(function (id) { players[id] = names[id]; });
+          return {
+            players: players,
+            game: game.id,
+            genre: genre,
+            status: 'starting',
+            createdBy: pid,
+            createdAt: now,
+            startAt: now + 5000
+          };
+        }
+        // 既存の対戦が有効 → そのまま参加（上書きしない＝全員が同じゲーム・同じジャンル）
+        return current;
+      }).then(function (res) {
+        var match = res.snapshot ? res.snapshot.val() : null;
+        var updates = {};
+        ids.forEach(function (id) { updates['lobby/' + id + '/matchId'] = matchId; });
+        return db.ref().update(updates).then(function () {
+          return { matchId: matchId, match: match };
+        });
+      });
+    });
+  }
+
   function pickOpponent(oppId, oppName, opts) {
     opts = opts || {};
     return ready.then(function () {
@@ -293,6 +358,7 @@
     joinLobby: joinLobby,
     leaveLobby: leaveLobby,
     pickOpponent: pickOpponent,
+    pickOpponents: pickOpponents,
     submitScore: submitScore,
     listenMatch: listenMatch,
     getMatch: getMatch,

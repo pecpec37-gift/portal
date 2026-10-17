@@ -265,6 +265,15 @@ a.ranking-row:hover .popular-go{opacity:1;}
 .bt-player-name{flex:1;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;font-size:16px;}
 .bt-player-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.08em;color:rgba(250,248,243,.5);}
 .bt-player-pick{font-family:'Share Tech Mono',monospace;font-size:11px;color:#f4d06a;}
+.bt-player.pickable.selected{border-color:#f4d06a;background:rgba(244,208,106,.12);}
+.bt-check{width:24px;height:24px;border-radius:50%;border:2px solid rgba(250,248,243,.3);display:flex;align-items:center;justify-content:center;font-size:13px;color:#1a1512;font-weight:900;flex-shrink:0;}
+.bt-player.pickable.selected .bt-check{background:#f4d06a;border-color:#f4d06a;}
+.bt-countpick{display:flex;align-items:center;justify-content:center;gap:10px;margin:2px 0 16px;}
+.bt-countpick .lbl{font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,.6);}
+.bt-seg{display:inline-flex;border:1px solid rgba(250,248,243,.22);border-radius:8px;overflow:hidden;}
+.bt-seg-btn{background:transparent;color:rgba(250,248,243,.7);border:none;padding:8px 18px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:15px;cursor:pointer;}
+.bt-seg-btn.active{background:#f4d06a;color:#1a1512;}
+.bt-btn[disabled]{opacity:.4;cursor:not-allowed;filter:none;transform:none;}
 .bt-empty{text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(250,248,243,.4);padding:24px;line-height:1.8;}
 .bt-spinner{width:14px;height:14px;border:2px solid rgba(250,248,243,.2);border-top-color:#f4d06a;border-radius:50%;display:inline-block;animation:btspin 0.8s linear infinite;vertical-align:middle;}
 @keyframes btspin{to{transform:rotate(360deg);}}
@@ -2310,9 +2319,17 @@ countVisit();
 
     <!-- ロビー -->
     <div class="bt-view" id="bt-view-lobby">
-      <p class="bt-lead">対戦したい相手を選んでください。その後、ゲームを選択すると対戦が始まります。</p>
+      <p class="bt-lead">対戦人数を選び、相手をタップして選んでください。</p>
+      <div class="bt-countpick">
+        <span class="lbl">対戦人数</span>
+        <div class="bt-seg">
+          <button class="bt-seg-btn active" id="bt-seg-2" onclick="btSetCount(2)">2人</button>
+          <button class="bt-seg-btn" id="bt-seg-3" onclick="btSetCount(3)">3人</button>
+        </div>
+      </div>
       <div class="bt-section-label">■ 対戦を待っているプレーヤー</div>
       <div class="bt-players" id="bt-players"></div>
+      <button class="bt-btn" id="bt-start-btn" style="display:none" disabled onclick="btConfirmOpponents()">対戦をはじめる ▶</button>
       <button class="bt-btn ghost" onclick="btClose()">ロビーから退出する</button>
     </div>
 
@@ -2394,10 +2411,26 @@ countVisit();
     });
   }
 
+  var lastList=[];              // 最新のロビー一覧（人数変更時の再描画用）
+  var battleCount=2;            // 対戦人数（2 or 3）
+  var selectedOpps=[];          // 選択中の相手 [{id,name}]
+
+  window.btSetCount=function(n){
+    battleCount=n; selectedOpps=[];
+    var b2=document.getElementById('bt-seg-2'), b3=document.getElementById('bt-seg-3');
+    if(b2)b2.classList.toggle('active',n===2);
+    if(b3)b3.classList.toggle('active',n===3);
+    renderPlayers(lastList);
+  };
+
   function renderPlayers(list){
+    lastList=list||[];
     var box=document.getElementById('bt-players');
-    var others=list.filter(function(p){return !p.self;});
-    var me=list.filter(function(p){return p.self;})[0];
+    var others=lastList.filter(function(p){return !p.self;});
+    var me=lastList.filter(function(p){return p.self;})[0];
+    // ロビーから抜けた相手は選択からも外す
+    selectedOpps=selectedOpps.filter(function(s){return others.some(function(o){return o.id===s.id;});});
+    var required=battleCount-1;
     var html='';
     if(me){
       html+='<div class="bt-player self"><div class="bt-player-avatar">🙋</div>'+
@@ -2408,19 +2441,44 @@ countVisit();
       html+='<div class="bt-empty"><span class="bt-spinner"></span> ほかのプレーヤーを待っています…<br>友だちにも「対戦モード」を開いてもらってください。</div>';
     } else {
       others.forEach(function(p){
-        html+='<div class="bt-player pickable" onclick="btPick(\''+p.id+'\',\''+escAttr(p.name)+'\')">'+
+        var sel=selectedOpps.some(function(s){return s.id===p.id;});
+        html+='<div class="bt-player pickable'+(sel?' selected':'')+'" onclick="btToggleOpp(\''+p.id+'\',\''+escAttr(p.name)+'\')">'+
               '<div class="bt-player-avatar">🎮</div>'+
               '<div class="bt-player-name">'+esc(p.name)+'</div>'+
-              '<div class="bt-player-pick">対戦する ▶</div></div>';
+              '<div class="bt-check">'+(sel?'✓':'')+'</div></div>';
       });
     }
     box.innerHTML=html;
+    var btn=document.getElementById('bt-start-btn');
+    if(btn){
+      if(others.length===0){ btn.style.display='none'; }
+      else {
+        btn.style.display='';
+        var ok=selectedOpps.length===required;
+        btn.disabled=!ok;
+        btn.textContent = ok ? ('対戦をはじめる ▶（'+battleCount+'人）')
+                             : ('相手を選んでください（'+selectedOpps.length+'/'+required+'人）');
+      }
+    }
   }
 
-  var pendingOpp=null;
-  window.btPick=function(oppId,oppName){
-    pendingOpp={id:oppId,name:oppName};
-    document.getElementById('bt-game-op').textContent=oppName;
+  // 相手の選択をトグル（必要人数を超えたら古い選択を外す）
+  window.btToggleOpp=function(id,name){
+    var required=battleCount-1;
+    var i=-1;
+    for(var k=0;k<selectedOpps.length;k++){ if(selectedOpps[k].id===id){ i=k; break; } }
+    if(i>=0){ selectedOpps.splice(i,1); }
+    else { selectedOpps.push({id:id,name:name}); if(selectedOpps.length>required) selectedOpps.shift(); }
+    renderPlayers(lastList);
+  };
+
+  var pendingOpps=[];
+  // 「対戦をはじめる」→ ゲーム選択へ
+  window.btConfirmOpponents=function(){
+    var required=battleCount-1;
+    if(selectedOpps.length!==required) return;
+    pendingOpps=selectedOpps.slice();
+    document.getElementById('bt-game-op').textContent=pendingOpps.map(function(o){return o.name;}).join('・');
     // 登録ゲームからプレーヤーが選ぶ（ジャンルは各ゲーム内でランダム）
     var games=(window.TomyBattle&&TomyBattle.GAMES)||[];
     var box=document.getElementById('bt-game-choices');
@@ -2434,12 +2492,11 @@ countVisit();
   };
 
   window.btChooseGame=function(gameId){
-    if(!pendingOpp) return;
-    var opp=pendingOpp;
+    if(!pendingOpps||!pendingOpps.length) return;
     showView('count');
     document.getElementById('bt-count-me').textContent=TomyBattle.getName()||'あなた';
-    document.getElementById('bt-count-op').textContent=opp.name;
-    TomyBattle.pickOpponent(opp.id,opp.name,{gameId:gameId}).then(function(r){
+    document.getElementById('bt-count-op').textContent=pendingOpps.map(function(o){return o.name;}).join('・');
+    TomyBattle.pickOpponents(pendingOpps,{gameId:gameId}).then(function(r){
       startCountdown(r.matchId, r.match);
     }).catch(function(){
       alert('対戦の開始に失敗しました。相手がすでに別の対戦に入った可能性があります。');
@@ -2448,19 +2505,18 @@ countVisit();
   };
 
   window.btBackToLobby=function(){
-    pendingOpp=null;
+    pendingOpps=[]; selectedOpps=[];
     var name=TomyBattle.getName();
     if(name){ enterLobby(name); } else { showView('name'); }
   };
 
-  // 相手に選ばれた側
+  // 相手に選ばれた側（2人でも3人でも、自分以外の全員を表示）
   function onMatched(matchId, match){
     if(!match) return;
-    var opName='相手';
     var myPid=TomyBattle.getPid();
-    Object.keys(match.players||{}).forEach(function(id){ if(id!==myPid) opName=match.players[id]; });
+    var others=Object.keys(match.players||{}).filter(function(id){return id!==myPid;}).map(function(id){return match.players[id];});
     document.getElementById('bt-count-me').textContent=TomyBattle.getName()||'あなた';
-    document.getElementById('bt-count-op').textContent=opName;
+    document.getElementById('bt-count-op').textContent=others.join('・')||'相手';
     showView('count');
     startCountdown(matchId, match);
   }
