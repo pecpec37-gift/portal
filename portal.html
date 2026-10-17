@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TomTom TOWNS — 遊びながら学べるクイズゲーム集</title>
+
+<!-- SEO -->
+<meta name="description" content="TomTom TOWNS（とみやんのゲームランド）は、囲碁・テニス・サッカー・野球・クイズ・歴史・文化・地理・旅行・語学・ビジネス・テクノロジー・エンタメなど68種類のゲームが無料で遊べるポータルサイトです。遊びながら楽しく知識が身につきます。">
+<meta name="keywords" content="クイズゲーム,囲碁クイズ,地理クイズ,テニスクイズ,サッカークイズ,バレーボールクイズ,韓国語クイズ,株式クイズ,映画クイズ,五島列島クイズ,高千穂クイズ,無料ゲーム,とみやん,TomTom TOWNS,Tommy-Go,とみやんのゲームランド">
+<meta name="author" content="Tommy (とみやん)">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pecpec37-gift.github.io/portal/">
+
+<!-- OGP（SNSシェア時の表示） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="TomTom TOWNS — 遊びながら学べるクイズゲーム集">
+<meta property="og:description" content="囲碁・地理・テニス・サッカーなど12種類のクイズゲームが無料で遊べます。遊びながら楽しく知識が身につくゲームコレクション。">
+<meta property="og:url" content="https://pecpec37-gift.github.io/portal/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="TomTom TOWNS">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TomTom TOWNS — 遊びながら学べるクイズゲーム集">
+<meta name="twitter:description" content="囲碁・地理・テニス・サッカーなど12種類のクイズゲームが無料で遊べます。">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DYGBJDX1JV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DYGBJDX1JV');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a; --ink2: #3d3d3d; --ink3: #888;
+    --paper: #faf8f3; --paper2: #f2efe6; --paper3: #e8e3d8;
+    --accent: #c0392b; --accent2: #e74c3c;
+    --gold: #b8860b; --gold2: #f0d060; --teal: #1a7a6e;
+    --border: rgba(26,26,26,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+  header { position: relative; background: var(--ink); color: var(--paper); overflow: hidden; }
+  .header-stripe { height: 4px; background: repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 20px, var(--gold) 20px, var(--gold) 40px, var(--teal) 40px, var(--teal) 60px, var(--ink) 60px, var(--ink) 80px); }
+  .header-inner { max-width: 1100px; margin: 0 auto; padding: 48px 24px 40px; display: flex; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+  .header-logo { display: flex; flex-direction: column; gap: 4px; }
+  .header-sub { font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--accent2); text-transform: uppercase; opacity: 0.9; }
+  .header-title { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: clamp(32px, 6vw, 60px); line-height: 1; letter-spacing: -0.02em; color: var(--paper); }
+  .header-title span { color: var(--gold2); }
+  .header-tagline { font-size: 13px; color: rgba(250,248,243,0.6); letter-spacing: 0.04em; margin-top: 6px; }
+  .header-divider { flex: 1; min-width: 40px; }
+  .header-badge { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .badge-count { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(250,248,243,0.5); letter-spacing: 0.12em; }
+  .badge-num { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 48px; line-height: 1; color: var(--gold2); }
+
+  .message-section { background: var(--ink); border-top: 1px solid rgba(250,248,243,0.08); }
+  .message-inner { max-width: 1100px; margin: 0 auto; padding: 24px 24px 36px; }
+  .message-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent2); text-transform: uppercase; margin-bottom: 10px; }
+  .message-text { font-size: 14px; line-height: 1.8; color: rgba(250,248,243,0.75); max-width: 680px; border-left: 2px solid var(--accent); padding-left: 16px; }
+  .message-sig { margin-top: 12px; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 13px; color: rgba(250,248,243,0.4); padding-left: 18px; }
+
+  .filter-section { background: var(--paper2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .filter-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; overflow-x: auto; scrollbar-width: none; }
+  .filter-inner::-webkit-scrollbar { display: none; }
+  .filter-btn { flex-shrink: 0; padding: 14px 18px; font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 700; color: var(--ink3); background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
+  .filter-btn:hover { color: var(--ink); }
+  .filter-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .games-section { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+  .section-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--ink3); text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
+
+  /* ---- genre landing (2-step navigation) ---- */
+  .is-hidden { display: none !important; }
+  .genre-section { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
+  .genre-heading { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 28px; color: var(--ink); margin-bottom: 6px; }
+  .genre-subheading { font-size: 13px; color: var(--ink3); margin-bottom: 28px; }
+  .genre-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .genre-tile { position: relative; background: var(--paper); border: 1px solid var(--border); padding: 30px 24px 24px; cursor: pointer; text-align: left; font-family: inherit; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .genre-tile:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(26,26,26,0.13); border-color: var(--accent); }
+  .genre-tile-accent { position: absolute; top: 0; left: 0; width: 100%; height: 5px; }
+  .genre-tile-icon { font-size: 46px; line-height: 1; margin-bottom: 4px; }
+  .genre-tile-name { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 21px; color: var(--ink); }
+  .genre-tile-count { font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--ink3); text-transform: uppercase; }
+  .genre-tile-arrow { position: absolute; bottom: 20px; right: 22px; font-family: 'Share Tech Mono', monospace; font-size: 16px; color: var(--ink3); transition: transform 0.15s, color 0.15s; }
+  .genre-tile:hover .genre-tile-arrow { color: var(--accent); transform: translateX(4px); }
+  .back-to-genres { display: inline-flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: var(--ink3); background: none; border: 1px solid var(--border); padding: 10px 16px; cursor: pointer; margin-bottom: 24px; transition: color 0.15s, border-color 0.15s; }
+  .back-to-genres:hover { color: var(--accent); border-color: var(--accent); }
+
+  .game-card { position: relative; background: var(--paper); border: 1px solid var(--border); text-decoration: none; color: inherit; display: block; overflow: hidden; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; }
+  .game-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,26,26,0.12); border-color: rgba(26,26,26,0.3); z-index: 2; }
+  .game-card-accent { height: 3px; width: 100%; }
+  .game-card-body { padding: 20px 20px 16px; }
+  .game-card-tag { display: inline-block; font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; margin-bottom: 10px; }
+  .game-card-icon { font-size: 32px; line-height: 1; margin-bottom: 10px; display: block; }
+  .game-card-title { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; font-size: 18px; line-height: 1.3; margin-bottom: 6px; color: var(--ink); }
+  .game-card-desc { font-size: 12px; line-height: 1.7; color: var(--ink3); margin-bottom: 16px; }
+  .game-card-footer { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-top: 1px solid var(--border); background: var(--paper2); }
+  .game-card-difficulty { display: flex; gap: 3px; }
+  .diff-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); }
+  .diff-dot.filled { background: var(--ink); }
+  .game-card-play { font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--ink3); display: flex; align-items: center; gap: 6px; transition: color 0.15s; }
+  .game-card:hover .game-card-play { color: var(--accent); }
+  .play-arrow { font-size: 16px; transition: transform 0.15s; }
+  .game-card:hover .play-arrow { transform: translateX(3px); }
+  .new-badge { position: absolute; top: 12px; right: 12px; background: var(--accent); color: white; font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 0.12em; padding: 3px 7px; border-radius: 2px; font-weight: 700; }
+  .game-card.hidden { display: none; }
+
+  footer { background: var(--ink); color: rgba(250,248,243,0.35); padding: 24px; text-align: center; font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.1em; }
+  footer span { color: var(--accent2); }
+
+  /* ADMIN PANEL */
+  #admin-panel { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 9999; overflow-y: auto; padding: 40px 20px; }
+  #admin-panel.open { display: flex; align-items: flex-start; justify-content: center; }
+  .admin-box { background: #111; color: var(--paper); width: 100%; max-width: 680px; border-radius: 4px; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.7); }
+  .admin-header { background: #0a0a0a; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .admin-title { font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: var(--accent2); text-transform: uppercase; }
+  .admin-close { background: none; border: none; color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer; padding: 0 4px; transition: color 0.15s; line-height: 1; }
+  .admin-close:hover { color: white; }
+  .admin-body { padding: 20px; }
+  .admin-stat-main { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 16px; }
+  .stat-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 6px; }
+  .stat-value { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 32px; color: var(--gold2); line-height: 1; }
+  .stat-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+  .admin-section-title { font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .game-stat-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .game-stat-row:last-child { border-bottom: none; }
+  .game-stat-rank { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.25); min-width: 18px; }
+  .game-stat-name { flex: 1; font-size: 13px; color: rgba(255,255,255,0.8); }
+  .game-stat-bar-wrap { width: 120px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .game-stat-bar { height: 100%; background: var(--accent2); border-radius: 2px; transition: width 0.4s ease; }
+  .game-stat-num { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--gold2); min-width: 36px; text-align: right; }
+  .admin-footer-row { padding: 14px 20px; display: flex; gap: 10px; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
+  .admin-hint { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
+  .admin-actions { display: flex; gap: 10px; }
+  .admin-btn { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 7px 14px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.15); background: none; color: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.15s; }
+  .admin-btn:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.9); }
+  .admin-btn.danger:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  @media (max-width: 600px) {
+    .header-inner { padding: 32px 20px 28px; gap: 20px; }
+    .games-grid { grid-template-columns: 1fr; }
+    .filter-btn { padding: 12px 14px; font-size: 12px; }
+    .badge-num { font-size: 36px; }
+    .admin-stat-main { grid-template-columns: 1fr; }
+    .game-stat-bar-wrap { width: 60px; }
+    .genre-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .genre-tile { padding: 22px 16px 18px; }
+    .genre-tile-icon { font-size: 38px; }
+    .genre-tile-name { font-size: 17px; }
+    .genre-heading { font-size: 23px; }
+    .genre-tile-arrow { bottom: 14px; right: 16px; font-size: 14px; }
+  }
+  @media (max-width: 420px) {
+    .header-title { font-size: 28px; }
+    .header-badge { display: none; }
+  }
+
+  /* ===== PLAYER NAME ===== */
+  .player-section { background: var(--ink); border-top: 1px solid rgba(250,248,243,0.06); }
+  .player-inner { max-width: 1100px; margin: 0 auto; padding: 20px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .player-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(250,248,243,0.4); text-transform: uppercase; white-space: nowrap; }
+  .player-input { flex: 1; min-width: 100px; max-width: 200px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 3px; padding: 8px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 13px; color: var(--paper); outline: none; transition: border-color 0.15s; }
+  .player-input::placeholder { color: rgba(255,255,255,0.25); }
+  .player-input:focus { border-color: rgba(240,208,96,0.5); }
+  .player-save-btn { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 8px 16px; background: none; border: 1px solid rgba(240,208,96,0.35); color: var(--gold2); border-radius: 3px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .player-save-btn:hover { background: rgba(240,208,96,0.1); border-color: rgba(240,208,96,0.7); }
+  .player-saved-msg { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #2ecc71; letter-spacing: 0.1em; display: none; }
+  .player-saved-msg.show { display: inline; }
+
+  /* ===== RANKING ===== */
+  .ranking-section { background: var(--ink); border-top: 1px solid rgba(250,248,243,0.06); }
+  .ranking-inner { max-width: 1100px; margin: 0 auto; padding: 32px 24px 40px; }
+  .ranking-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .ranking-title { font-family: 'Share Tech Mono', monospace; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; color: var(--gold2); text-transform: uppercase; }
+  .ranking-sub { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(250,248,243,0.3); text-transform: uppercase; }
+  .ranking-desc { font-size: 12px; color: rgba(250,248,243,0.4); margin-bottom: 20px; line-height: 1.7; }
+  .ranking-desc strong { color: var(--gold2); }
+  .ranking-list { display: flex; flex-direction: column; gap: 6px; max-width: 560px; }
+  .ranking-row { display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 3px; transition: background 0.15s; }
+  .ranking-row:hover { background: rgba(255,255,255,0.07); }
+  .ranking-row.rank-1 { border-color: rgba(240,208,96,0.35); background: rgba(240,208,96,0.07); }
+  .ranking-row.rank-2 { border-color: rgba(200,200,200,0.25); background: rgba(200,200,200,0.04); }
+  .ranking-row.rank-3 { border-color: rgba(180,120,60,0.25); background: rgba(180,120,60,0.04); }
+  .ranking-pos { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.25); min-width: 24px; text-align: center; }
+  .ranking-pos.gold { color: var(--gold2); font-size: 18px; }
+  .ranking-pos.silver { color: #c0c0c0; font-size: 16px; }
+  .ranking-pos.bronze { color: #cd7f32; font-size: 16px; }
+  .ranking-name { flex: 1; font-size: 14px; font-weight: 700; color: rgba(250,248,243,0.9); }
+  .ranking-stamps { display: flex; align-items: center; gap: 6px; }
+  .ranking-stamp-icon { font-size: 18px; line-height: 1; }
+  .ranking-stamp-count { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 20px; color: var(--gold2); line-height: 1; min-width: 28px; text-align: right; }
+  .ranking-loading { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; padding: 20px 0; }
+  .ranking-refresh { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 7px 14px; background: none; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.35); border-radius: 3px; cursor: pointer; transition: all 0.15s; margin-top: 16px; }
+  .ranking-refresh:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+/* ---- 花丸スタンプ SVG ---- */
+.hanagata-stamp-sm,.hanagata-stamp-xs,.hanagata-stamp-row{display:inline-block;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9J3JnJyBjeD0nNTAlJyBjeT0nNTAlJyByPSc1MCUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyNmZmY1ZjgnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyNmZmMwZDAnLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48ZyB0cmFuc2Zvcm09J3RyYW5zbGF0ZSg1MCw1MCkgcm90YXRlKDE4MCknPjxnIGZpbGw9JyNmNDhmYjEnIHN0cm9rZT0nI2Q4MWI2MCcgc3Ryb2tlLXdpZHRoPScyJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJz48cGF0aCBkPSdNMCwtMTAgQy00LC0zMCAtMjIsLTM4IC0yOCwtMjQgQy0zNCwtMTAgLTIwLDQgMCwxOCBDMjAsNCAzNCwtMTAgMjgsLTI0IEMyMiwtMzggNCwtMzAgMCwtMTBaJyB0cmFuc2Zvcm09J3JvdGF0ZSgwKScvPjxwYXRoIGQ9J00wLC0xMCBDLTQsLTMwIC0yMiwtMzggLTI4LC0yNCBDLTM0LC0xMCAtMjAsNCAwLDE4IEMyMCw0IDM0LC0xMCAyOCwtMjQgQzIyLC0zOCA0LC0zMCAwLC0xMFonIHRyYW5zZm9ybT0ncm90YXRlKDcyKScvPjxwYXRoIGQ9J00wLC0xMCBDLTQsLTMwIC0yMiwtMzggLTI4LC0yNCBDLTM0LC0xMCAtMjAsNCAwLDE4IEMyMCw0IDM0LC0xMCAyOCwtMjQgQzIyLC0zOCA0LC0zMCAwLC0xMFonIHRyYW5zZm9ybT0ncm90YXRlKDE0NCknLz48cGF0aCBkPSdNMCwtMTAgQy00LC0zMCAtMjIsLTM4IC0yOCwtMjQgQy0zNCwtMTAgLTIwLDQgMCwxOCBDMjAsNCAzNCwtMTAgMjgsLTI0IEMyMiwtMzggNCwtMzAgMCwtMTBaJyB0cmFuc2Zvcm09J3JvdGF0ZSgyMTYpJy8+PHBhdGggZD0nTTAsLTEwIEMtNCwtMzAgLTIyLC0zOCAtMjgsLTI0IEMtMzQsLTEwIC0yMCw0IDAsMTggQzIwLDQgMzQsLTEwIDI4LC0yNCBDMjIsLTM4IDQsLTMwIDAsLTEwWicgdHJhbnNmb3JtPSdyb3RhdGUoMjg4KScvPjwvZz48Y2lyY2xlIHI9JzI2JyBmaWxsPScjZmZmNWY4JyBzdHJva2U9JyNkODFiNjAnIHN0cm9rZS13aWR0aD0nMicvPjwvZz48dGV4dCB4PSc1MCcgeT0nNDYnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nMTEnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJyBmaWxsPScjYWQxNDU3JyBmb250LXdlaWdodD0nYm9sZCc+44KI44GP44Gn44GNPC90ZXh0Pjx0ZXh0IHg9JzUwJyB5PSc2MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1zaXplPScxMScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZpbGw9JyNhZDE0NTcnIGZvbnQtd2VpZ2h0PSdib2xkJz7jgb7jgZfjgZ88L3RleHQ+PC9zdmc+");background-size:contain;background-repeat:no-repeat;background-position:center;vertical-align:middle;}
+.hanagata-stamp-sm{width:28px;height:28px;}
+.hanagata-stamp-xs{width:20px;height:20px;}
+.hanagata-stamp-row{width:26px;height:26px;flex-shrink:0;}
+/* ---- ランキング 並列パネル ---- */
+.ranking-panels-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+@media(max-width:600px){.ranking-panels-wrap{grid-template-columns:1fr;}}
+.ranking-panel-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.14em;color:rgba(250,248,243,0.45);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(250,248,243,0.1);text-transform:uppercase;}
+
+/* ---- 人気メニュー TOP10 ---- */
+.popular-section .ranking-inner{padding:28px 24px 28px;}
+.popular-section .ranking-title{color:#e8963c;}
+.popular-name{font-size:13px !important;line-height:1.4;}
+.popular-bar-wrap{width:64px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;flex-shrink:0;}
+.popular-bar{height:100%;background:linear-gradient(90deg,#e8963c,#f0d060);border-radius:2px;}
+.popular-count{font-family:'Share Tech Mono',monospace;font-size:13px;font-weight:700;color:var(--gold2);min-width:46px;text-align:right;flex-shrink:0;}
+.popular-unit{font-size:9px;color:rgba(250,248,243,0.35);margin-left:2px;}
+.popular-note{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.08em;color:rgba(255,255,255,0.28);margin-bottom:8px;}
+@media(max-width:600px){.popular-bar-wrap{display:none;}}
+a.ranking-row{text-decoration:none;color:inherit;cursor:pointer;}
+a.ranking-row:hover{background:rgba(232,150,60,0.10);border-color:rgba(232,150,60,0.35);}
+a.ranking-row .popular-go{font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(232,150,60,0.8);margin-left:8px;flex-shrink:0;opacity:0;transition:opacity 0.15s;}
+a.ranking-row:hover .popular-go{opacity:1;}
+@media(hover:none){a.ranking-row .popular-go{opacity:0.8;}}
+
+/* ===== 対戦モード ===== */
+.battle-mini{max-width:1100px;margin:36px auto 0;padding:22px 24px 0;border-top:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:12px;}
+.battle-mini-label{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--ink3);}
+.battle-mini-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.battle-mini-btn{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;font-size:13px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;background:var(--paper);color:var(--ink2);cursor:pointer;transition:all .15s;}
+.battle-mini-btn:hover{border-color:#be123c;color:#be123c;background:rgba(190,18,60,.04);}
+#battle-overlay{position:fixed;inset:0;z-index:9999;background:#14110f;color:#faf8f3;overflow-y:auto;display:none;}
+#battle-overlay.show{display:block;}
+.bt-wrap{max-width:560px;margin:0 auto;padding:32px 22px 60px;min-height:100%;}
+.bt-top{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+.bt-top h2{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:22px;flex:1;color:#f4d06a;}
+.bt-close{font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(250,248,243,.6);background:none;border:1px solid rgba(250,248,243,.25);border-radius:3px;padding:7px 14px;cursor:pointer;transition:all .15s;}
+.bt-close:hover{border-color:#f4d06a;color:#f4d06a;}
+.bt-view{display:none;}
+.bt-view.show{display:block;}
+.bt-lead{font-size:13px;color:rgba(250,248,243,.7);line-height:1.7;margin-bottom:20px;}
+.bt-input{width:100%;box-sizing:border-box;font-family:'Zen Kaku Gothic New',sans-serif;font-size:16px;padding:14px 16px;background:#221d19;border:1px solid rgba(250,248,243,.2);border-radius:6px;color:#faf8f3;margin-bottom:16px;}
+.bt-input:focus{outline:none;border-color:#f4d06a;}
+.bt-btn{width:100%;box-sizing:border-box;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:16px;padding:15px;border:none;border-radius:6px;cursor:pointer;background:linear-gradient(135deg,#be123c,#7c1d3a);color:#fff;transition:filter .15s,transform .15s;}
+.bt-btn:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.bt-btn.ghost{background:none;border:1px solid rgba(250,248,243,.25);color:rgba(250,248,243,.8);margin-top:10px;}
+.bt-section-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(250,248,243,.45);text-transform:uppercase;margin:22px 0 10px;}
+.bt-players{display:flex;flex-direction:column;gap:8px;}
+.bt-game-choices{display:flex;flex-direction:column;gap:12px;margin:6px 0 18px;}
+.bt-game-choice{display:flex;flex-direction:column;align-items:center;gap:4px;background:#221d19;border:1px solid rgba(250,248,243,.16);border-radius:12px;padding:22px 16px;cursor:pointer;transition:all .15s;font-family:inherit;}
+.bt-game-choice:hover{border-color:#f4d06a;background:rgba(244,208,106,.08);transform:translateY(-2px);}
+.bt-game-choice-icon{font-size:40px;line-height:1;}
+.bt-game-choice-name{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:18px;color:#faf8f3;}
+.bt-game-choice-sub{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(250,248,243,.5);}
+.bt-player{display:flex;align-items:center;gap:12px;background:#221d19;border:1px solid rgba(250,248,243,.14);border-radius:8px;padding:14px 16px;transition:all .15s;}
+.bt-player.self{border-color:rgba(244,208,106,.45);background:rgba(244,208,106,.06);}
+.bt-player.pickable{cursor:pointer;}
+.bt-player.pickable:hover{border-color:#be123c;background:rgba(190,18,60,.1);transform:translateX(2px);}
+.bt-player-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;background:#3a322b;flex-shrink:0;}
+.bt-player-name{flex:1;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;font-size:16px;}
+.bt-player-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.08em;color:rgba(250,248,243,.5);}
+.bt-player-pick{font-family:'Share Tech Mono',monospace;font-size:11px;color:#f4d06a;}
+.bt-player.pickable.selected{border-color:#f4d06a;background:rgba(244,208,106,.12);}
+.bt-check{width:24px;height:24px;border-radius:50%;border:2px solid rgba(250,248,243,.3);display:flex;align-items:center;justify-content:center;font-size:13px;color:#1a1512;font-weight:900;flex-shrink:0;}
+.bt-player.pickable.selected .bt-check{background:#f4d06a;border-color:#f4d06a;}
+.bt-countpick{display:flex;align-items:center;justify-content:center;gap:10px;margin:2px 0 16px;}
+.bt-countpick .lbl{font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,.6);}
+.bt-seg{display:inline-flex;border:1px solid rgba(250,248,243,.22);border-radius:8px;overflow:hidden;}
+.bt-seg-btn{background:transparent;color:rgba(250,248,243,.7);border:none;padding:8px 18px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:15px;cursor:pointer;}
+.bt-seg-btn.active{background:#f4d06a;color:#1a1512;}
+.bt-btn[disabled]{opacity:.4;cursor:not-allowed;filter:none;transform:none;}
+.bt-empty{text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(250,248,243,.4);padding:24px;line-height:1.8;}
+.bt-spinner{width:14px;height:14px;border:2px solid rgba(250,248,243,.2);border-top-color:#f4d06a;border-radius:50%;display:inline-block;animation:btspin 0.8s linear infinite;vertical-align:middle;}
+@keyframes btspin{to{transform:rotate(360deg);}}
+.bt-count-box{text-align:center;padding:30px 0;}
+.bt-count-vs{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:20px;margin-bottom:6px;}
+.bt-count-vs .me{color:#f4d06a;}
+.bt-count-vs .op{color:#ff7a90;}
+.bt-count-genre{font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,.6);margin-bottom:24px;}
+.bt-count-num{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:80px;line-height:1;color:#f4d06a;animation:btpulse 1s infinite;}
+@keyframes btpulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.12);opacity:.7;}}
+.bt-count-msg{font-size:14px;color:rgba(250,248,243,.75);margin-top:18px;}
+.bt-result-card{background:#221d19;border:1px solid rgba(250,248,243,.14);border-radius:10px;padding:18px 18px;display:flex;align-items:center;gap:14px;margin-bottom:10px;position:relative;overflow:hidden;}
+.bt-result-card.winner{border-color:#f4d06a;background:rgba(244,208,106,.08);}
+.bt-result-rank{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:22px;}
+.bt-result-info{flex:1;}
+.bt-result-name{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:18px;}
+.bt-result-meta{font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(250,248,243,.5);letter-spacing:.06em;margin-top:2px;}
+.bt-result-score{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:34px;color:#f4d06a;}
+.bt-winstamp{position:absolute;top:8px;right:10px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:13px;color:#14110f;background:#f4d06a;border-radius:20px;padding:3px 12px;transform:rotate(6deg);box-shadow:0 3px 8px rgba(0,0,0,.3);}
+.bt-verdict{text-align:center;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:26px;margin:18px 0 6px;}
+.bt-verdict.win{color:#f4d06a;}
+.bt-verdict.lose{color:#ff7a90;}
+.bt-verdict.draw{color:#9fd6c0;}
+</style>
+<script src="https://pecpec37-gift.github.io/portal/battle.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-stripe"></div>
+  <div class="header-inner">
+    <div class="header-logo">
+      <span class="header-sub">Tommy's Quiz Portal</span>
+      <h1 class="header-title">TomTom <span>TOWNS</span></h1>
+      <p class="header-tagline">遊びながら学べるゲームコレクション</p>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-badge">
+      <span class="badge-count">TOTAL GAMES</span>
+      <span class="badge-num" id="game-count">26</span>
+    </div>
+  </div>
+</header>
+
+<section class="message-section">
+  <div class="message-inner">
+    <button id="from-tommy-btn" onclick="toggleTommyMsg()" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:0;margin-bottom:0;">
+      <div class="message-label" style="margin-bottom:0;">// From Tommy</div>
+      <span id="from-tommy-arrow" style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--accent2);transition:transform 0.2s;">▶</span>
+    </button>
+    <div id="from-tommy-body" style="display:none;margin-top:12px;">
+      <p class="message-text">
+        囲碁・クイズ・地理・語学・株式…様々なジャンルのゲームを作ってみました。
+        どれも「遊びながら学べる」をコンセプトに、楽しく知識が身につくよう工夫しています。
+        これからも新しいゲームを増やしていく予定なので、ぜひお気に入りを見つけてください！
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleTommyMsg() {
+  var body  = document.getElementById('from-tommy-body');
+  var arrow = document.getElementById('from-tommy-arrow');
+  var open  = body.style.display === 'block';
+  body.style.display  = open ? 'none' : 'block';
+  arrow.textContent   = open ? '▶' : '▼';
+}
+</script>
+
+<!-- PLAYER NAME -->
+<section class="player-section">
+  <div class="player-inner">
+    <span class="player-label">// Your Name</span>
+    <input class="player-input" id="player-input" type="text" maxlength="10" placeholder="プレーヤー名を入力（スタンプ獲得に必要）">
+    <button class="player-save-btn" id="player-save-btn">保存する</button>
+    <span class="player-saved-msg" id="player-saved-msg">✓ 保存しました</span>
+  </div>
+</section>
+
+<!-- POPULAR MENU TOP10 -->
+<section class="ranking-section popular-section">
+  <div class="ranking-inner">
+    <button id="popular-toggle-btn" onclick="togglePopular()" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:0;width:100%;">
+      <div class="ranking-header" style="margin-bottom:0;flex:1;">
+        <span class="ranking-title">🔥 人気メニュー TOP10</span>
+        <span class="ranking-sub">// Popular Menu</span>
+      </div>
+      <span id="popular-arrow" style="font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,0.4);transition:transform 0.2s;flex-shrink:0;">&#9654;</span>
+    </button>
+
+    <div id="popular-body" style="display:none;margin-top:20px;">
+      <p class="ranking-desc">
+        みんなが<strong>よく開いているゲーム</strong>のランキングです。<br>
+        ゲームカードがクリックされるたびに、全ユーザー分が合算されます。
+      </p>
+
+      <!-- 直近7日間 / 直近30日間 並列表示 -->
+      <div class="ranking-panels-wrap">
+        <div class="ranking-panel">
+          <div class="ranking-panel-title">📅 直近7日間 TOP10</div>
+          <div class="popular-note" id="popular-note-7"></div>
+          <div class="ranking-list" id="popular-list-7"><div class="ranking-loading">// Loading...</div></div>
+        </div>
+        <div class="ranking-panel">
+          <div class="ranking-panel-title">📅 直近30日間 TOP10</div>
+          <div class="popular-note" id="popular-note-30"></div>
+          <div class="ranking-list" id="popular-list-30"><div class="ranking-loading">// Loading...</div></div>
+        </div>
+      </div>
+
+      <button class="ranking-refresh" id="popular-refresh">&#8635; 更新する</button>
+    </div>
+  </div>
+</section>
+
+<script>
+function togglePopular() {
+  var body  = document.getElementById('popular-body');
+  var arrow = document.getElementById('popular-arrow');
+  var open  = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  arrow.textContent  = open ? '▶' : '▼';
+  if (!open) loadPopular();
+}
+</script>
+
+<!-- RANKING -->
+<section class="ranking-section">
+  <div class="ranking-inner">
+    <button id="ranking-toggle-btn" onclick="toggleRanking()" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:0;width:100%;">
+      <div class="ranking-header" style="margin-bottom:0;flex:1;flex-wrap:nowrap;gap:10px;min-width:0;">
+        <span class="ranking-title" style="flex-shrink:0;"><span class="hanagata-stamp-sm" aria-hidden="true"></span> 花丸スタンプ TOP10</span>
+        <span class="ranking-sub" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">// Hall of Fame</span>
+        <button id="stamp-help-btn" onclick="event.stopPropagation();document.getElementById('stamp-help-popup').classList.add('open')" style="background:rgba(250,248,243,0.1);border:1px solid rgba(250,248,243,0.2);color:rgba(250,248,243,0.6);font-family:'Share Tech Mono',monospace;font-size:12px;width:26px;height:26px;border-radius:50%;cursor:pointer;transition:all 0.15s;flex-shrink:0;" onmouseover="this.style.background='rgba(250,248,243,0.2)';this.style.color='white'" onmouseout="this.style.background='rgba(250,248,243,0.1)';this.style.color='rgba(250,248,243,0.6)'">?</button>
+      </div>
+      <span id="ranking-arrow" style="font-family:'Share Tech Mono',monospace;font-size:12px;color:rgba(250,248,243,0.4);transition:transform 0.2s;flex-shrink:0;">▶</span>
+    </button>
+
+    <div id="ranking-body" style="display:none;margin-top:20px;">
+      <p class="ranking-desc">
+        各ゲームのジャンルで<strong>9問以上正解</strong>すると花丸スタンプ <span class="hanagata-stamp-xs" aria-hidden="true"></span> を1個獲得！<br>
+        プレーヤー名を登録してゲームをプレイすると自動的にカウントされます。
+      </p>
+
+      <!-- 直近7日間 / 直近30日間 並列表示 -->
+      <div class="ranking-panels-wrap">
+        <div class="ranking-panel">
+          <div class="ranking-panel-title">📅 直近7日間 TOP10</div>
+          <div class="ranking-list" id="ranking-list-7"><div class="ranking-loading">// Loading...</div></div>
+        </div>
+        <div class="ranking-panel">
+          <div class="ranking-panel-title">📅 直近30日間 TOP10</div>
+          <div class="ranking-list" id="ranking-list-30"><div class="ranking-loading">// Loading...</div></div>
+        </div>
+      </div>
+
+      <button class="ranking-refresh" id="ranking-refresh">↻ 更新する</button>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleRanking() {
+  var body  = document.getElementById('ranking-body');
+  var arrow = document.getElementById('ranking-arrow');
+  var open  = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  arrow.textContent  = open ? '▶' : '▼';
+  if (!open) loadRanking();
+}
+</script>
+
+<section class="genre-section" id="genre-section">
+  <h2 class="genre-heading">ジャンルを選ぶ</h2>
+  <p class="genre-subheading">遊びたいジャンルを選んでください</p>
+  <div class="genre-grid" id="genre-grid"></div>
+  <div class="battle-mini">
+    <span class="battle-mini-label">🃏 神経衰弱・💬 名言クイズ・🔢 ヒット＆ブロー・🐂 薩摩牛クイズで対戦できます</span>
+    <div class="battle-mini-btns">
+      <button class="battle-mini-btn" onclick="btOpen()">⚔️ 対戦モード</button>
+      <button class="battle-mini-btn" onclick="btOpenResults()">🏆 対戦結果</button>
+    </div>
+  </div>
+</section>
+
+<nav class="filter-section is-hidden" role="navigation" aria-label="カテゴリフィルター">
+  <div class="filter-inner">
+    <button class="filter-btn active" data-filter="all">すべて</button>
+    <button class="filter-btn" data-filter="learning">学習・雑学</button>
+    <button class="filter-btn" data-filter="kanken">漢字検定</button>
+    <button class="filter-btn" data-filter="entertainment">エンタメ</button>
+    <button class="filter-btn" data-filter="sports">スポーツ</button>
+    <button class="filter-btn" data-filter="geo">地理・旅行</button>
+    <button class="filter-btn" data-filter="tech">テクノロジー</button>
+    <button class="filter-btn" data-filter="business">ビジネス</button>
+    <button class="filter-btn" data-filter="board">ボードゲーム</button>
+    <button class="filter-btn" data-filter="other">おまけ</button>
+  </div>
+</nav>
+
+<main class="games-section is-hidden">
+  <button class="back-to-genres" id="back-to-genres" type="button">&#x2190; ジャンルに戻る</button>
+  <div class="section-label" id="grid-label">ALL GAMES — <span id="grid-count"></span> titles</div>
+  <div class="games-grid" id="games-grid">
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kojiki-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="kojiki-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#d8402f;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e3edf7;color:#1e3a5f;">学習・雑学</span>
+        <span class="game-card-icon">&#x26E9;&#xFE0F;</span>
+        <h2 class="game-card-title">古事記クイズ道場</h2>
+        <p class="game-card-desc">日本最古の歴史書『古事記』を4択クイズで！国生み・天岩戸・出雲神話・天孫降臨・ヤマトタケルまで全56問。答えと解説をめくる学習モードつき。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/FlowMind/" target="_blank" rel="noopener" data-cat="other" data-key="FlowMind" data-new="true">
+      <div class="game-card-accent" style="background:#6366f1;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e7ff;color:#3730a3;">おまけ</span>
+        <span class="game-card-icon">&#x1F32C;&#xFE0F;</span>
+        <h2 class="game-card-title">心のエール</h2>
+        <p class="game-card-desc">毎日の呼吸に合わせて、心にそっと届くアファメーション。１４カテゴリーの肯定の言葉と環境音で、静かに整えるお守りのようなアプリ。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="おだやか"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">OPEN <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/nazomoji/" target="_blank" rel="noopener" data-cat="other" data-key="nazomoji" data-new="true">
+      <div class="game-card-accent" style="background:#8b5cf6;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e7ff;color:#3730a3;">おまけ</span>
+        <span class="game-card-icon">&#x1F9E9;</span>
+        <h2 class="game-card-title">何て読む？ 図案クイズ道場</h2>
+        <p class="game-card-desc">デザインされた図案文字を「何て読む？」と当てるひらめき勝負のクイズ。目のつけどころがカギ！すきま時間の頭の体操にもぴったり。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/hitblow/" target="_blank" rel="noopener" data-cat="other" data-key="hitblow" data-new="true">
+      <div class="game-card-accent" style="background:#0891b2;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e7ff;color:#3730a3;">おまけ</span>
+        <span class="game-card-icon">&#x1F522;</span>
+        <h2 class="game-card-title">ヒット＆ブロー推理道場</h2>
+        <p class="game-card-desc">コンピュータが隠した重複なしの秘密の数字を推理！HitとBlowをヒントに７回以内で当てよう。３桁・４桁をえらべる定番の数字推理ゲーム。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/satsuma-beef-quiz-dojo/" target="_blank" rel="noopener" data-cat="other" data-key="satsuma-beef-quiz-dojo" data-new="true">
+      <div class="game-card-accent" style="background:#9a3412;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e7ff;color:#3730a3;">おまけ</span>
+        <span class="game-card-icon">&#x1F402;</span>
+        <h2 class="game-card-title">薩摩牛クイズ道場</h2>
+        <p class="game-card-desc">薩摩牛と鹿児島黒牛の世界を早押しクイズで！全５ジャンル・１５０問超。正解で時間が延び、１００点以上で🌸花丸スタンプを獲得。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/igo-capture/" target="_blank" rel="noopener" data-cat="board" data-key="igo-capture" data-new="true">
+      <div class="game-card-accent" style="background:#1a1a1a;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#1a1a1a;color:#faf8f3;">ボードゲーム</span>
+        <span class="game-card-icon">&#x26AB;</span>
+        <h2 class="game-card-title">９路盤 石取りゲーム</h2>
+        <p class="game-card-desc">相手の石を先に取ったら勝ち！９路盤で遊ぶ囲碁入門の定番・石取りゲーム。ルールがシンプルで初心者にもぴったり。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 低"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/world-heritage-quiz-dojo-/" target="_blank" rel="noopener" data-cat="geo" data-key="world-heritage-quiz-dojo-" data-new="true">
+      <div class="game-card-accent" style="background:#b45309;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ccfbf1;color:#115e59;">地理・旅行</span>
+        <span class="game-card-icon">&#x1F3DB;&#xFE0F;</span>
+        <h2 class="game-card-title">世界遺産クイズ道場</h2>
+        <p class="game-card-desc">日本と世界の世界遺産を早押しクイズで！五大陸＋日本の遺産から１５０問以上。姫路城からマチュピチュまで楽しく学ぼう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/bosai-quiz-dojo/" target="_blank" rel="noopener" data-cat="other" data-key="bosai-quiz-dojo" data-new="true">
+      <div class="game-card-accent" style="background:#059669;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e7ff;color:#3730a3;">おまけ</span>
+        <span class="game-card-icon">&#x1F6E1;&#xFE0F;</span>
+        <h2 class="game-card-title">防災クイズ道場</h2>
+        <p class="game-card-desc">地震や災害への備えを早押しクイズで！4択＋○×の10問ミックス、正解で時間が延びる。楽しく学んで、正解率90%以上で🌸花丸スタンプを獲得。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/sokudoku/" target="_blank" rel="noopener" data-cat="learning" data-key="sokudoku" data-new="true">
+      <div class="game-card-accent" style="background:#2f5d8f;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e3edf7;color:#1e3a5f;">学習・雑学</span>
+        <span class="game-card-icon">&#x1F4D6;</span>
+        <h2 class="game-card-title">速読道場</h2>
+        <p class="game-card-desc">読むことを競技に。タイムアタック読書・語彙予測コンボ・視野拡張トレーニングで、速く正確に読む力を楽しく鍛える。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/quiz-dojo/" target="_blank" rel="noopener" data-cat="learning" data-key="quiz-dojo" data-new="true">
+      <div class="game-card-accent" style="background:#dc2626;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fee2e2;color:#991b1b;">学習・雑学</span>
+        <span class="game-card-icon">🎯</span>
+        <h2 class="game-card-title">早押しクイズ道場</h2>
+        <p class="game-card-desc">理科・歴史・地理・文化・スポーツなど10ジャンル500問以上。音声認識で回答できる本格早押しクイズ！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/igo-dojo/" target="_blank" rel="noopener" data-cat="board" data-key="igo-dojo" data-new="true">
+      <div class="game-card-accent" style="background:#1a1a1a;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#1a1a1a;color:#faf8f3;">ボードゲーム</span>
+        <span class="game-card-icon">&#x26AB;</span>
+        <h2 class="game-card-title">囲碁棋譜道場</h2>
+        <p class="game-card-desc">プロ棋士の名局を記憶し、次の一手を当てるトレーニング。初段〜高段者まで対応した本格棋譜記憶ゲーム。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/quiz-app/" target="_blank" rel="noopener" data-cat="geo" data-key="quiz-app">
+      <div class="game-card-accent" style="background:#1a7a6e;"></div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0f4f1;color:#0d5a51;">地理・旅行</span>
+        <span class="game-card-icon">&#x1F5FE;</span>
+        <h2 class="game-card-title">地理クイズ</h2>
+        <p class="game-card-desc">日本47都道府県＆世界195か国の地名・地理を学ぶクイズ。制限時間内に正解を重ねてスコアを競おう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/goto-ilands/" target="_blank" rel="noopener" data-cat="geo" data-key="goto-ilands">
+      <div class="game-card-accent" style="background:#2980b9;"></div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dceef8;color:#1b5e8a;">地理・旅行</span>
+        <span class="game-card-icon">&#x1F3DD;</span>
+        <h2 class="game-card-title">五島列島クイズ道場</h2>
+        <p class="game-card-desc">長崎・五島列島の歴史・地理・特産品・観光スポットを4ジャンルで出題。キリシタン文化にも触れよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/takachiho-quiz/" target="_blank" rel="noopener" data-cat="geo" data-key="takachiho-quiz">
+      <div class="game-card-accent" style="background:#8e6a2f;"></div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#f5ede0;color:#6b4e22;">地理・旅行</span>
+        <span class="game-card-icon">&#x26E9;</span>
+        <h2 class="game-card-title">高千穂クイズ道場</h2>
+        <p class="game-card-desc">宮崎・高千穂の神話・神社・峡谷・特産品を4ジャンルで出題。日本神話の聖地を学ぼう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/court-checker/" target="_blank" rel="noopener" data-cat="sports" data-key="court-checker" data-new="true">
+      <div class="game-card-accent" style="background:#0d9488;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ccfbf1;color:#115e59;">スポーツ</span>
+        <span class="game-card-icon">&#x1F3BE;</span>
+        <h2 class="game-card-title">福岡市テニスコート 空き状況</h2>
+        <p class="game-card-desc">福岡市の公営テニスコート（舞鶴・汐井・西南杜の湖畔）の空きコマを自動チェック！前回からの増加や2時間以上のまとまった空きもひと目で分かる確認ツール。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="便利ツール"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">OPEN <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/yodogawa-tennis/" target="_blank" rel="noopener" data-cat="sports" data-key="yodogawa-tennis" data-new="true">
+      <div class="game-card-accent" style="background:#0369a1;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dbeafe;color:#075985;">スポーツ</span>
+        <span class="game-card-icon">&#x1F3BE;</span>
+        <h2 class="game-card-title">空きテニスコートcheck_淀川河川敷</h2>
+        <p class="game-card-desc">淀川河川敷のテニスコートの空き状況をまとめてチェック！予約前の確認にそのまま使える、空きコート確認アプリ。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="便利ツール"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">OPEN <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/tennis-ai-coach/" target="_blank" rel="noopener" data-cat="sports" data-key="tennis-ai-coach" data-new="true">
+      <div class="game-card-accent" style="background:#15803d;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e3f5ec;color:#15803d;">スポーツ</span>
+        <span class="game-card-icon">&#x1F3BE;</span>
+        <h2 class="game-card-title">テニスAIコーチ</h2>
+        <p class="game-card-desc">フォアハンドの動画をAIが10項目で採点！改善点を3つ提案し、再撮影で上達もチェックできるテニス練習アプリ（試作版）。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="試作版"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">OPEN <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/tennis-quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="tennis-quiz">
+      <div class="game-card-accent" style="background:#c8a000;"></div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fdf5d0;color:#8a6800;">スポーツ</span>
+        <span class="game-card-icon">&#x1F3BE;</span>
+        <h2 class="game-card-title">テニスクイズ道場</h2>
+        <p class="game-card-desc">テニスのルール・選手・大会・歴史を120秒の制限時間で挑戦。4択と○×がランダムにミックス出題。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 低"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/soccer-quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="soccer-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#27ae60;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#d9f5e6;color:#1a7a44;">スポーツ</span>
+        <span class="game-card-icon">&#x26BD;</span>
+        <h2 class="game-card-title">サッカー選手クイズ</h2>
+        <p class="game-card-desc">FIFA W杯2026記念版！日本代表・世界のスター選手を各50問。W杯観戦をもっと楽しもう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/korean-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="korean-quiz">
+      <div class="game-card-accent" style="background:#c0392b;"></div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fde8e8;color:#8b2020;">学習・雑学</span>
+        <span class="game-card-icon">&#x1F1F0;&#x1F1F7;</span>
+        <h2 class="game-card-title">韓国語クイズ道場Part1</h2>
+        <p class="game-card-desc">楽しみながらハングルを学ぼう！4択＋○×ミックス10問勝負。正解すると時間ボーナスがもらえる。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 低"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/korean-quiz-dojo-p2/" target="_blank" rel="noopener" data-cat="learning" data-key="korean-quiz-dojo-p2" data-new="true">
+      <div class="game-card-accent" style="background:#2456a6;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e8eef9;color:#1e3a8a;">学習・雑学</span>
+        <span class="game-card-icon">🗣️</span>
+        <h2 class="game-card-title">韓国語クイズ道場Part2</h2>
+        <p class="game-card-desc">あいさつ・買い物・食事・気持ちの表現を、ハングル＋カタカナの早押しクイズで覚えよう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kabu/" target="_blank" rel="noopener" data-cat="business" data-key="kabu">
+      <div class="game-card-accent" style="background:#e67e22;"></div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fdeedd;color:#9a4e0e;">ビジネス</span>
+        <span class="game-card-icon">&#x1F4C8;</span>
+        <h2 class="game-card-title">株式投資クイズ道場</h2>
+        <p class="game-card-desc">150問以上収録の株式・投資クイズ。用語・企業・市場の知識をゲーム感覚で身につけよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/movie-quiz/" target="_blank" rel="noopener" data-cat="entertainment" data-key="movie-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#8e44ad;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#f0e6f8;color:#5b2c82;">エンタメ</span>
+        <span class="game-card-icon">&#x1F3AC;</span>
+        <h2 class="game-card-title">映画クイズ道場</h2>
+        <p class="game-card-desc">映画の知識を120秒で試そう！4択＋○×ミックス10問勝負。正解で時間ボーナス、不正解でペナルティあり。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/volleyball-quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="volleyball-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#1565c0;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dce8f8;color:#0d3d7a;">スポーツ</span>
+        <span class="game-card-icon">&#x1F3D0;</span>
+        <h2 class="game-card-title">バレーボールクイズ道場</h2>
+        <p class="game-card-desc">バレーボールのルール・選手・大会・歴史を120秒で挑戦。4択と○×がランダムにミックス出題。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/igo-quiz/" target="_blank" rel="noopener" data-cat="board" data-key="igo-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#2d5016;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#1a1a1a;color:#faf8f3;">ボードゲーム</span>
+        <span class="game-card-icon">&#x26AA;</span>
+        <h2 class="game-card-title">囲碁クイズ道場</h2>
+        <p class="game-card-desc">囲碁のルール・用語・棋士・歴史を120秒で挑戦。4択と○×がランダムにミックス出題。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/shogi-dojo/" target="_blank" rel="noopener" data-cat="board" data-key="shogi-dojo" data-new="true">
+      <div class="game-card-accent" style="background:#5d3a1a;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#f5ede0;color:#5d3a1a;">ボードゲーム</span>
+        <span class="game-card-icon">&#x265F;</span>
+        <h2 class="game-card-title">将棋棋譜道場</h2>
+        <p class="game-card-desc">プロ棋士の名局を記憶し、手順を再現するトレーニング。全20局収録の本格棋譜記憶ゲーム。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/shinkei-suijaku/" target="_blank" rel="noopener" data-cat="board" data-key="shinkei-suijaku" data-new="true">
+      <div class="game-card-accent" style="background:#1a7a6e;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#d9f0ec;color:#115e54;">ボードゲーム</span>
+        <span class="game-card-icon">🃏</span>
+        <h2 class="game-card-title">神経衰弱道場</h2>
+        <p class="game-card-desc">20枚（10組のペア）を記憶してそろえるメモリーゲーム！絵柄テーマを選び60秒で勝負、100点で🌸花丸スタンプ獲得。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/anzan/" target="_blank" rel="noopener" data-cat="learning" data-key="anzan" data-new="true">
+      <div class="game-card-accent" style="background:#ea580c;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ffedd5;color:#9a3412;">学習・雑学</span>
+        <span class="game-card-icon">🧮</span>
+        <h2 class="game-card-title">メモリー暗算道場</h2>
+        <p class="game-card-desc">フラッシュ暗算！一瞬表示される数字を覚えて合計しよう。1〜3桁・速度別の全8コースで計算脳を鍛える。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/meigen-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="meigen-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#4f46e5;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e7ff;color:#3730a3;">学習・雑学</span>
+        <span class="game-card-icon">💬</span>
+        <h2 class="game-card-title">名言・スピーチクイズ道場</h2>
+        <p class="game-card-desc">偉人・科学者・経営者・スポーツ・文化人・名演説…世界の名言で知に触れる早押しクイズ！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/big3-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="big3-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#be123c;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ffe4e6;color:#9f1239;">学習・雑学</span>
+        <span class="game-card-icon">3️⃣</span>
+        <h2 class="game-card-title">日本三大・世界三大クイズ道場</h2>
+        <p class="game-card-desc">「三大◯◯」の知識を試す早押しクイズ！日本三名城など、日本＆世界の“三大”を4択で当てよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/sake-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="sake-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#8e3a1a;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#f5e6e0;color:#6b2510;">学習・雑学</span>
+        <span class="game-card-icon">🍶</span>
+        <h2 class="game-card-title">お酒クイズ道場</h2>
+        <p class="game-card-desc">日本酒・ワイン・ビール・ウイスキー・カクテルなど7ジャンル176問収録。遊びながらお酒の知識を深めよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/geino-quiz/" target="_blank" rel="noopener" data-cat="entertainment" data-key="geino-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#7c3aed;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ede9fe;color:#5b21b6;">エンタメ</span>
+        <span class="game-card-icon">🎤</span>
+        <h2 class="game-card-title">芸能人グループクイズ道場</h2>
+        <p class="game-card-desc">嵐・King & Prince・Snow Man・SixTONES・なにわ男子・Travis Japanの6グループ150問収録。メンバー・楽曲・エピソードを学ぼう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/celeb-groups-quiz-dojo/" target="_blank" rel="noopener" data-cat="entertainment" data-key="celeb-groups-quiz-dojo" data-new="true">
+      <div class="game-card-accent" style="background:#db2777;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fce7f3;color:#9d174d;">エンタメ</span>
+        <span class="game-card-icon">🎶</span>
+        <h2 class="game-card-title">芸能人グループクイズ道場Part2</h2>
+        <p class="game-card-desc">人気グループのメンバー・デビュー・楽曲・エピソードを早押しクイズで楽しく学ぼう！【第2弾】</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/koshien-quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="koshien-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#1d4ed8;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dbeafe;color:#1e3a8a;">スポーツ</span>
+        <span class="game-card-icon">⚾</span>
+        <h2 class="game-card-title">甲子園クイズ道場</h2>
+        <p class="game-card-desc">高校野球の歴史・優勝校・名選手・球場・ルール・春の選抜の6ジャンル155問収録。甲子園の知識を深めよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/ai-quiz/" target="_blank" rel="noopener" data-cat="tech" data-key="ai-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#06b6d4;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0f7fa;color:#0e7490;">テクノロジー</span>
+        <span class="game-card-icon">🤖</span>
+        <h2 class="game-card-title">生成AIクイズ道場</h2>
+        <p class="game-card-desc">ChatGPT・Gemini・Claude…生成AIの基礎・LLM・画像生成・倫理・活用まで6ジャンル155問収録。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/baseball-quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="baseball-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#16a34a;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dcfce7;color:#15803d;">スポーツ</span>
+        <span class="game-card-icon">⚾</span>
+        <h2 class="game-card-title">プロ野球クイズ道場</h2>
+        <p class="game-card-desc">歴史・優勝・名選手・球団・ルール・メジャーの6ジャンル160問収録。プロ野球の知識を深めよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/okinawa-quiz/" target="_blank" rel="noopener" data-cat="geo" data-key="okinawa-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0d9488;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ccfbf1;color:#0f766e;">地理・旅行</span>
+        <span class="game-card-icon">🌺</span>
+        <h2 class="game-card-title">沖縄旅行クイズ道場</h2>
+        <p class="game-card-desc">観光・グルメ・自然・文化・お土産・マリンの6ジャンル160問。旅立つ前に沖縄知識を深めよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/cooking-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="cooking-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#ca8a04;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fef9c3;color:#854d0e;">学習・雑学</span>
+        <span class="game-card-icon">🍳</span>
+        <h2 class="game-card-title">料理クイズ道場</h2>
+        <p class="game-card-desc">調理技術・和食・洋食・アジア・調味料・お菓子の6ジャンル166問。料理の知識を楽しく学ぼう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/anime-quiz/" target="_blank" rel="noopener" data-cat="entertainment" data-key="anime-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#9333ea;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#f3e8ff;color:#7e22ce;">エンタメ</span>
+        <span class="game-card-icon">🎌</span>
+        <h2 class="game-card-title">アニメクイズ（日本編）</h2>
+        <p class="game-card-desc">少年・少女・SF・日常・ジブリ・名作の6ジャンル155問。日本アニメの知識を試そう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/humanoid-quiz/" target="_blank" rel="noopener" data-cat="tech" data-key="humanoid-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#3b82f6;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dbeafe;color:#1e3a8a;">テクノロジー</span>
+        <span class="game-card-icon">🤖</span>
+        <h2 class="game-card-title">ヒューマノイドロボットクイズ道場</h2>
+        <p class="game-card-desc">Atlas・Optimus・AIロボット・倫理・産業活用・歴史の6ジャンル168問。近未来の人型ロボットを学ぼう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/quantum-quiz/" target="_blank" rel="noopener" data-cat="tech" data-key="quantum-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#6366f1;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e7ff;color:#3730a3;">テクノロジー</span>
+        <span class="game-card-icon">⚛️</span>
+        <h2 class="game-card-title">量子コンピュータクイズ道場</h2>
+        <p class="game-card-desc">基礎・物理・企業・アルゴリズム・量子暗号・未来の6ジャンル168問。量子の世界を楽しく学ぼう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/world-leaders-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="world-leaders-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#1d4ed8;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dbeafe;color:#1e3a8a;">学習・雑学</span>
+        <span class="game-card-icon">🌍</span>
+        <h2 class="game-card-title">世界のリーダークイズ道場</h2>
+        <p class="game-card-desc">トランプ・習近平・プーチン・高市早苗・欧州・アジアの現職リーダー6ジャンル172問。公開事実情報のみで構成。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/business-quiz/" target="_blank" rel="noopener" data-cat="business" data-key="business-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#f59e0b;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fef3c7;color:#92400e;">ビジネス</span>
+        <span class="game-card-icon">💼</span>
+        <h2 class="game-card-title">ビジネス基礎クイズ道場</h2>
+        <p class="game-card-desc">経営・財務・マーケティング・組織・法務・DXの6ジャンル168問。ビジネス基礎力を楽しく鍛えよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/disney-quiz/" target="_blank" rel="noopener" data-cat="entertainment" data-key="disney-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#2563eb;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dbeafe;color:#1e3a8a;">エンタメ</span>
+        <span class="game-card-icon">🏰</span>
+        <h2 class="game-card-title">ディズニークイズ道場</h2>
+        <p class="game-card-desc">ディズニーランド＆シーの知識を楽しくクイズで学ぼう！アトラクション・キャラクター・歴史など多彩な問題。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/fukuoka-quiz/" target="_blank" rel="noopener" data-cat="geo" data-key="fukuoka-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#dc2626;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fee2e2;color:#991b1b;">地理・旅行</span>
+        <span class="game-card-icon">🏮</span>
+        <h2 class="game-card-title">福岡旅行クイズ道場</h2>
+        <p class="game-card-desc">博多・天神・太宰府・グルメ・観光スポットなど福岡の知識を楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/yojijukugo-quiz-/" target="_blank" rel="noopener" data-cat="learning" data-key="yojijukugo-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#7c3aed;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ede9fe;color:#5b21b6;">学習・雑学</span>
+        <span class="game-card-icon">🖌️</span>
+        <h2 class="game-card-title">四字熟語クイズ道場</h2>
+        <p class="game-card-desc">一石二鳥・七転八倒・温故知新…日本語の四字熟語をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/haiku-quiz-/" target="_blank" rel="noopener" data-cat="learning" data-key="haiku-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0891b2;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#cffafe;color:#155e75;">学習・雑学</span>
+        <span class="game-card-icon">🖋️</span>
+        <h2 class="game-card-title">俳句クイズ道場</h2>
+        <p class="game-card-desc">松尾芭蕉・与謝蕪村・小林一茶…日本の名句・季語・俳人をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kotowaza-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="kotowaza-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#b45309;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fef3c7;color:#92400e;">学習・雑学</span>
+        <span class="game-card-icon">📜</span>
+        <h2 class="game-card-title">故事・ことわざクイズ道場</h2>
+        <p class="game-card-desc">急がば回れ・七転び八起き・塞翁が馬…日本の故事・ことわざをクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/pc-quiz/" target="_blank" rel="noopener" data-cat="business" data-key="pc-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0284c7;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0f2fe;color:#0c4a6e;">ビジネス</span>
+        <span class="game-card-icon">💻</span>
+        <h2 class="game-card-title">パソコン業界クイズ道場</h2>
+        <p class="game-card-desc">Apple・Microsoft・Intel・AMD…パソコン業界の歴史・製品・企業をクイズで学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/semiconductor-quiz/" target="_blank" rel="noopener" data-cat="tech" data-key="semiconductor-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#6d28d9;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ede9fe;color:#4c1d95;">テクノロジー</span>
+        <span class="game-card-icon">💎</span>
+        <h2 class="game-card-title">半導体業界クイズ道場</h2>
+        <p class="game-card-desc">TSMC・NVIDIA・Intel・Samsung…半導体業界の技術・企業・歴史をクイズで学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/meikyoku-quiz/" target="_blank" rel="noopener" data-cat="entertainment" data-key="meikyoku-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#db2777;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fce7f3;color:#9d174d;">エンタメ</span>
+        <span class="game-card-icon">🎵</span>
+        <h2 class="game-card-title">昭和・平成 名曲クイズ道場</h2>
+        <p class="game-card-desc">昭和・平成を彩った名曲・アーティスト・ヒット曲をクイズで楽しく振り返ろう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/jitsugyoka-youtuber-quiz/" target="_blank" rel="noopener" data-cat="entertainment" data-key="jitsugyoka-youtuber-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#ea580c;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ffedd5;color:#9a3412;">エンタメ</span>
+        <span class="game-card-icon">💼</span>
+        <h2 class="game-card-title">実業家×YouTuberクイズ</h2>
+        <p class="game-card-desc">イーロン・マスク・堀江貴文・ヒカキンなど世界と日本の著名な実業家・YouTuberをクイズで学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/iryohi-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="iryohi-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0891b2;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#cffafe;color:#155e75;">学習・雑学</span>
+        <span class="game-card-icon">🏥</span>
+        <h2 class="game-card-title">医療費クイズ道場</h2>
+        <p class="game-card-desc">高額療養費・健康保険・医療費控除など知っておきたい医療費の知識をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/g4-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="g4-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#16a34a;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dcfce7;color:#14532d;">学習・雑学</span>
+        <span class="game-card-icon">📚</span>
+        <h2 class="game-card-title">小学4年生の楽習クイズ</h2>
+        <p class="game-card-desc">小学4年生の国語・算数・理科・社会をクイズで楽しく復習！子どもも大人も挑戦しよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 低"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/hawks-quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="hawks-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#f59e0b;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fef3c7;color:#92400e;">スポーツ</span>
+        <span class="game-card-icon">🦅</span>
+        <h2 class="game-card-title">福岡ソフトバンクホークス クイズ道場</h2>
+        <p class="game-card-desc">選手・歴史・優勝・スタジアムなどホークスの知識をクイズで楽しく学ぼう！鷹ファン必見！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/g5-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="g5-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0891b2;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#cffafe;color:#155e75;">学習・雑学</span>
+        <span class="game-card-icon">📚</span>
+        <h2 class="game-card-title">小学5年生の楽習クイズ</h2>
+        <p class="game-card-desc">小学5年生の国語・算数・理科・社会をクイズで楽しく復習！子どもも大人も挑戦しよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 低"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/g6-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="g6-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#7c3aed;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ede9fe;color:#5b21b6;">学習・雑学</span>
+        <span class="game-card-icon">📚</span>
+        <h2 class="game-card-title">小学6年生の楽習クイズ</h2>
+        <p class="game-card-desc">小学6年生の国語・算数・理科・社会をクイズで楽しく復習！子どもも大人も挑戦しよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 低"><div class="diff-dot filled"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/Tigers-Quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="tigers-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#f59e0b;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fef3c7;color:#92400e;">スポーツ</span>
+        <span class="game-card-icon">🐯</span>
+        <h2 class="game-card-title">阪神タイガースクイズ道場</h2>
+        <p class="game-card-desc">選手・歴史・優勝・球場など阪神タイガースの知識をクイズで楽しく学ぼう！トラファン必見！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/jp-history-culture-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="jp-history-culture-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#b45309;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fef3c7;color:#92400e;">学習・雑学</span>
+        <span class="game-card-icon">🏯</span>
+        <h2 class="game-card-title">日本の歴史・文化クイズ道場</h2>
+        <p class="game-card-desc">縄文・弥生から現代まで日本の歴史・文化・伝統をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kaden-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="kaden-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0284c7;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0f2fe;color:#0c4a6e;">学習・雑学</span>
+        <span class="game-card-icon">🏪</span>
+        <h2 class="game-card-title">家電量販店クイズ道場</h2>
+        <p class="game-card-desc">ヤマダ・ヨドバシ・ビックカメラ…家電量販店の知識・歴史・商品をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/lenovo-quiz/" target="_blank" rel="noopener" data-cat="business" data-key="lenovo-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#dc2626;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fee2e2;color:#991b1b;">ビジネス</span>
+        <span class="game-card-icon">💻</span>
+        <h2 class="game-card-title">Lenovoクイズ道場</h2>
+        <p class="game-card-desc">ThinkPad・Legion・IdeaPad…Lenovoの製品・歴史・企業をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/Fighters-Quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="fighters-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#1d4ed8;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dbeafe;color:#1e3a8a;">スポーツ</span>
+        <span class="game-card-icon">🦊</span>
+        <h2 class="game-card-title">日本ハムファイターズクイズ道場</h2>
+        <p class="game-card-desc">選手・歴史・優勝・エスコンフィールドなど北海道日本ハムの知識をクイズで学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kanken-quiz_1-1/" target="_blank" rel="noopener" data-cat="kanken" data-key="kanken-quiz-1-1" data-new="true">
+      <div class="game-card-accent" style="background:#dc2626;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fee2e2;color:#991b1b;">漢字検定</span>
+        <span class="game-card-icon">🖌️</span>
+        <h2 class="game-card-title">漢字検定1級クイズ【壱】</h2>
+        <p class="game-card-desc">漢字検定1級レベルの難読漢字・熟語・書き取りに挑戦！漢字マスターを目指そう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kanken-quiz_1-2/" target="_blank" rel="noopener" data-cat="kanken" data-key="kanken-quiz-1-2" data-new="true">
+      <div class="game-card-accent" style="background:#b45309;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fef3c7;color:#92400e;">漢字検定</span>
+        <span class="game-card-icon">🖌️</span>
+        <h2 class="game-card-title">漢字検定1級クイズ【弐】</h2>
+        <p class="game-card-desc">漢字検定1級レベルの難読漢字・熟語・書き取りに挑戦！【壱】をクリアしたら次はこちら。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kanken-quiz_1-3/" target="_blank" rel="noopener" data-cat="kanken" data-key="kanken-quiz-1-3" data-new="true">
+      <div class="game-card-accent" style="background:#0891b2;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#cffafe;color:#155e75;">漢字検定</span>
+        <span class="game-card-icon">🖌️</span>
+        <h2 class="game-card-title">漢字検定1級クイズ【参】</h2>
+        <p class="game-card-desc">漢字検定1級レベルの難読漢字・熟語・書き取りに挑戦！【弐】をクリアしたら次はこちら。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kanken-quiz_1-4/" target="_blank" rel="noopener" data-cat="kanken" data-key="kanken-quiz-1-4" data-new="true">
+      <div class="game-card-accent" style="background:#7c3aed;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ede9fe;color:#5b21b6;">漢字検定</span>
+        <span class="game-card-icon">🖌️</span>
+        <h2 class="game-card-title">漢字検定1級クイズ【肆】</h2>
+        <p class="game-card-desc">漢字検定1級レベルの難読漢字・熟語・書き取りに挑戦！【参】をクリアしたら次はこちら。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kanken-quiz_2-1/" target="_blank" rel="noopener" data-cat="kanken" data-key="kanken-quiz-2-1" data-new="true">
+      <div class="game-card-accent" style="background:#7c3aed;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ede9fe;color:#5b21b6;">漢字検定</span>
+        <span class="game-card-icon">🖌️</span>
+        <h2 class="game-card-title">漢字検定2級クイズ【2の壱】</h2>
+        <p class="game-card-desc">常用漢字をきわめる第一弾！読み・書き・四字熟語など全6ジャンル150問超で2級に挑もう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kanken-quiz_2-2/" target="_blank" rel="noopener" data-cat="kanken" data-key="kanken-quiz-2-2" data-new="true">
+      <div class="game-card-accent" style="background:#7c3aed;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ede9fe;color:#5b21b6;">漢字検定</span>
+        <span class="game-card-icon">🖌️</span>
+        <h2 class="game-card-title">漢字検定2級クイズ【2の弐】</h2>
+        <p class="game-card-desc">2級頻出語を集めた第二弾！読み・書き・四字熟語を総ざらい。【2の壱】の次はこちら。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/kanken-quiz_2-3/" target="_blank" rel="noopener" data-cat="kanken" data-key="kanken-quiz-2-3" data-new="true">
+      <div class="game-card-accent" style="background:#7c3aed;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ede9fe;color:#5b21b6;">漢字検定</span>
+        <span class="game-card-icon">🖌️</span>
+        <h2 class="game-card-title">漢字検定2級クイズ【2の参】</h2>
+        <p class="game-card-desc">総仕上げの第三弾！同音異字・対義語・部首まで幅広く出題。【2の弐】の次はこちら。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/zeikin-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="zeikin-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0891b2;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#cffafe;color:#155e75;">学習・雑学</span>
+        <span class="game-card-icon">💴</span>
+        <h2 class="game-card-title">税金クイズ道場</h2>
+        <p class="game-card-desc">所得税・消費税・住民税・相続税…知っておきたい税金の知識をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/naniwa-quiz/" target="_blank" rel="noopener" data-cat="geo" data-key="naniwa-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#ea580c;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ffedd5;color:#9a3412;">地理・旅行</span>
+        <span class="game-card-icon">🦁</span>
+        <h2 class="game-card-title">なにわクイズ道場｜大阪旅行クイズ</h2>
+        <p class="game-card-desc">道頓堀・たこ焼き・ユニバ・天王寺…大阪の観光・グルメ・文化をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/hokkaido-quiz/" target="_blank" rel="noopener" data-cat="geo" data-key="hokkaido-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0284c7;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0f2fe;color:#0c4a6e;">地理・旅行</span>
+        <span class="game-card-icon">🐻</span>
+        <h2 class="game-card-title">北海道旅行クイズ道場｜ぐるっと北海道</h2>
+        <p class="game-card-desc">札幌・函館・小樽・富良野…北海道の観光・グルメ・自然をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/korea-travel-quiz/" target="_blank" rel="noopener" data-cat="geo" data-key="korea-travel-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#2563eb;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dbeafe;color:#1e40af;">地理・旅行</span>
+        <span class="game-card-icon">🇰🇷</span>
+        <h2 class="game-card-title">韓国旅行クイズ</h2>
+        <p class="game-card-desc">ソウル・釜山・済州島の観光・グルメ・ことば・旅の実務まで、韓国旅行の知識を楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/flag-quiz/" target="_blank" rel="noopener" data-cat="geo" data-key="flag-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#0d9488;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#ccfbf1;color:#115e59;">地理・旅行</span>
+        <span class="game-card-icon">🌍</span>
+        <h2 class="game-card-title">世界の国旗クイズ道場</h2>
+        <p class="game-card-desc">国旗イラストとヒントから国名を当てる早押しクイズ！地域別ジャンル・150問超で世界の国旗を制覇しよう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/sanchi-quiz/" target="_blank" rel="noopener" data-cat="geo" data-key="sanchi-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#16a34a;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dcfce7;color:#166534;">地理・旅行</span>
+        <span class="game-card-icon">🗾</span>
+        <h2 class="game-card-title">日本の産地あてクイズ道場</h2>
+        <p class="game-card-desc">生産量TOP3の都道府県から産物を当てる早押しクイズ！くだもの・野菜など日本各地の名産を楽しく学ぼう。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/youtube-quiz/" target="_blank" rel="noopener" data-cat="entertainment" data-key="youtube-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#dc2626;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fee2e2;color:#991b1b;">エンタメ</span>
+        <span class="game-card-icon">▶️</span>
+        <h2 class="game-card-title">YouTubeクイズ道場</h2>
+        <p class="game-card-desc">YouTube・人気クリエイター・チャンネル・歴史をクイズで楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/ribiyou-quiz/" target="_blank" rel="noopener" data-cat="learning" data-key="ribiyou-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#db2777;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#fce7f3;color:#9d174d;">学習・雑学</span>
+        <span class="game-card-icon">&#x1F487;</span>
+        <h2 class="game-card-title">理美容クイズ道場</h2>
+        <p class="game-card-desc">ヘアケア・スキンケア・メイク・ネイルなど美容の知識を全6ジャンル150問超で楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/keiba-quiz/" target="_blank" rel="noopener" data-cat="sports" data-key="keiba-quiz" data-new="true">
+      <div class="game-card-accent" style="background:#15803d;"></div>
+      <div class="new-badge">NEW</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#dcfce7;color:#14532d;">スポーツ</span>
+        <span class="game-card-icon">&#x1F3C7;</span>
+        <h2 class="game-card-title">競馬クイズ道場</h2>
+        <p class="game-card-desc">名馬・GⅠレース・騎手から馬券のルールまで競馬の知識を全6ジャンル150問超で楽しく学ぼう！</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 中"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+    <a class="game-card" href="https://pecpec37-gift.github.io/fccl-quiz/" target="_blank" rel="noopener" data-cat="business" data-key="fccl-quiz">
+      <div class="game-card-accent" style="background:#2c3e50;"></div>
+      <div class="game-card-body">
+        <span class="game-card-tag" style="background:#e0e4ea;color:#1e2d3e;">ビジネス</span>
+        <span class="game-card-icon">&#x1F4BB;</span>
+        <h2 class="game-card-title">FCCLクイズ道場</h2>
+        <p class="game-card-desc">富士通クライアントコンピューティング・FMVシリーズ・FM TOWNSなど、国産PCの歴史を学ぶクイズ。</p>
+      </div>
+      <div class="game-card-footer">
+        <div class="game-card-difficulty" aria-label="難易度: 高"><div class="diff-dot filled"></div><div class="diff-dot filled"></div><div class="diff-dot filled"></div></div>
+        <span class="game-card-play">PLAY <span class="play-arrow">&#x2192;</span></span>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <span>TomTom TOWNS</span> &nbsp;|&nbsp; Games will keep growing!
+</footer>
+
+<!-- ⭐ スタンプガイド ポップアップ -->
+<div id="stamp-help-popup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;padding:40px 20px;overflow-y:auto;">
+  <div style="background:#111;color:#faf8f3;max-width:520px;margin:0 auto;border-radius:4px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7);">
+
+    <!-- ヘッダー -->
+    <div style="background:#0a0a0a;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.08);">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.18em;color:#e74c3c;text-transform:uppercase;">// ⭐ 花丸スタンプ 参加ガイド</span>
+      <button onclick="document.getElementById('stamp-help-popup').classList.remove('open')" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:20px;cursor:pointer;line-height:1;padding:0 4px;">✕</button>
+    </div>
+
+    <!-- 本文 -->
+    <div style="padding:20px;display:flex;flex-direction:column;gap:20px;">
+
+      <!-- 獲得条件 -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">// スタンプの獲得条件</div>
+        <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.75);">
+          ・各ゲームのジャンルで <strong style="color:#f0d060;">10問中9問以上正解</strong> でスタンプ1個獲得<br>
+          ・囲碁棋譜・将棋棋譜は <strong style="color:#f0d060;">満点の90%以上</strong> で獲得<br>
+          ・何度プレイしても獲得のたびに <strong style="color:#f0d060;">加算</strong> されます
+        </div>
+      </div>
+
+      <!-- プレーヤー名 -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">// プレーヤー名の注意点</div>
+        <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.75);">
+          ・<strong style="color:#f0d060;">ポータルサイトで登録した名前</strong>が各ゲームに自動入力されます<br>
+          ・ゲーム側で名前を変えると<strong style="color:#e74c3c;">別人として集計</strong>されます<br>
+          ・名前を変えたい場合は <strong style="color:#f0d060;">必ずポータルサイトで変更</strong> してください<br>
+          ・名前はブラウザに保存されるため、<strong style="color:#e74c3c;">別のブラウザ・スマホでは再登録</strong>が必要です
+        </div>
+      </div>
+
+      <!-- 複数端末 -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">// 複数端末を使う場合</div>
+        <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.75);">
+          ・スマホとPCで <strong style="color:#f0d060;">同じ名前を登録</strong> すれば合算されます<br>
+          ・名前の全角・半角・スペルが違うと<strong style="color:#e74c3c;">別人扱い</strong>になります<br>
+          　例：<span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#e74c3c;">「とみやん」と「トミやん」は別カウント</span>
+        </div>
+      </div>
+
+      <!-- ランキング更新 -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">// ランキングの更新</div>
+        <div style="font-size:13px;line-height:1.9;color:rgba(255,255,255,0.75);">
+          ・「<strong style="color:#f0d060;">↻ 更新する</strong>」ボタンを押すと最新データが表示されます<br>
+          ・ゲームプレイ直後は <strong style="color:#f0d060;">数秒待ってから</strong> 更新してください
+        </div>
+      </div>
+
+    </div>
+
+    <!-- フッター -->
+    <div style="padding:12px 20px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;">
+      <button onclick="document.getElementById('stamp-help-popup').classList.remove('open')" style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.12em;padding:7px 20px;border-radius:2px;border:1px solid rgba(255,255,255,0.15);background:none;color:rgba(255,255,255,0.5);cursor:pointer;">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ポップアップ表示制御
+const helpPopup = document.getElementById('stamp-help-popup');
+helpPopup.addEventListener('click', function(e) {
+  if (e.target === helpPopup) helpPopup.classList.remove('open');
+});
+helpPopup.style.display = '';
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') helpPopup.classList.remove('open');
+});
+// openクラスで表示切替
+const helpStyle = document.createElement('style');
+helpStyle.textContent = '#stamp-help-popup { display:none !important; } #stamp-help-popup.open { display:block !important; }';
+document.head.appendChild(helpStyle);
+</script>
+<div id="admin-panel" role="dialog" aria-modal="true" aria-label="管理画面">
+  <div class="admin-box">
+    <div class="admin-header">
+      <span class="admin-title">// Admin — アクセス統計</span>
+      <button class="admin-close" id="admin-close-btn" aria-label="閉じる">&#x2715;</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-stat-main">
+        <div class="stat-card">
+          <div class="stat-label">Portal Visits（累計）</div>
+          <div class="stat-value" id="stat-total">0</div>
+          <div class="stat-sub">ポータルサイト訪問回数</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Game Clicks（累計）</div>
+          <div class="stat-value" id="stat-clicks">0</div>
+          <div class="stat-sub">ゲームカードクリック数合計</div>
+        </div>
+      </div>
+      <div class="admin-section-title">// ゲーム別クリック数ランキング</div>
+      <div id="game-stats-list"></div>
+    </div>
+    <div class="admin-footer-row">
+      <span class="admin-hint">キーボード: T O M Y で開く</span>
+      <div class="admin-actions">
+        <button class="admin-btn danger" id="reset-btn">リセット</button>
+        <button class="admin-btn" id="admin-close-btn2">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const KEY_VISITS = 'tomy_gl_visits';
+const KEY_CLICKS = 'tomy_gl_clicks';
+
+const GAME_NAMES = {
+  'kojiki-quiz':    '古事記クイズ道場',
+  'sokudoku':       '速読道場',
+  'satsuma-beef-quiz-dojo': '薩摩牛クイズ道場',
+  'hitblow':        'ヒット＆ブロー推理道場',
+  'nazomoji':       '何て読む？ 図案クイズ道場',
+  'igo-capture':    '9路盤 石取りゲーム',
+  'FlowMind':       '心のエール',
+  'igo-dojo':       '囲碁棋譜道場',
+  'quiz-app':       '地理クイズ',
+  'goto-ilands':    '五島列島クイズ道場',
+  'takachiho-quiz': '高千穂クイズ道場',
+  'tennis-quiz':    'テニスクイズ道場',
+  'soccer-quiz':    'サッカー選手クイズ',
+  'korean-quiz':    '韓国語クイズ道場Part1',
+  'korean-quiz-dojo-p2': '韓国語クイズ道場Part2',
+  'kabu':           '株式投資クイズ道場',
+  'fccl-quiz':      'FCCLクイズ道場',
+  'movie-quiz':     '映画クイズ道場',
+  'volleyball-quiz':'バレーボールクイズ道場',
+  'igo-quiz':       '囲碁クイズ道場',
+  'shogi-dojo':     '将棋棋譜道場',
+  'shinkei-suijaku': '神経衰弱道場',
+  'anzan':          'メモリー暗算道場',
+  'meigen-quiz':    '名言・スピーチクイズ道場',
+  'big3-quiz':      '日本三大・世界三大クイズ道場',
+  'sake-quiz':      'お酒クイズ道場',
+  'geino-quiz':     '芸能人グループクイズ道場',
+  'celeb-groups-quiz-dojo': '芸能人グループクイズ道場Part2',
+  'koshien-quiz':   '甲子園クイズ道場',
+  'ai-quiz':        '生成AIクイズ道場',
+  'baseball-quiz':  'プロ野球クイズ道場',
+  'okinawa-quiz':   '沖縄旅行クイズ道場',
+  'cooking-quiz':   '料理クイズ道場',
+  'anime-quiz':     'アニメクイズ（日本編）',
+  'quantum-quiz':   '量子コンピュータクイズ道場',
+  'humanoid-quiz':  'ヒューマノイドロボットクイズ道場',
+  'quiz-dojo':          '早押しクイズ道場',
+  'youtube-quiz':             'YouTubeクイズ道場',
+  'naniwa-quiz':              'なにわクイズ道場｜大阪旅行クイズ',
+  'hokkaido-quiz':            '北海道旅行クイズ道場｜ぐるっと北海道',
+  'korea-travel-quiz':        '韓国旅行クイズ',
+  'world-heritage-quiz-dojo-': '世界遺産クイズ道場',
+  'flag-quiz':                '世界の国旗クイズ道場',
+  'sanchi-quiz':              '日本の産地あてクイズ道場',
+  'zeikin-quiz':              '税金クイズ道場',
+  'kanken-quiz-1-4':          '漢字検定1級クイズ【肆】',
+  'kanken-quiz-1-3':          '漢字検定1級クイズ【参】',
+  'kanken-quiz-1-1':          '漢字検定1級クイズ【壱】',
+  'kanken-quiz-1-2':          '漢字検定1級クイズ【弐】',
+  'kanken-quiz-2-1':          '漢字検定2級クイズ【2の壱】',
+  'kanken-quiz-2-2':          '漢字検定2級クイズ【2の弐】',
+  'kanken-quiz-2-3':          '漢字検定2級クイズ【2の参】',
+  'kaden-quiz':               '家電量販店クイズ道場',
+  'lenovo-quiz':              'Lenovoクイズ道場',
+  'fighters-quiz':            '日本ハムファイターズクイズ道場',
+  'tigers-quiz':              '阪神タイガースクイズ道場',
+  'jp-history-culture-quiz':  '日本の歴史・文化クイズ道場',
+  'g5-quiz':                  '小学5年生の楽習クイズ',
+  'g6-quiz':            '小学6年生の楽習クイズ',
+  'hawks-quiz':         '福岡ソフトバンクホークス クイズ道場',
+  'g4-quiz':            '小学4年生の楽習クイズ',
+  'iryohi-quiz':        '医療費クイズ道場',
+  'jitsugyoka-youtuber-quiz': '実業家×YouTuberクイズ',
+  'meikyoku-quiz':      '昭和・平成 名曲クイズ道場',
+  'semiconductor-quiz': '半導体業界クイズ道場',
+  'pc-quiz':            'パソコン業界クイズ道場',
+  'kotowaza-quiz':      '故事・ことわざクイズ道場',
+  'haiku-quiz':         '俳句クイズ道場',
+  'yojijukugo-quiz':    '四字熟語クイズ道場',
+  'fukuoka-quiz':       '福岡旅行クイズ道場',
+  'disney-quiz':        'ディズニークイズ道場',
+  'world-leaders-quiz': '世界のリーダークイズ道場',
+  'business-quiz':      'ビジネス基礎クイズ道場',
+  'ribiyou-quiz':       '理美容クイズ道場',
+  'keiba-quiz':         '競馬クイズ道場'
+};
+
+/* ---- visit count ---- */
+function countVisit() {
+  const v = parseInt(localStorage.getItem(KEY_VISITS) || '0', 10) + 1;
+  localStorage.setItem(KEY_VISITS, v);
+}
+
+/* ---- 日付別クリックログ（人気メニューTOP10のローカル予備集計）---- */
+const KEY_CLICK_LOG = 'tomy_gl_click_log';   // { 'YYYY-MM-DD': { gameKey: count } }
+const CLICK_LOG_KEEP_DAYS = 60;
+
+function dayKey(d) {
+  const dt = d || new Date();
+  return dt.getFullYear() + '-' +
+         ('0' + (dt.getMonth() + 1)).slice(-2) + '-' +
+         ('0' + dt.getDate()).slice(-2);
+}
+function daysAgoKey(n) {
+  const dt = new Date();
+  dt.setDate(dt.getDate() - n);
+  return dayKey(dt);
+}
+function loadClickLog() {
+  try {
+    const o = JSON.parse(localStorage.getItem(KEY_CLICK_LOG) || '{}');
+    return (o && typeof o === 'object' && !Array.isArray(o)) ? o : {};
+  } catch (e) { return {}; }
+}
+function saveClickLog(log) {
+  try { localStorage.setItem(KEY_CLICK_LOG, JSON.stringify(log)); } catch (e) {}
+}
+function pruneClickLog(log) {
+  const limitKey = daysAgoKey(CLICK_LOG_KEEP_DAYS);
+  Object.keys(log).forEach(k => { if (k < limitKey) delete log[k]; });
+  return log;
+}
+/* GASが応答しないときの予備表示用に、この端末の集計も残す */
+function getLocalPopular(days) {
+  const log = loadClickLog();
+  const fromKey = daysAgoKey(days - 1);   // 7日間 = 今日 + 過去6日
+  const totals = {};
+  Object.keys(log).forEach(dk => {
+    if (dk < fromKey) return;
+    const day = log[dk] || {};
+    Object.keys(day).forEach(g => { totals[g] = (totals[g] || 0) + (day[g] || 0); });
+  });
+  return Object.keys(totals)
+    .map(k => ({ key: k, name: GAME_NAMES[k] || k, count: totals[k] }))
+    .filter(x => x.count > 0)
+    .sort((a, b) => (b.count - a.count) || a.name.localeCompare(b.name, 'ja'))
+    .slice(0, 10);
+}
+
+/* GASへクリックを1件送信（JSONP: CORS回避 & 別タブ遷移でも完了する） */
+function sendClickToGas(key) {
+  try {
+    if (!key || typeof GAS_BASE_URL !== 'string' || !GAS_BASE_URL) return;
+    const cbName = 'gasClickCb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    const script = document.createElement('script');
+    let cleaned = false;
+    function cleanup() {
+      if (cleaned) return;
+      cleaned = true;
+      try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+      try { if (script.parentNode) script.parentNode.removeChild(script); } catch (e) {}
+    }
+    window[cbName] = function() { cleanup(); };
+    script.onerror = cleanup;
+    setTimeout(cleanup, 10000);
+    script.src = GAS_BASE_URL +
+      '?action=addClick' +
+      '&game=' + encodeURIComponent(key) +
+      '&name=' + encodeURIComponent(GAME_NAMES[key] || key) +
+      '&callback=' + cbName;
+    document.body.appendChild(script);
+  } catch (e) {}
+}
+
+/* ゲームID -> 起動URL の対応表（人気メニューTOP10のクリック起動に使用） */
+const GAME_URLS = {};
+
+/* クリック1回分を記録（ゲームカード / 人気ランキング 共通） */
+function recordClick(key) {
+  if (!key) return;
+
+  // (1) 通算カウント（?admin 用・従来どおり）
+  const c = JSON.parse(localStorage.getItem(KEY_CLICKS) || '{}');
+  c[key] = (c[key] || 0) + 1;
+  localStorage.setItem(KEY_CLICKS, JSON.stringify(c));
+
+  // (2) 日付別ログ（ローカル予備集計）
+  const log = pruneClickLog(loadClickLog());
+  const t = dayKey();
+  if (!log[t]) log[t] = {};
+  log[t][key] = (log[t][key] || 0) + 1;
+  saveClickLog(log);
+
+  // (3) GASへ送信（全ユーザー合算の人気ランキング）
+  sendClickToGas(key);
+}
+
+/* ---- game click count + URL登録 ---- */
+document.querySelectorAll('.game-card[data-key]').forEach(card => {
+  const key = card.dataset.key;
+  GAME_URLS[key] = {
+    url:    card.getAttribute('href') || '',
+    target: card.getAttribute('target') || '_self'
+  };
+  card.addEventListener('click', () => recordClick(key));
+});
+
+/* 人気メニューTOP10の行クリック時（起動はhrefで行われ、ここではカウントのみ） */
+function popularRowClick(key) {
+  recordClick(key);
+}
+
+/* ---- filter ---- */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.game-card');
+const label = document.getElementById('grid-label');
+const countEl = document.getElementById('game-count');
+const catLabels = { all:'ALL GAMES', board:'BOARD GAME', geo:'地理・旅行', sports:'SPORTS', learning:'学習・雑学', business:'BUSINESS', tech:'TECHNOLOGY', entertainment:'エンタメ', kanken:'漢字検定', other:'おまけ' };
+
+function updateFilter(f) {
+  let n = 0;
+  cards.forEach(c => { const ok = f==='all'||c.dataset.cat===f; c.classList.toggle('hidden',!ok); if(ok)n++; });
+  const lbl = catLabels[f] || f;
+  if (f === 'all') {
+    label.innerHTML = lbl + ' &mdash; <span id="grid-count">' + n + '</span> titles';
+  } else {
+    label.innerHTML = lbl + ' &mdash; ' + n + ' title' + (n!==1?'s':'');
+  }
+}
+filterBtns.forEach(btn => btn.addEventListener('click', () => {
+  filterBtns.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updateFilter(btn.dataset.filter);
+}));
+countEl.textContent = cards.length;
+
+/* ---- 2-step navigation: genre landing -> game list ---- */
+const GENRES = [
+  { cat:'all',           name:'すべて',       icon:'🎲',  accent:'#1a1a1a' },
+  { cat:'learning',      name:'学習・雑学',    icon:'📚',  accent:'#c0392b' },
+  { cat:'kanken',        name:'漢字検定',      icon:'🖌️', accent:'#7c3aed' },
+  { cat:'entertainment', name:'エンタメ',      icon:'🎬',  accent:'#db2777' },
+  { cat:'sports',        name:'スポーツ',      icon:'🏆',  accent:'#15803d' },
+  { cat:'geo',           name:'地理・旅行',    icon:'🗺️', accent:'#0284c7' },
+  { cat:'tech',          name:'テクノロジー',   icon:'💻',  accent:'#0891b2' },
+  { cat:'business',      name:'ビジネス',      icon:'💼',  accent:'#b8860b' },
+  { cat:'board',         name:'ボードゲーム',   icon:'♟️', accent:'#1a7a6e' },
+  { cat:'other',         name:'おまけ',        icon:'✨',  accent:'#6366f1' }
+];
+const genreSection = document.getElementById('genre-section');
+const gamesSection = document.querySelector('.games-section');
+const filterSection = document.querySelector('.filter-section');
+const genreGrid = document.getElementById('genre-grid');
+
+function catCount(cat){ if(cat==='all') return cards.length; let n=0; cards.forEach(c=>{ if(c.dataset.cat===cat) n++; }); return n; }
+
+GENRES.forEach(g => {
+  const n = catCount(g.cat);
+  if (n === 0 && g.cat !== 'all') return;
+  const tile = document.createElement('button');
+  tile.className = 'genre-tile';
+  tile.type = 'button';
+  tile.innerHTML =
+    '<span class="genre-tile-accent" style="background:'+g.accent+';"></span>' +
+    '<span class="genre-tile-icon">'+g.icon+'</span>' +
+    '<span class="genre-tile-name">'+g.name+'</span>' +
+    '<span class="genre-tile-count">'+n+' titles</span>' +
+    '<span class="genre-tile-arrow">&#x2192;</span>';
+  tile.addEventListener('click', () => showGenre(g.cat));
+  genreGrid.appendChild(tile);
+});
+
+function showGenre(cat){
+  filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+  updateFilter(cat);
+  genreSection.classList.add('is-hidden');
+  gamesSection.classList.remove('is-hidden');
+  filterSection.classList.remove('is-hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showGenreLanding(){
+  genreSection.classList.remove('is-hidden');
+  gamesSection.classList.add('is-hidden');
+  filterSection.classList.add('is-hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.getElementById('back-to-genres').addEventListener('click', showGenreLanding);
+
+updateFilter('all');
+showGenreLanding();
+
+/* ---- admin panel ---- */
+function openAdmin() {
+  const visits = parseInt(localStorage.getItem(KEY_VISITS)||'0',10);
+  const clicks = JSON.parse(localStorage.getItem(KEY_CLICKS)||'{}');
+  const totalC = Object.values(clicks).reduce((a,b)=>a+b,0);
+
+  document.getElementById('stat-total').textContent  = visits.toLocaleString();
+  document.getElementById('stat-clicks').textContent = totalC.toLocaleString();
+
+  const sorted = Object.entries(GAME_NAMES)
+    .map(([k,name]) => ({k,name,n:clicks[k]||0}))
+    .sort((a,b)=>b.n-a.n);
+  const mx = sorted[0]?.n || 1;
+
+  document.getElementById('game-stats-list').innerHTML = sorted.map((g,i) => `
+    <div class="game-stat-row">
+      <span class="game-stat-rank">${i+1}</span>
+      <span class="game-stat-name">${g.name}</span>
+      <div class="game-stat-bar-wrap"><div class="game-stat-bar" style="width:${Math.round(g.n/mx*100)}%"></div></div>
+      <span class="game-stat-num">${g.n}</span>
+    </div>`).join('');
+
+  document.getElementById('admin-panel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAdmin() {
+  document.getElementById('admin-panel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('admin-close-btn').addEventListener('click', closeAdmin);
+document.getElementById('admin-close-btn2').addEventListener('click', closeAdmin);
+document.getElementById('admin-panel').addEventListener('click', e => { if(e.target===e.currentTarget) closeAdmin(); });
+document.getElementById('reset-btn').addEventListener('click', () => {
+  if(confirm('全アクセスデータをリセットしますか？')) {
+    localStorage.removeItem(KEY_VISITS);
+    localStorage.removeItem(KEY_CLICKS);
+    localStorage.removeItem(KEY_CLICK_LOG);
+    closeAdmin();
+    alert('リセットしました。');
+  }
+});
+
+/* URL ?admin または キーボード tomy */
+if(location.search.includes('admin')) window.addEventListener('load', openAdmin);
+let seq = '';
+document.addEventListener('keydown', e => {
+  seq = (seq + e.key.toLowerCase()).slice(-4);
+  if(seq === 'tomy') openAdmin();
+});
+
+/* ---- player name ---- */
+const LS_PLAYER = 'tomy_gl_player';
+const playerInput  = document.getElementById('player-input');
+const playerSaveBtn = document.getElementById('player-save-btn');
+const playerSavedMsg = document.getElementById('player-saved-msg');
+
+// 保存済みの名前を復元
+playerInput.value = localStorage.getItem(LS_PLAYER) || '';
+
+playerSaveBtn.addEventListener('click', () => {
+  const name = playerInput.value.trim();
+  if (!name) return;
+  localStorage.setItem(LS_PLAYER, name);
+  playerSavedMsg.classList.add('show');
+  setTimeout(() => playerSavedMsg.classList.remove('show'), 2000);
+});
+
+playerInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') playerSaveBtn.click();
+});
+
+/* ---- TOP10 ranking ---- */
+// ★ GASデプロイ後にURLをここに書き換えてください ★
+const GAS_BASE_URL = 'https://script.google.com/macros/s/AKfycbzwiYh4_U0NSzrrqTqOoRqZskDB6P57Z760w0QQikOscAZbrq_7-U2BkSh2kqmQCjY5/exec';
+const GAS_RANKING_URL = GAS_BASE_URL + '?action=top10';
+
+const RANK_ICONS = ['🥇','🥈','🥉'];
+
+// 花丸スタンプSVGのHTML（インライン）
+const STAMP_HTML = '<span class="hanagata-stamp-row" aria-label="花丸スタンプ"></span>';
+
+function renderRanking(top10, listId) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  if (!top10 || top10.length === 0) {
+    list.innerHTML = '<div class="ranking-loading">// まだデータがありません。ゲームをプレイしてスタンプを獲得しよう！</div>';
+    return;
+  }
+  list.innerHTML = top10.map((row, i) => {
+    const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+    const posHtml = i < 3
+      ? `<span class="ranking-pos ${['gold','silver','bronze'][i]}">${RANK_ICONS[i]}</span>`
+      : `<span class="ranking-pos">${i + 1}</span>`;
+    return `
+      <div class="ranking-row ${rankClass}">
+        ${posHtml}
+        <span class="ranking-name" style="font-size:12px;letter-spacing:0.04em;">${row.player}</span>
+        <div class="ranking-stamps">
+          ${STAMP_HTML}
+          <span class="ranking-stamp-count">${row.stamps}</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+let currentTab = '30';
+const rankingCache = { '7': null, '30': null };
+
+function fetchRanking(url, callback) {
+  const callbackName = 'gasRankingCallback_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+  const script = document.createElement('script');
+  let done = false;
+
+  function finish(top10) {
+    if (done) return;
+    done = true;
+    delete window[callbackName];
+    try { if (document.body.contains(script)) document.body.removeChild(script); } catch(e){}
+    callback(top10 || []);
+  }
+
+  window[callbackName] = function(data) {
+    finish(data && data.ok ? (data.top10 || []) : []);
+  };
+
+  script.onload = function() {
+    setTimeout(function() {
+      if (done) return;
+      fetch(url)
+        .then(r => r.json())
+        .then(data => finish(data.ok ? (data.top10 || []) : []))
+        .catch(() => finish([]));
+    }, 600);
+  };
+
+  script.onerror = function() {
+    fetch(url)
+      .then(r => r.json())
+      .then(data => finish(data.ok ? (data.top10 || []) : []))
+      .catch(() => finish([]));
+  };
+
+  setTimeout(function() { finish([]); }, 10000);
+
+  script.src = url + '&callback=' + callbackName;
+  document.body.appendChild(script);
+}
+
+function loadRankingPeriod(period) {
+  const listId = 'ranking-list-' + period;
+  const list = document.getElementById(listId);
+  if (!list) return;
+  list.innerHTML = '<div class="ranking-loading">// Loading...</div>';
+
+  const url = GAS_BASE_URL + '?action=top10&period=' + period;
+  fetchRanking(url, function(top10) {
+    rankingCache[period] = top10;
+    renderRanking(top10, listId);
+  });
+}
+
+function loadRanking() {
+  loadRankingPeriod('7');
+  loadRankingPeriod('30');
+}
+
+const rankingRefreshBtn = document.getElementById('ranking-refresh');
+if (rankingRefreshBtn) rankingRefreshBtn.addEventListener('click', () => {
+  rankingCache['7'] = null;
+  rankingCache['30'] = null;
+  loadRanking();
+});
+
+/* ================================================
+   人気メニュー TOP10（GAS集計 / 全ユーザー合算）
+   ================================================ */
+function paintPopular(rows, listId, noteId, noteText) {
+  const list = document.getElementById(listId);
+  const note = document.getElementById(noteId);
+  if (note) note.textContent = noteText || '';
+  if (!list) return;
+
+  if (!rows || !rows.length) {
+    list.innerHTML = '<div class="ranking-loading">// まだデータがありません。ゲームを開くと集計されます！</div>';
+    return;
+  }
+  const mx = rows[0].count || 1;
+  list.innerHTML = rows.map((g, i) => {
+    const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+    const posHtml = i < 3
+      ? '<span class="ranking-pos ' + ['gold','silver','bronze'][i] + '">' + RANK_ICONS[i] + '</span>'
+      : '<span class="ranking-pos">' + (i + 1) + '</span>';
+    const pct = Math.max(6, Math.round(g.count / mx * 100));
+
+    const info = (typeof GAME_URLS !== 'undefined') ? GAME_URLS[g.key] : null;
+    const link = info && info.url;
+    const inner =
+      posHtml +
+      '<span class="ranking-name popular-name">' + g.name + '</span>' +
+      '<div class="popular-bar-wrap"><div class="popular-bar" style="width:' + pct + '%"></div></div>' +
+      '<span class="popular-count">' + g.count + '<span class="popular-unit">回</span></span>' +
+      (link ? '<span class="popular-go">PLAY &#8594;</span>' : '');
+
+    if (link) {
+      const safeKey = String(g.key).replace(/[^a-zA-Z0-9_-]/g, '');
+      return '<a class="ranking-row ' + rankClass + '" href="' + info.url + '"' +
+             ' target="' + (info.target || '_self') + '" rel="noopener"' +
+             ' onclick="popularRowClick(\'' + safeKey + '\')">' + inner + '</a>';
+    }
+    return '<div class="ranking-row ' + rankClass + '">' + inner + '</div>';
+  }).join('');
+}
+
+function loadPopularPeriod(days) {
+  const listId = 'popular-list-' + days;
+  const noteId = 'popular-note-' + days;
+  const list = document.getElementById(listId);
+  if (!list) return;
+  list.innerHTML = '<div class="ranking-loading">// Loading...</div>';
+
+  const url = GAS_BASE_URL + '?action=popular&period=' + days;
+  fetchRanking(url, function(rows) {
+    if (rows && rows.length) {
+      // GASの戻り値: [{ game, name, clicks }]
+      const norm = rows.map(r => ({
+        key:   r.game,
+        name:  GAME_NAMES[r.game] || r.name || r.game,
+        count: parseInt(r.clicks, 10) || 0
+      })).filter(x => x.count > 0);
+      paintPopular(norm, listId, noteId, '');
+    } else {
+      // GAS未反映／通信失敗 → この端末のローカル集計で代替表示
+      const local = getLocalPopular(days);
+      paintPopular(local, listId, noteId,
+        local.length ? '// ※ サーバー集計を取得できないため、この端末の記録を表示中' : '');
+    }
+  });
+}
+
+function loadPopular() {
+  loadPopularPeriod(7);
+  loadPopularPeriod(30);
+}
+
+const popularRefreshBtn = document.getElementById('popular-refresh');
+if (popularRefreshBtn) popularRefreshBtn.addEventListener('click', loadPopular);
+// ※ 初期ロードはtoggleRankingで開いたときに呼ぶ（DOM生成後）
+
+countVisit();
+</script>
+<!-- ===== 対戦モード オーバーレイ ===== -->
+<div id="battle-overlay">
+  <div class="bt-wrap">
+    <div class="bt-top">
+      <h2 id="bt-title">⚔️ 対戦モード</h2>
+      <button class="bt-close" onclick="btClose()">✕ 閉じる</button>
+    </div>
+
+    <!-- 名前入力 -->
+    <div class="bt-view" id="bt-view-name">
+      <p class="bt-lead">対戦に使うプレーヤー名を入力してください。<br>（ランキングや対戦相手一覧に表示されます）</p>
+      <input class="bt-input" id="bt-name-input" type="text" maxlength="20" placeholder="プレーヤー名">
+      <button class="bt-btn" onclick="btSubmitName()">この名前で対戦ロビーへ ▶</button>
+    </div>
+
+    <!-- ロビー -->
+    <div class="bt-view" id="bt-view-lobby">
+      <p class="bt-lead">対戦人数を選び、相手をタップして選んでください。</p>
+      <div class="bt-countpick">
+        <span class="lbl">対戦人数</span>
+        <div class="bt-seg">
+          <button class="bt-seg-btn active" id="bt-seg-2" onclick="btSetCount(2)">2人</button>
+          <button class="bt-seg-btn" id="bt-seg-3" onclick="btSetCount(3)">3人</button>
+        </div>
+      </div>
+      <div class="bt-section-label">■ 対戦を待っているプレーヤー</div>
+      <div class="bt-players" id="bt-players"></div>
+      <button class="bt-btn" id="bt-start-btn" style="display:none" disabled onclick="btConfirmOpponents()">対戦をはじめる ▶</button>
+      <button class="bt-btn ghost" onclick="btClose()">ロビーから退出する</button>
+    </div>
+
+    <!-- ゲーム選択 -->
+    <div class="bt-view" id="bt-view-game">
+      <p class="bt-lead" style="text-align:center"><strong id="bt-game-op">相手</strong> さんと対戦！<br>どちらのゲームで対戦しますか？</p>
+      <div class="bt-game-choices" id="bt-game-choices"></div>
+      <button class="bt-btn ghost" onclick="btBackToLobby()">← 相手選びに戻る</button>
+    </div>
+
+    <!-- マッチ成立・カウントダウン -->
+    <div class="bt-view" id="bt-view-count">
+      <div class="bt-count-box">
+        <div class="bt-count-vs"><span class="me" id="bt-count-me">あなた</span> <span style="opacity:.6">VS</span> <span class="op" id="bt-count-op">相手</span></div>
+        <div class="bt-count-genre" id="bt-count-genre">テーマ：—</div>
+        <div class="bt-count-num" id="bt-count-num">5</div>
+        <div class="bt-count-msg">対戦者が決まりました。まもなく開始します！</div>
+      </div>
+    </div>
+
+    <!-- 対戦結果 -->
+    <div class="bt-view" id="bt-view-result">
+      <div id="bt-result-body"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== 対戦モード グルー ===== */
+(function(){
+  var overlay=document.getElementById('battle-overlay');
+  var titleEl=document.getElementById('bt-title');
+  var views={name:'bt-view-name',lobby:'bt-view-lobby',game:'bt-view-game',count:'bt-view-count',result:'bt-view-result'};
+  var countTimer=null, resultUnsub=null, activeMatchId=null;
+
+  function showView(v){
+    Object.keys(views).forEach(function(k){
+      document.getElementById(views[k]).classList.toggle('show',k===v);
+    });
+  }
+  function openOverlay(){ overlay.classList.add('show'); document.body.style.overflow='hidden'; }
+  function closeOverlay(){
+    overlay.classList.remove('show'); document.body.style.overflow='';
+    if(countTimer){clearInterval(countTimer);countTimer=null;}
+    if(resultUnsub){try{resultUnsub();}catch(e){}resultUnsub=null;}
+    activeMatchId=null;
+  }
+
+  function notConfigured(){
+    titleEl.textContent='⚔️ 対戦モード';
+    showView('name');
+    document.getElementById('bt-view-name').innerHTML=
+      '<p class="bt-lead">対戦モードはまだ準備中です。<br>（Firebaseの設定が必要です。設定ガイドをご確認ください）</p>'+
+      '<button class="bt-btn ghost" onclick="btClose()">閉じる</button>';
+    openOverlay();
+  }
+
+  // ⚔️ 対戦モードを開く
+  window.btOpen=function(){
+    if(!window.TomyBattle||!TomyBattle.isConfigured()){ notConfigured(); return; }
+    titleEl.textContent='⚔️ 対戦モード';
+    var name=TomyBattle.getName();
+    openOverlay();
+    if(name){ enterLobby(name); }
+    else { showView('name'); setTimeout(function(){var i=document.getElementById('bt-name-input');if(i)i.focus();},80); }
+  };
+
+  window.btSubmitName=function(){
+    var v=document.getElementById('bt-name-input').value.trim();
+    if(!v){ alert('プレーヤー名を入力してください'); return; }
+    enterLobby(v);
+  };
+
+  function enterLobby(name){
+    showView('lobby');
+    document.getElementById('bt-players').innerHTML='<div class="bt-empty"><span class="bt-spinner"></span> ロビーに接続中…</div>';
+    TomyBattle.joinLobby(name, renderPlayers, onMatched).catch(function(){
+      document.getElementById('bt-players').innerHTML='<div class="bt-empty">接続に失敗しました。<br>時間をおいて再度お試しください。</div>';
+    });
+  }
+
+  var lastList=[];              // 最新のロビー一覧（人数変更時の再描画用）
+  var battleCount=2;            // 対戦人数（2 or 3）
+  var selectedOpps=[];          // 選択中の相手 [{id,name}]
+
+  window.btSetCount=function(n){
+    battleCount=n; selectedOpps=[];
+    var b2=document.getElementById('bt-seg-2'), b3=document.getElementById('bt-seg-3');
+    if(b2)b2.classList.toggle('active',n===2);
+    if(b3)b3.classList.toggle('active',n===3);
+    renderPlayers(lastList);
+  };
+
+  function renderPlayers(list){
+    lastList=list||[];
+    var box=document.getElementById('bt-players');
+    var others=lastList.filter(function(p){return !p.self;});
+    var me=lastList.filter(function(p){return p.self;})[0];
+    // ロビーから抜けた相手は選択からも外す
+    selectedOpps=selectedOpps.filter(function(s){return others.some(function(o){return o.id===s.id;});});
+    var required=battleCount-1;
+    var html='';
+    if(me){
+      html+='<div class="bt-player self"><div class="bt-player-avatar">🙋</div>'+
+            '<div class="bt-player-name">'+esc(me.name)+'</div>'+
+            '<div class="bt-player-tag">待機中・本人</div></div>';
+    }
+    if(others.length===0){
+      html+='<div class="bt-empty"><span class="bt-spinner"></span> ほかのプレーヤーを待っています…<br>友だちにも「対戦モード」を開いてもらってください。</div>';
+    } else {
+      others.forEach(function(p){
+        var sel=selectedOpps.some(function(s){return s.id===p.id;});
+        html+='<div class="bt-player pickable'+(sel?' selected':'')+'" onclick="btToggleOpp(\''+p.id+'\',\''+escAttr(p.name)+'\')">'+
+              '<div class="bt-player-avatar">🎮</div>'+
+              '<div class="bt-player-name">'+esc(p.name)+'</div>'+
+              '<div class="bt-check">'+(sel?'✓':'')+'</div></div>';
+      });
+    }
+    box.innerHTML=html;
+    var btn=document.getElementById('bt-start-btn');
+    if(btn){
+      if(others.length===0){ btn.style.display='none'; }
+      else {
+        btn.style.display='';
+        var ok=selectedOpps.length===required;
+        btn.disabled=!ok;
+        btn.textContent = ok ? ('対戦をはじめる ▶（'+battleCount+'人）')
+                             : ('相手を選んでください（'+selectedOpps.length+'/'+required+'人）');
+      }
+    }
+  }
+
+  // 相手の選択をトグル（必要人数を超えたら古い選択を外す）
+  window.btToggleOpp=function(id,name){
+    var required=battleCount-1;
+    var i=-1;
+    for(var k=0;k<selectedOpps.length;k++){ if(selectedOpps[k].id===id){ i=k; break; } }
+    if(i>=0){ selectedOpps.splice(i,1); }
+    else { selectedOpps.push({id:id,name:name}); if(selectedOpps.length>required) selectedOpps.shift(); }
+    renderPlayers(lastList);
+  };
+
+  var pendingOpps=[];
+  // 「対戦をはじめる」→ ゲーム選択へ
+  window.btConfirmOpponents=function(){
+    var required=battleCount-1;
+    if(selectedOpps.length!==required) return;
+    pendingOpps=selectedOpps.slice();
+    document.getElementById('bt-game-op').textContent=pendingOpps.map(function(o){return o.name;}).join('・');
+    // 登録ゲームからプレーヤーが選ぶ（ジャンルは各ゲーム内でランダム）
+    var games=(window.TomyBattle&&TomyBattle.GAMES)||[];
+    var box=document.getElementById('bt-game-choices');
+    box.innerHTML=games.map(function(g){
+      return '<button class="bt-game-choice" onclick="btChooseGame(\''+g.id+'\')">'+
+             '<span class="bt-game-choice-icon">'+g.icon+'</span>'+
+             '<span class="bt-game-choice-name">'+esc(g.name)+'</span>'+
+             '<span class="bt-game-choice-sub">ジャンルはランダム</span></button>';
+    }).join('');
+    showView('game');
+  };
+
+  window.btChooseGame=function(gameId){
+    if(!pendingOpps||!pendingOpps.length) return;
+    showView('count');
+    document.getElementById('bt-count-me').textContent=TomyBattle.getName()||'あなた';
+    document.getElementById('bt-count-op').textContent=pendingOpps.map(function(o){return o.name;}).join('・');
+    TomyBattle.pickOpponents(pendingOpps,{gameId:gameId}).then(function(r){
+      startCountdown(r.matchId, r.match);
+    }).catch(function(){
+      alert('対戦の開始に失敗しました。相手がすでに別の対戦に入った可能性があります。');
+      showView('lobby');
+    });
+  };
+
+  window.btBackToLobby=function(){
+    pendingOpps=[]; selectedOpps=[];
+    var name=TomyBattle.getName();
+    if(name){ enterLobby(name); } else { showView('name'); }
+  };
+
+  // 相手に選ばれた側（2人でも3人でも、自分以外の全員を表示）
+  function onMatched(matchId, match){
+    if(!match) return;
+    var myPid=TomyBattle.getPid();
+    var others=Object.keys(match.players||{}).filter(function(id){return id!==myPid;}).map(function(id){return match.players[id];});
+    document.getElementById('bt-count-me').textContent=TomyBattle.getName()||'あなた';
+    document.getElementById('bt-count-op').textContent=others.join('・')||'相手';
+    showView('count');
+    startCountdown(matchId, match);
+  }
+
+  function startCountdown(matchId, match){
+    if(!match) return;
+    if(activeMatchId===matchId) return; // 同じ対戦の二重起動を防止
+    activeMatchId=matchId;
+    var game=(TomyBattle.gameById&&TomyBattle.gameById(match.game))||null;
+    var g=(TomyBattle.genreOf&&TomyBattle.genreOf(match.game,match.genre))||null;
+    var gameLabel=game?(game.icon+' '+game.name):'対戦';
+    var genreLabel=g?(g.icon+' '+g.name):match.genre;
+    document.getElementById('bt-count-genre').textContent=gameLabel+'（'+genreLabel+'）';
+    var target = match.startAt || (Date.now()+5000);
+    if(countTimer) clearInterval(countTimer);
+    function tick(){
+      var sec=Math.max(0,Math.ceil((target-Date.now())/1000));
+      document.getElementById('bt-count-num').textContent=sec;
+      if(sec<=0){
+        clearInterval(countTimer); countTimer=null;
+        localStorage.setItem('tommygo_last_match', matchId);
+        var base=(game&&game.url)||'https://pecpec37-gift.github.io/shinkei-suijaku/';
+        var url=base+'?battle=1&match='+encodeURIComponent(matchId)+
+                '&pid='+encodeURIComponent(TomyBattle.getPid())+
+                '&game='+encodeURIComponent(match.game||'')+
+                '&genre='+encodeURIComponent(match.genre)+
+                '&name='+encodeURIComponent(TomyBattle.getName()||'');
+        window.location.href=url;
+      }
+    }
+    tick(); countTimer=setInterval(tick,250);
+  }
+
+  // 🏆 対戦結果を開く
+  window.btOpenResults=function(){
+    if(!window.TomyBattle||!TomyBattle.isConfigured()){ notConfigured(); return; }
+    titleEl.textContent='🏆 対戦結果';
+    openOverlay();
+    showView('result');
+    var mid=getParam('battleResult')||localStorage.getItem('tommygo_last_match');
+    var body=document.getElementById('bt-result-body');
+    if(!mid){
+      body.innerHTML='<div class="bt-empty">まだ対戦結果がありません。<br>「対戦モード」から対戦を始めてください。</div>';
+      return;
+    }
+    body.innerHTML='<div class="bt-empty"><span class="bt-spinner"></span> 結果を読み込み中…</div>';
+    if(resultUnsub){try{resultUnsub();}catch(e){}resultUnsub=null;}
+    TomyBattle.listenMatch(mid,function(match){ renderResult(match,mid); }).then(function(un){resultUnsub=un;}).catch(function(){
+      body.innerHTML='<div class="bt-empty">結果の読み込みに失敗しました。</div>';
+    });
+  };
+
+  function renderResult(match, matchId){
+    var body=document.getElementById('bt-result-body');
+    if(!match){ body.innerHTML='<div class="bt-empty">対戦データが見つかりません。</div>'; return; }
+    var myPid=TomyBattle.getPid();
+    var players=match.players||{};
+    var scores=match.scores||{};
+    var ids=Object.keys(players);
+    var rows=ids.map(function(id){
+      var s=scores[id];
+      return {id:id,name:players[id],score:s?s.score:null,detail:s?(s.detail||''):null,done:!!s,self:id===myPid};
+    });
+    var allDone=rows.every(function(r){return r.done;});
+    var game=(TomyBattle.gameById&&TomyBattle.gameById(match.game))||null;
+    var g=(TomyBattle.genreOf&&TomyBattle.genreOf(match.game,match.genre))||null;
+    var gameLabel=game?(game.icon+' '+game.name):'対戦';
+    var genreLabel=g?(g.icon+' '+g.name):match.genre;
+
+    var html='<p class="bt-lead" style="text-align:center">'+esc(gameLabel)+'<br><span style="font-size:11px;color:rgba(250,248,243,.55)">'+esc(genreLabel)+'</span></p>';
+
+    if(!allDone){
+      var waiting=rows.filter(function(r){return !r.done;}).map(function(r){return esc(r.name);}).join('、');
+      html+='<div class="bt-empty"><span class="bt-spinner"></span> '+waiting+' さんのプレー結果を待っています…</div>';
+    }
+
+    // 勝敗判定
+    var sorted=rows.slice().sort(function(a,b){return (b.score||0)-(a.score||0);});
+    var topScore=sorted.length?sorted[0].score:null;
+    var winners=sorted.filter(function(r){return r.done&&r.score===topScore;});
+    var isDraw=allDone&&winners.length>1;
+
+    if(allDone){
+      var me=rows.filter(function(r){return r.self;})[0];
+      if(isDraw){ html+='<div class="bt-verdict draw">🤝 引き分け！</div>'; }
+      else if(me&&me.score===topScore){ html+='<div class="bt-verdict win">🎉 あなたの勝ち！</div>'; }
+      else { html+='<div class="bt-verdict lose">😢 あなたの負け…</div>'; }
+    }
+
+    sorted.forEach(function(r,i){
+      var isWin=allDone&&!isDraw&&r.done&&r.score===topScore;
+      html+='<div class="bt-result-card'+(isWin?' winner':'')+'">'+
+        (isWin?'<div class="bt-winstamp">👑 WIN</div>':'')+
+        '<div class="bt-result-rank">'+(r.done?(i+1):'-')+'</div>'+
+        '<div class="bt-result-info"><div class="bt-result-name">'+esc(r.name)+(r.self?' <span style="font-size:11px;color:#f4d06a">(あなた)</span>':'')+'</div>'+
+        '<div class="bt-result-meta">'+(r.done?esc(r.detail||'完了'):'プレー中…')+'</div></div>'+
+        '<div class="bt-result-score">'+(r.done?r.score:'—')+'</div></div>';
+    });
+
+    html+='<button class="bt-btn" onclick="btContinue()">⚔️ 対戦を続ける</button>'+
+          '<button class="bt-btn ghost" onclick="btQuit()">対戦をやめる</button>';
+    body.innerHTML=html;
+  }
+
+  window.btContinue=function(){
+    if(resultUnsub){try{resultUnsub();}catch(e){}resultUnsub=null;}
+    activeMatchId=null;
+    TomyBattle.clearMyMatchFlag();
+    var name=TomyBattle.getName();
+    if(name){ titleEl.textContent='⚔️ 対戦モード'; enterLobby(name); }
+    else { showView('name'); }
+  };
+  window.btQuit=function(){
+    TomyBattle.clearMyMatchFlag();
+    TomyBattle.leaveLobby();
+    closeOverlay();
+  };
+
+  window.btClose=function(){
+    try{ if(window.TomyBattle) TomyBattle.leaveLobby(); }catch(e){}
+    closeOverlay();
+  };
+
+  function getParam(k){ try{ return new URLSearchParams(window.location.search).get(k); }catch(e){ return null; } }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function escAttr(s){ return String(s==null?'':s).replace(/['"\\]/g,'\\$&').replace(/[<>]/g,''); }
+
+  // ゲームから ?battleResult=... で戻ってきたら自動で結果画面を開く
+  window.addEventListener('DOMContentLoaded',function(){
+    if(getParam('battleResult')){ setTimeout(function(){ btOpenResults(); },300); }
+  });
+})();
+</script>
+
+</body>
+</html>
