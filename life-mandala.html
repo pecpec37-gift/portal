@@ -297,7 +297,7 @@ const THEMES = [
   { name:'心身の健康',
     acts:['睡眠を7時間とる','年1回は健康診断を受ける','週3回は体を動かす'],
     sug:['1日8000歩歩く','野菜を意識して食べる','お酒はほどほどに','体重を週1回記録する','寝る前のスマホを控える','ストレッチを習慣にする','年1回歯科検診'] },
-  { name:'年間収入500万円',
+  { name:'年間収入XXX万円',
     acts:['本業のスキルを磨き成果を出す','毎月の収支を記録する','仕事に役立つ資格に挑戦'],
     sug:['上司と目標をすり合わせる','業務を効率化するツールを作る','先取り貯蓄をする','固定費を見直す','資産形成を学ぶ','副業の可能性を調べる'] },
   { name:'目標', acts:[], sug:[] }, // 中心（使わない）
@@ -310,7 +310,7 @@ const THEMES = [
   { name:'韓国語の習得',
     acts:['毎日15分は韓国語に触れる','ハングルをすらすら読む','基本フレーズ100を覚える'],
     sug:['ハングル検定5級に合格','韓国ドラマを字幕で見る','単語アプリで毎日復習','韓国語で日記を1行','韓国旅行で会話する','言語交換の相手を見つける'] },
-  { name:'その他(自己啓発)',
+  { name:'その他',
     acts:['月1冊は本を読む','新しいアプリを作って公開','1日の振り返りを書く'],
     sug:['AIなど新しい技術を学ぶ','早起きの習慣をつける','勉強会やセミナーに参加','時間の使い方を見直す','年1回新しいことに挑戦','学んだことを人に教える'] },
 ];
@@ -341,7 +341,7 @@ function normAll(d){ return { v:1, name:String(d.name||'人生マンダラ').sli
 
 let S;
 function load(){
-  try{ const r=localStorage.getItem(KEY); if(r){ const d=JSON.parse(r); if(valid(d)) return normAll(d); } }catch(e){}
+  try{ const r=localStorage.getItem(KEY); if(r){ const d=JSON.parse(r); if(valid(d)){ const n=normAll(d); const R={'年間収入500万円':'年間収入XXX万円','その他(自己啓発)':'その他'}; n.themes.forEach(c=>{ if(R[c.t]) c.t=R[c.t]; }); return n; } } }catch(e){}
   return null;
 }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){ toast('保存できませんでした（容量/設定を確認）'); } }
