@@ -6,9 +6,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="人生81">
+<meta name="apple-mobile-web-app-title" content="人生マンダラ">
 <meta name="theme-color" content="#4338ca">
 <title>人生マンダラ</title>
+<link rel="manifest" href="life-mandala.webmanifest">
+<link rel="apple-touch-icon" href="icons/life-mandala-180.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
 <style>
 :root{
@@ -227,6 +229,7 @@ h1{font-size:17px;margin:0;flex:1;text-align:center;white-space:nowrap;overflow:
 <div class="ovl" id="menuOvl">
   <div class="sheet menu">
     <h3>メニュー</h3>
+    <button data-m="install" id="installBtn">📲 ホーム画面にアイコンを追加</button>
     <button data-m="help">❓ 使い方・ホーム画面への追加</button>
     <button data-m="rename">✏️ チャート名を変更</button>
     <button data-m="copy">📋 データをコピー（LINE等で送る・バックアップ）</button>
@@ -247,6 +250,31 @@ h1{font-size:17px;margin:0;flex:1;text-align:center;white-space:nowrap;overflow:
     <div class="kind">「データをコピー」で作った文字列を貼り付けてください。今のチャートは上書きされます。</div>
     <textarea id="pasteTx" rows="6"></textarea>
     <div class="btns"><button class="btn" id="pasteCancel">やめる</button><button class="btn pri" id="pasteOk">読み込む</button></div>
+  </div>
+</div>
+
+<!-- install -->
+<div class="ovl" id="instOvl">
+  <div class="sheet help">
+    <h3>📲 ホーム画面にアイコンを追加</h3>
+    <div id="instIos">
+      <p><b>iPhone / iPad（Safari）</b></p>
+      <ol>
+        <li>画面下（または上）の共有ボタン <b>□↑</b> をタップ</li>
+        <li>「<b>ホーム画面に追加</b>」をタップ（見つからなければ下へスクロール）</li>
+        <li>右上の「<b>追加</b>」をタップ</li>
+      </ol>
+      <p class="muted">※ LINEなどのアプリ内ブラウザでは追加できません。右下の「…」→「ブラウザで開く」でSafariに切り替えてください。</p>
+      <p><b>⚠ データの引き継ぎ</b>：iPhoneでは、ホーム画面のアイコンとSafariとで保存場所が別になります。Safariで記録済みの場合は、Safariでメニュー →「データをコピー」→ アイコンから開いてメニュー →「コピーしたデータを読み込む」で移せます。</p>
+    </div>
+    <div id="instAnd">
+      <p><b>Android（Chrome）</b></p>
+      <ol>
+        <li>右上の <b>︙</b> をタップ</li>
+        <li>「<b>ホーム画面に追加</b>」または「<b>アプリをインストール</b>」をタップ</li>
+      </ol>
+    </div>
+    <div class="btns"><button class="btn" id="instClose">閉じる</button></div>
   </div>
 </div>
 
@@ -272,6 +300,7 @@ h1{font-size:17px;margin:0;flex:1;text-align:center;white-space:nowrap;overflow:
     <ul>
       <li>iPhone：Safariで開く → 共有ボタン（□↑）→「ホーム画面に追加」</li>
       <li>Android：Chromeで開く → 右上︙ →「ホーム画面に追加」</li>
+      <li>メニューの「📲 ホーム画面にアイコンを追加」からも手順を確認できます</li>
     </ul>
     <p><b>データについて</b>：記録はこのスマホのブラウザ内に保存され、友だちのデータとは混ざりません。機種変更やブラウザのデータ消去の前に「データをコピー」か「ファイルに書き出し」でバックアップしてください。自分のチャートを友だちに見せたいときも同じ方法で渡せます。</p>
     <div class="btns"><button class="btn pri" id="helpClose">はじめる</button></div>
@@ -547,7 +576,15 @@ $('menuBtn').onclick=()=>$('menuOvl').classList.add('show');
 $('menuOvl').addEventListener('click',async e=>{
   const m=e.target.closest('[data-m]')?.dataset.m; if(!m) return;
   $('menuOvl').classList.remove('show');
-  if(m==='help') $('helpOvl').classList.add('show');
+  if(m==='install'){
+    if(deferredPrompt){ deferredPrompt.prompt(); try{ const r=await deferredPrompt.userChoice; if(r.outcome==='accepted') toast('ホーム画面に追加しました'); }catch(err){} deferredPrompt=null; return; }
+    const ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+    const and=/Android/.test(navigator.userAgent);
+    $('instIos').classList.toggle('hidden', and);
+    $('instAnd').classList.toggle('hidden', ios);
+    $('instOvl').classList.add('show');
+  }
+  else if(m==='help') $('helpOvl').classList.add('show');
   else if(m==='rename'){ const n=prompt('チャート名（例：○○の人生マンダラ2027）', S.name); if(n!==null && n.trim()){ S.name=n.trim().slice(0,30); save(); render(); } }
   else if(m==='copy'){
     const txt=JSON.stringify(S);
@@ -577,6 +614,11 @@ $('pasteOk').onclick=()=>{ const t=$('pasteTx').value.trim(); if(!t) return;
   if(!confirm('今のチャートを上書きして読み込みますか？')) return;
   if(importText(t)) $('pasteOvl').classList.remove('show'); };
 $('pasteCancel').onclick=()=>$('pasteOvl').classList.remove('show');
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; });
+const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone===true;
+if(standalone) $('installBtn').classList.add('hidden');
+$('instClose').onclick=()=>$('instOvl').classList.remove('show');
 function markSeen(){ try{ localStorage.setItem(KEY+'-seen','1'); }catch(e){} }
 $('helpClose').onclick=()=>{ $('helpOvl').classList.remove('show'); markSeen(); };
 

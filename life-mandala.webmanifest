@@ -1,0 +1,18 @@
+{
+  "id": "/portal/life-mandala.html",
+  "name": "人生マンダラ",
+  "short_name": "人生マンダラ",
+  "description": "「幸福な人生を歩む」を中心に8分野を81マスで見える化するマンダラチャート",
+  "lang": "ja",
+  "start_url": "/portal/life-mandala.html?source=homescreen",
+  "scope": "/portal/life-mandala.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f3fa",
+  "theme_color": "#4338ca",
+  "icons": [
+    { "src": "icons/life-mandala-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/life-mandala-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/life-mandala-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
