@@ -11,6 +11,13 @@
 
   <!-- 各ゲーム -->
   <url>
+    <loc>https://pecpec37-gift.github.io/portal/igo-mandala.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://pecpec37-gift.github.io/portal/tennis-mandala.html</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
