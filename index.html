@@ -297,6 +297,20 @@ a.ranking-row:hover .popular-go{opacity:1;}
 .bt-verdict.win{color:#f4d06a;}
 .bt-verdict.lose{color:#ff7a90;}
 .bt-verdict.draw{color:#9fd6c0;}
+
+  /* ===== ゲーム検索 ===== */
+  .search-section { max-width: 1100px; margin: 0 auto; padding: 26px 24px 0; }
+  .search-inner { display: flex; align-items: center; gap: 10px; background: var(--paper2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; transition: border-color 0.15s, box-shadow 0.15s; }
+  .search-inner:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(192,57,43,0.10); }
+  .search-icon { font-size: 16px; opacity: 0.7; line-height: 1; flex-shrink: 0; }
+  .search-input { flex: 1; min-width: 0; border: none; background: none; outline: none; font-family: 'Noto Sans JP', sans-serif; font-size: 15px; color: var(--ink); }
+  .search-input::placeholder { color: var(--ink3); }
+  .search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+  .search-clear { flex-shrink: 0; border: none; background: none; color: var(--ink3); font-size: 14px; cursor: pointer; padding: 4px 7px; line-height: 1; border-radius: 6px; font-family: inherit; }
+  .search-clear:hover { color: var(--ink); background: rgba(26,26,26,0.06); }
+  .search-hint { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink3); margin: 8px 2px 0; }
+  .search-empty { max-width: 1100px; margin: 10px auto 0; padding: 40px 24px; text-align: center; font-family: 'Noto Sans JP', sans-serif; font-size: 14px; line-height: 1.9; color: var(--ink3); }
+  @media (max-width: 560px) { .search-section { padding: 18px 16px 0; } .search-input { font-size: 14px; } }
 </style>
 <script src="https://pecpec37-gift.github.io/portal/battle.js"></script>
 </head>
@@ -445,6 +459,15 @@ function toggleRanking() {
   if (!open) loadRanking();
 }
 </script>
+
+<section class="search-section">
+  <div class="search-inner">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="search" id="game-search" class="search-input" placeholder="ゲームを検索（例：囲碁、憲法、漢字、テニス、牛…）" autocomplete="off" aria-label="ゲームを検索">
+    <button type="button" id="search-clear" class="search-clear" aria-label="検索をクリア" style="display:none;">&#x2715; クリア</button>
+  </div>
+  <div class="search-hint">// ゲーム名・説明・ジャンルからキーワード検索できます（スペース区切りで絞り込み）</div>
+</section>
 
 <section class="genre-section" id="genre-section">
   <h2 class="genre-heading">ジャンルを選ぶ</h2>
@@ -2120,7 +2143,61 @@ function showGenreLanding(){
   filterSection.classList.add('is-hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-document.getElementById('back-to-genres').addEventListener('click', showGenreLanding);
+document.getElementById('back-to-genres').addEventListener('click', backToLanding);
+
+/* ---- キーワード検索 ---- */
+const searchInput = document.getElementById('game-search');
+const searchClear = document.getElementById('search-clear');
+const cardSearchText = new Map();
+cards.forEach(c => {
+  const t = (c.querySelector('.game-card-title') || {}).textContent || '';
+  const d = (c.querySelector('.game-card-desc')  || {}).textContent || '';
+  const g = (c.querySelector('.game-card-tag')   || {}).textContent || '';
+  const k = c.dataset.key || '';
+  cardSearchText.set(c, (t + ' ' + d + ' ' + g + ' ' + k).toLowerCase());
+});
+let searchEmptyEl = null;
+function runSearch(raw){
+  const q = (raw || '').trim();
+  if (!q) { exitSearch(); return; }
+  searchClear.style.display = '';
+  genreSection.classList.add('is-hidden');
+  filterSection.classList.add('is-hidden');
+  gamesSection.classList.remove('is-hidden');
+  const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+  let n = 0;
+  cards.forEach(c => {
+    const text = cardSearchText.get(c) || '';
+    const ok = terms.every(t => text.indexOf(t) !== -1);
+    c.classList.toggle('hidden', !ok);
+    if (ok) n++;
+  });
+  label.textContent = '「' + q + '」の検索結果 — ' + n + ' 件';
+  if (!searchEmptyEl) {
+    searchEmptyEl = document.createElement('div');
+    searchEmptyEl.id = 'search-empty';
+    searchEmptyEl.className = 'search-empty';
+    gamesSection.appendChild(searchEmptyEl);
+  }
+  if (n === 0) {
+    searchEmptyEl.textContent = '🔍「' + q + '」に一致するゲームは見つかりませんでした。別のキーワードをお試しください。';
+    searchEmptyEl.style.display = '';
+  } else {
+    searchEmptyEl.style.display = 'none';
+  }
+}
+function exitSearch(){
+  if (searchInput) searchInput.value = '';
+  searchClear.style.display = 'none';
+  if (searchEmptyEl) searchEmptyEl.style.display = 'none';
+  cards.forEach(c => c.classList.remove('hidden'));
+  showGenreLanding();
+}
+// 「ジャンルに戻る」：検索中ならクリアも兼ねる
+function backToLanding(){ exitSearch(); }
+searchInput.addEventListener('input', function(){ runSearch(searchInput.value); });
+searchClear.addEventListener('click', function(){ exitSearch(); searchInput.focus(); });
+searchInput.addEventListener('keydown', function(e){ if (e.key === 'Escape') { exitSearch(); } });
 
 updateFilter('all');
 showGenreLanding();
