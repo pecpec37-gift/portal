@@ -11,6 +11,12 @@
 
   <!-- 各ゲーム -->
   <url>
+    <loc>https://pecpec37-gift.github.io/US-News/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://pecpec37-gift.github.io/PhysicalAI-News/</loc>
     <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
