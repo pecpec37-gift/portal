@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🌿 薬屋のひとりごとクイズ道場｜TomTom TOWNS</title>
+<meta name="description" content="アニメ『薬屋のひとりごと』の4択クイズ。登場人物・後宮・薬と毒・事件・主題歌・原作の6分野91問。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sumi:#0d1f1c;        /* 夜の後宮（深い翡翠の闇） */
+    --sumi2:#14302a;       /* パネル */
+    --sumi3:#1c3d35;
+    --washi:#f4ecd8;       /* 生成りの和紙（薬包紙） */
+    --washi2:#e9dcbf;
+    --shu:#c8453a;         /* 朱（柱・判子） */
+    --shu-deep:#9d2e25;
+    --kin:#e2b85a;         /* 金 */
+    --kin-soft:#f1d690;
+    --kin-deep:#b08533;
+    --ink:#24261a;
+    --ink-soft:#56523d;
+    --text:#eef0e2;
+    --text2:#b9c4ad;
+    --text3:#7f8d78;
+    --green:#4fbf8a;       /* 翡翠 */
+    --line:rgba(226,184,90,.28);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(120% 70% at 50% -8%, #24443a 0%, var(--sumi) 58%),
+      var(--sumi);
+    min-height:100dvh;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* 舞い散る花びら（後宮の夜） */
+  body::before{
+    content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 18%, #fff6, transparent),
+      radial-gradient(1.2px 1.2px at 78% 12%, #ffe9b0aa, transparent),
+      radial-gradient(1.6px 1.6px at 40% 30%, #fff5, transparent),
+      radial-gradient(1.1px 1.1px at 65% 42%, #fff4, transparent),
+      radial-gradient(1.3px 1.3px at 25% 60%, #ffe9b088, transparent),
+      radial-gradient(1.5px 1.5px at 88% 68%, #fff4, transparent),
+      radial-gradient(1.2px 1.2px at 52% 82%, #fff4, transparent),
+      radial-gradient(1.1px 1.1px at 8% 88%, #fff3, transparent);
+  }
+  .wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:clamp(14px,3.5vw,26px) clamp(13px,4vw,22px) 60px;}
+  .screen{display:none;animation:fade .34s ease;}
+  .screen.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ====== 表紙（ヒーロー） ====== */
+  .crest{text-align:center;padding:clamp(18px,5vw,34px) 0 clamp(8px,2vw,16px);}
+  .crest .torii{font-size:clamp(30px,8vw,44px);color:var(--shu);text-shadow:0 0 22px rgba(216,64,47,.45);line-height:1;}
+  .crest .eyebrow{font-family:'Shippori Mincho B1',serif;font-weight:500;color:var(--kin);letter-spacing:.5em;font-size:clamp(11px,3vw,13px);margin:12px 0 6px;padding-left:.5em;}
+  .crest h1{
+    font-family:'Yuji Syuku',serif;font-weight:400;
+    font-size:clamp(40px,12vw,68px);letter-spacing:.06em;margin:2px 0 4px;
+    color:var(--washi);
+    text-shadow:0 2px 0 var(--shu-deep),0 0 30px rgba(231,184,74,.25);
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(16px) scale(.97);letter-spacing:.3em;}to{opacity:1;transform:none;}}
+  .crest .read{font-family:'Shippori Mincho B1',serif;font-weight:500;color:var(--text2);font-size:clamp(12px,3.4vw,15px);letter-spacing:.14em;margin-top:8px;}
+  .crest .read b{color:var(--kin-soft);font-weight:700;}
+
+  /* ルール巻物 */
+  .scroll{
+    background:linear-gradient(180deg,var(--washi),var(--washi2));
+    color:var(--ink);border-radius:4px;
+    padding:clamp(16px,4vw,22px) clamp(16px,4.5vw,26px);
+    margin:clamp(16px,4vw,24px) 0;
+    position:relative;box-shadow:0 10px 28px rgba(0,0,0,.4);
+    border-top:3px solid var(--shu);border-bottom:3px solid var(--shu);
+  }
+  .scroll::before,.scroll::after{content:'';position:absolute;left:-6px;right:-6px;height:6px;background:var(--shu-deep);border-radius:4px;}
+  .scroll::before{top:-9px;}.scroll::after{bottom:-9px;}
+  .scroll .rule-head{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:clamp(15px,4vw,18px);color:var(--shu-deep);margin-bottom:12px;letter-spacing:.05em;}
+  .rule-list{display:grid;gap:9px;}
+  .rule-row{display:flex;gap:10px;align-items:flex-start;font-size:clamp(13px,3.6vw,14.5px);line-height:1.55;}
+  .rule-row .k{flex:none;width:1.4em;text-align:center;}
+  .rule-row b{color:var(--shu-deep);}
+  .rule-row .yaru{color:var(--green);font-weight:700;}
+
+  /* ジャンル */
+  .sec-label{font-family:'Shippori Mincho B1',serif;font-weight:700;color:var(--kin);font-size:clamp(14px,3.8vw,16px);letter-spacing:.08em;margin:6px 0 4px;display:flex;align-items:center;gap:12px;}
+  .sec-label::after{content:'';flex:1;height:1px;background:var(--line);}
+  .sec-hint{color:var(--text2);font-size:12.5px;margin:6px 0 16px;letter-spacing:.02em;}
+  .genres{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px;}
+  .gcard{
+    position:relative;cursor:pointer;overflow:hidden;
+    background:linear-gradient(180deg,var(--washi),var(--washi2));
+    color:var(--ink);border-radius:5px;padding:18px 16px 16px;
+    box-shadow:0 6px 16px rgba(0,0,0,.35);
+    transition:transform .12s ease,box-shadow .12s ease;
+    border-left:5px solid var(--accent,var(--shu));
+  }
+  .gcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.45);}
+  .gcard:active{transform:translateY(-1px);}
+  .gcard .ico{font-size:30px;line-height:1;display:block;margin-bottom:8px;}
+  .gcard .gname{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:17px;margin-bottom:4px;letter-spacing:.03em;}
+  .gcard .gdesc{font-size:11.5px;color:var(--ink-soft);line-height:1.55;min-height:2.6em;}
+  .gcard .gcount{font-size:10.5px;color:var(--kin-deep);font-weight:700;letter-spacing:.04em;margin-top:8px;}
+  .gcard .go{position:absolute;top:13px;right:14px;font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:11px;color:var(--shu);opacity:0;transition:opacity .15s;}
+  .gcard:hover .go{opacity:1;}
+  .gcard.omakase{border-left-color:var(--kin);background:linear-gradient(135deg,#24443a,var(--sumi2));color:var(--text);box-shadow:0 6px 18px rgba(231,184,74,.18),0 6px 16px rgba(0,0,0,.4);}
+  .gcard.omakase .gdesc{color:var(--text2);}
+  .gcard.omakase .gcount{color:var(--kin-soft);}
+
+  .btn-row{text-align:center;margin-top:22px;}
+  .link-btn{background:none;border:1px solid var(--line);color:var(--kin);font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:14px;padding:11px 22px;border-radius:40px;cursor:pointer;transition:background .15s,border-color .15s;}
+  .link-btn:hover{background:rgba(231,184,74,.1);border-color:var(--kin);}
+
+  /* ====== intro ====== */
+  .intro{max-width:460px;margin:clamp(24px,8vw,60px) auto 0;text-align:center;}
+  .intro .ii{font-size:56px;line-height:1;margin-bottom:8px;}
+  .intro .iname{font-family:'Yuji Syuku',serif;font-size:34px;color:var(--washi);margin-bottom:6px;letter-spacing:.05em;}
+  .intro .idesc{color:var(--text2);font-size:13.5px;line-height:1.7;margin-bottom:20px;}
+  .intro .mini-rule{background:var(--sumi2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13px;line-height:1.8;color:var(--text);text-align:left;margin-bottom:20px;}
+  .intro .mini-rule b{color:var(--kin-soft);}
+  .namelab{font-size:12px;color:var(--text2);text-align:left;margin:0 2px 6px;}
+  .name-input{width:100%;padding:13px 15px;border-radius:11px;border:1.5px solid var(--line);background:var(--sumi);color:var(--text);font-size:15px;font-family:inherit;margin-bottom:16px;}
+  .name-input:focus{outline:none;border-color:var(--kin);}
+  .big-btn{width:100%;padding:16px;border:none;border-radius:13px;background:linear-gradient(180deg,var(--shu),var(--shu-deep));color:#fff;font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:18px;letter-spacing:.08em;cursor:pointer;box-shadow:0 8px 20px rgba(216,64,47,.35);transition:filter .15s,transform .1s;}
+  .big-btn:hover{filter:brightness(1.07);}
+  .big-btn:active{transform:translateY(1px);}
+  .back-link{display:inline-block;margin-top:16px;background:none;border:none;color:var(--text3);font-size:13px;cursor:pointer;font-family:inherit;}
+  .back-link:hover{color:var(--text2);}
+
+  /* ====== quiz ====== */
+  .qhead{display:flex;align-items:center;gap:12px;background:var(--sumi2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:18px;}
+  .qnum{font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:14px;color:var(--kin);white-space:nowrap;}
+  .pbar{flex:1;height:7px;background:rgba(0,0,0,.35);border-radius:6px;overflow:hidden;}
+  .pfill{height:100%;background:linear-gradient(90deg,var(--kin),var(--shu));width:0;transition:width .3s ease;}
+  .qscore{font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:14px;color:var(--kin-soft);white-space:nowrap;}
+  .qtime-wrap{display:flex;align-items:baseline;gap:3px;white-space:nowrap;}
+  .qtime{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:26px;color:var(--green);min-width:38px;text-align:right;transition:color .3s;}
+  .qtime.danger{color:var(--shu);animation:tp .5s infinite alternate;}
+  @keyframes tp{to{opacity:.55;}}
+  .qtime-lab{font-size:11px;color:var(--text3);}
+
+  .qcard{background:linear-gradient(180deg,var(--washi),var(--washi2));color:var(--ink);border-radius:8px;padding:26px 22px;margin-bottom:18px;box-shadow:0 8px 22px rgba(0,0,0,.4);border-top:3px solid var(--kin);position:relative;}
+  .qcard .qtag{font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:11px;color:var(--shu);letter-spacing:.1em;margin-bottom:10px;}
+  .qtext{font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:clamp(17px,4.6vw,21px);line-height:1.7;letter-spacing:.02em;}
+
+  .choices{display:grid;gap:11px;}
+  .choice{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--sumi2);border:1.5px solid var(--line);color:var(--text);border-radius:13px;padding:16px 16px;font-size:clamp(15px,4vw,16px);font-weight:500;font-family:inherit;cursor:pointer;transition:border-color .12s,background .12s,transform .08s;}
+  .choice:hover{border-color:var(--kin);background:var(--sumi3);}
+  .choice:active{transform:scale(.99);}
+  .choice .lab{flex:none;width:28px;height:28px;border-radius:50%;background:rgba(231,184,74,.14);color:var(--kin);font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:14px;display:grid;place-items:center;}
+  .choice.correct{border-color:var(--green);background:rgba(76,175,110,.18);}
+  .choice.correct .lab{background:var(--green);color:#fff;}
+  .choice.wrong{border-color:var(--shu);background:rgba(216,64,47,.16);}
+  .choice.wrong .lab{background:var(--shu);color:#fff;}
+  .choice:disabled{cursor:default;}
+
+  /* 判定オーバーレイ（朱印演出） */
+  .overlay{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(6,16,14,.78);backdrop-filter:blur(3px);}
+  .overlay.show{display:flex;animation:fade .25s ease;}
+  .ov-card{width:100%;max-width:440px;background:linear-gradient(180deg,var(--washi),var(--washi2));color:var(--ink);border-radius:14px;padding:26px 22px 22px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.6);position:relative;}
+  .stamp{width:96px;height:96px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;font-family:'Yuji Syuku',serif;font-size:30px;letter-spacing:.04em;border:4px double currentColor;position:relative;animation:stamp .4s cubic-bezier(.2,1.5,.4,1) both;}
+  @keyframes stamp{0%{transform:scale(2.4) rotate(-18deg);opacity:0;}60%{opacity:1;}100%{transform:scale(1) rotate(-9deg);opacity:1;}}
+  .stamp.ok{color:var(--shu);text-shadow:0 1px 0 rgba(216,64,47,.3);}
+  .stamp.ng{color:var(--ink-soft);}
+  .ov-fb{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:15px;margin:4px 0 14px;}
+  .ov-fb .plus{color:var(--green);}
+  .ov-ans-lab{font-size:11px;color:var(--ink-soft);letter-spacing:.1em;margin-bottom:3px;}
+  .ov-ans{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:20px;color:var(--shu-deep);margin-bottom:12px;}
+  .ov-mean{font-size:13px;line-height:1.7;color:var(--ink-soft);background:rgba(216,64,47,.07);border-radius:9px;padding:11px 13px;text-align:left;margin-bottom:16px;}
+  .ov-next{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(180deg,var(--shu),var(--shu-deep));color:#fff;font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:16px;letter-spacing:.06em;cursor:pointer;}
+  .ov-next:active{transform:translateY(1px);}
+  .quit{position:fixed;top:14px;right:14px;z-index:30;background:rgba(20,48,42,.85);border:1px solid var(--line);color:var(--text2);font-size:12px;padding:7px 13px;border-radius:30px;cursor:pointer;font-family:inherit;}
+
+  /* ====== result ====== */
+  .res-genre{font-family:'Shippori Mincho B1',serif;font-weight:700;text-align:center;color:var(--kin);font-size:15px;margin-bottom:12px;letter-spacing:.04em;}
+  .res-box{background:var(--sumi2);border:1px solid var(--line);border-radius:18px;padding:28px 22px;text-align:center;margin-bottom:18px;box-shadow:0 10px 30px rgba(0,0,0,.4);}
+  .res-emoji{font-size:44px;margin-bottom:4px;}
+  .res-total{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:64px;line-height:1;color:var(--kin);text-shadow:0 0 24px rgba(231,184,74,.3);}
+  .res-total small{font-size:20px;color:var(--text2);}
+  .res-lab{font-family:'Shippori Mincho B1',serif;font-size:12px;color:var(--text3);letter-spacing:.18em;margin:6px 0 16px;}
+  .res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .rs{background:rgba(0,0,0,.22);border-radius:11px;padding:12px 6px;}
+  .rs .v{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:22px;}
+  .rs .v.g{color:var(--green);}.rs .v.k{color:var(--kin-soft);}.rs .v.s{color:var(--shu);}
+  .rs .l{font-size:10.5px;color:var(--text3);margin-top:2px;}
+  .rank-label{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:16px;text-align:center;margin:4px 0 16px;letter-spacing:.04em;}
+
+  .wrong-wrap{margin-bottom:20px;}
+  .wrong-head{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:14px;color:var(--kin);margin-bottom:12px;letter-spacing:.03em;}
+  .witem{background:linear-gradient(180deg,var(--washi),var(--washi2));color:var(--ink);border-radius:9px;padding:14px 15px;margin-bottom:10px;border-left:4px solid var(--shu);}
+  .witem .wq{font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:14px;line-height:1.6;margin-bottom:7px;}
+  .witem .wa{font-size:13px;}.witem .wa b{color:var(--shu-deep);}
+  .witem .wm{font-size:12px;color:var(--ink-soft);margin-top:5px;line-height:1.6;}
+  .allok{text-align:center;padding:22px;font-family:'Shippori Mincho B1',serif;font-weight:800;color:var(--green);font-size:16px;}
+
+  .res-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .res-actions button{flex:1;min-width:120px;padding:14px;border-radius:12px;font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);}
+  .res-actions .pri{background:linear-gradient(180deg,var(--shu),var(--shu-deep));color:#fff;border:none;}
+  .res-actions .study-btn{background:linear-gradient(180deg,var(--kin),var(--kin-deep));color:#2a2214;border:none;}
+  .res-actions .study-btn:hover{filter:brightness(1.06);}
+  .res-actions .sec{background:var(--sumi2);color:var(--kin);}
+
+  /* ====== 学習モード ====== */
+  .link-btn.study{background:linear-gradient(180deg,rgba(231,184,74,.16),rgba(231,184,74,.06));border-color:var(--kin);color:var(--kin-soft);}
+  .link-btn.study:hover{background:rgba(231,184,74,.2);}
+  .fc-answer{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease,margin .3s ease;margin-top:0;border-top:1px dashed rgba(216,64,47,.35);}
+  .fc-answer.show{max-height:600px;opacity:1;margin-top:18px;padding-top:16px;}
+  .fc-ans-lab{font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:11px;color:var(--shu);letter-spacing:.12em;margin-bottom:4px;}
+  .fc-ans{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:clamp(20px,5.2vw,24px);color:var(--shu-deep);line-height:1.5;margin-bottom:12px;}
+  .fc-mean{font-size:13.5px;line-height:1.75;color:var(--ink-soft);background:rgba(216,64,47,.07);border-radius:9px;padding:12px 14px;}
+  .fc-reveal{width:100%;padding:15px;margin-bottom:14px;border:1.5px dashed var(--kin);border-radius:13px;background:rgba(231,184,74,.08);color:var(--kin-soft);font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:16px;letter-spacing:.05em;cursor:pointer;transition:background .15s;}
+  .fc-reveal:hover{background:rgba(231,184,74,.16);}
+  .fc-reveal.done{display:none;}
+  .fc-nav{display:flex;gap:10px;align-items:stretch;}
+  .fc-nav button{flex:1;padding:14px 6px;border-radius:12px;font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:var(--sumi2);color:var(--text);transition:background .12s,opacity .12s;}
+  .fc-nav button:hover{background:var(--sumi3);}
+  .fc-nav .fc-next{background:linear-gradient(180deg,var(--shu),var(--shu-deep));color:#fff;border:none;}
+  .fc-nav .fc-shuffle{flex:none;padding:14px 14px;color:var(--kin-soft);}
+  .fc-nav button:disabled{opacity:.4;cursor:default;}
+
+  /* ====== ranking ====== */
+  .rank-row{display:flex;align-items:center;gap:12px;background:var(--sumi2);border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:8px;}
+  .rank-row.t1{border-color:var(--kin);background:linear-gradient(90deg,rgba(231,184,74,.14),var(--sumi2));}
+  .rank-pos{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:18px;width:28px;text-align:center;color:var(--text2);}
+  .rank-pos.g{color:var(--kin);}.rank-pos.s{color:#cdd3dd;}.rank-pos.b{color:#d89a63;}
+  .rank-name{flex:1;font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .rank-cc{font-size:11px;color:var(--text3);}
+  .rank-sc{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:19px;color:var(--kin-soft);}
+  .rank-date{font-size:10px;color:var(--text3);width:62px;text-align:right;}
+  .rank-empty{text-align:center;color:var(--text3);padding:30px 10px;font-size:14px;}
+  .rank-del{background:none;border:1px solid var(--line);color:var(--text3);font-size:12px;padding:8px 16px;border-radius:30px;cursor:pointer;font-family:inherit;}
+
+  /* 花丸 */
+  .hanamaru{display:none;margin:0 auto 16px;padding:14px 16px;border-radius:16px;max-width:380px;text-align:center;background:linear-gradient(135deg,rgba(244,143,177,.2),rgba(226,184,90,.18));border:1.5px solid rgba(244,143,177,.6);}
+  .hanamaru.show{display:block;animation:hmpop .5s cubic-bezier(.2,1.5,.4,1) both;}
+  @keyframes hmpop{0%{transform:scale(1.6);opacity:0;}100%{transform:none;opacity:1;}}
+  .hanamaru .hm-ico{font-size:34px;line-height:1;}
+  .hanamaru .hm-t{font-family:'Shippori Mincho B1',serif;font-weight:800;color:#f8bbd0;margin-top:4px;font-size:17px;letter-spacing:.04em;}
+  .hanamaru .hm-s{font-size:12px;color:var(--text2);margin-top:4px;line-height:1.6;}
+  .hm-goal{font-size:12px;color:var(--text3);text-align:center;margin:-6px 0 16px;}
+  .disclaimer{font-size:11px;color:var(--text3);text-align:center;margin-top:26px;line-height:1.6;}
+
+  /* トースト */
+  #toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);z-index:60;background:var(--sumi3);color:var(--text);border:1px solid var(--line);padding:12px 22px;border-radius:40px;font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:all .28s;box-shadow:0 8px 24px rgba(0,0,0,.5);white-space:nowrap;}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  #toast.ok{border-color:var(--green);color:var(--kin-soft);}
+  #toast.ng{border-color:var(--shu);}
+
+  .portal{position:fixed;left:14px;bottom:14px;z-index:30;background:rgba(20,48,42,.85);border:1px solid var(--line);color:var(--text2);font-size:11.5px;padding:9px 14px;border-radius:30px;text-decoration:none;font-family:'Shippori Mincho B1',serif;font-weight:700;}
+  .portal:hover{color:var(--kin);}
+
+  @media(max-width:480px){
+    .genres{grid-template-columns:1fr 1fr;}
+    .res-actions button{min-width:calc(50% - 5px);}
+    .gcard .gdesc{min-height:3.4em;}
+  }
+  @media(max-width:360px){.genres{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 表紙 -->
+  <div id="screen-top" class="screen active">
+    <div class="crest">
+      <div class="torii">🌿</div>
+      <div class="eyebrow">後宮謎解き 4択クイズ</div>
+      <h1 style="font-size:clamp(30px,9vw,54px);">薬屋のひとりごと<br>クイズ道場</h1>
+      <div class="read">毒見役・猫猫のように<br><b>知識と観察眼</b>で後宮の謎を解け</div>
+    </div>
+
+    <div class="scroll">
+      <div class="rule-head">◆ 道場のおきて</div>
+      <div class="rule-list">
+        <div class="rule-row"><span class="k">⏱</span><span>制限時間は <b>30秒</b>。全<b>10問</b>の4択クイズ。</span></div>
+        <div class="rule-row"><span class="k">✅</span><span><span class="yaru">正解</span> → <b>+10点</b>　＆　のこり時間 <b>+5秒</b></span></div>
+        <div class="rule-row"><span class="k">❌</span><span>まちがい → <b>減点なし・時間ペナルティなし</b>（正解と解説が出る）</span></div>
+        <div class="rule-row"><span class="k">⏸</span><span>答えをえらんだら「次の問題へ→」を押すまで<b>タイム停止</b>。じっくり覚えよう。</span></div>
+        <div class="rule-row"><span class="k">🏆</span><span>のこり時間が、そのまま<b>ボーナス点</b>に！</span></div>
+        <div class="rule-row"><span class="k">🌸</span><span>合計 <b>100点以上</b>で<b>花丸</b>1個！ ポータルの花丸ランキングに反映。</span></div>
+        <div class="rule-row"><span class="k">📖</span><span>自信がないときは<b>学習モード</b>で、答えと解説をじっくり読める。</span></div>
+      </div>
+    </div>
+
+    <div class="sec-label">🌿 分野をえらんで挑戦</div>
+    <div class="sec-hint">カードをクリックするとスタート画面へ。「おまかせ」は全分野からランダムに出ます。</div>
+    <div class="genres" id="genres"></div>
+
+    <div class="btn-row" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button class="link-btn study" onclick="openStudy()">📖 学習モード</button>
+      <button class="link-btn" onclick="showRanking()">🏆 ランキング</button>
+    </div>
+    <div class="disclaimer">※ファンが作った非公式クイズです。アニメ第3期（2026年10月〜）・劇場版の情報は2026年11月時点。<br>第2期以降の展開（子翠の正体など）にふれる問題があります。</div>
+  </div>
+
+  <!-- スタート -->
+  <div id="screen-intro" class="screen">
+    <div class="intro">
+      <span class="ii" id="intro-ico"></span>
+      <div class="iname" id="intro-name"></div>
+      <div class="idesc" id="intro-desc"></div>
+      <div class="mini-rule">
+        制限時間 <b>30秒</b> ／ 4択10問<br>
+        ✅ 正解 → <b>+10点・+5秒</b>　❌ まちがい → <b>減点なし</b><br>
+        ⏸ 答えたら「次の問題へ→」までタイム停止<br>🌸 合計 <b>100点以上で花丸</b>
+      </div>
+      <div class="namelab">なまえ（ランキングと花丸に使います）</div>
+      <input class="name-input" id="name-input" type="text" maxlength="16" placeholder="プレーヤー名（入れなくてもOK）">
+      <button class="big-btn" onclick="startGame()">挑戦する ▶</button>
+      <br><button class="back-link" onclick="showScreen('screen-top')">← 分野えらびにもどる</button>
+    </div>
+  </div>
+
+  <!-- クイズ -->
+  <div id="screen-quiz" class="screen">
+    <div class="qhead">
+      <span class="qnum" id="qnum">其ノ一 / 10</span>
+      <div class="pbar"><div class="pfill" id="pfill"></div></div>
+      <span class="qscore" id="qscore">0点</span>
+      <span class="qtime-wrap"><span class="qtime" id="qtime">30</span><span class="qtime-lab">秒</span></span>
+    </div>
+    <div class="qcard">
+      <div class="qtag" id="qtag">問</div>
+      <div class="qtext" id="qtext"></div>
+    </div>
+    <div class="choices" id="choices"></div>
+  </div>
+
+  <!-- 結果 -->
+  <div id="screen-result" class="screen">
+    <div class="res-genre" id="res-genre"></div>
+    <div class="res-box">
+      <div class="res-emoji" id="res-emoji">🎊</div>
+      <div class="res-total"><span id="res-total">0</span><small> 点</small></div>
+      <div class="res-lab">TOTAL</div>
+      <div class="res-stats">
+        <div class="rs"><div class="v g" id="res-correct">0</div><div class="l">正解数</div></div>
+        <div class="rs"><div class="v k" id="res-base">0</div><div class="l">基礎点</div></div>
+        <div class="rs"><div class="v s" id="res-bonus">+0</div><div class="l">時間ボーナス</div></div>
+      </div>
+    </div>
+    <div class="hanamaru" id="hanamaru">
+      <div class="hm-ico">🌸</div>
+      <div class="hm-t">花丸 獲得！</div>
+      <div class="hm-s" id="hm-s">100点以上を達成。ポータルの花丸ランキングに反映されます。</div>
+    </div>
+    <div class="hm-goal" id="hm-goal"></div>
+    <div class="rank-label" id="rank-label"></div>
+    <div class="wrong-wrap" id="wrong-wrap"></div>
+    <div class="res-actions">
+      <button class="pri" onclick="retryGame()">もう一度 ▶</button>
+      <button class="study-btn" id="res-study" onclick="studyThisGenre()">📖 この分野を学習する</button>
+      <button class="sec" onclick="showRankingFrom()">🏆 ランキング</button>
+      <button class="sec" onclick="showScreen('screen-top')">🏠 TOPへ</button>
+    </div>
+  </div>
+
+  <!-- 学習モード：巻えらび -->
+  <div id="screen-study" class="screen">
+    <div class="crest" style="padding:clamp(14px,4vw,24px) 0 6px;">
+      <div class="eyebrow">学習モード</div>
+      <h1 style="font-size:clamp(30px,9vw,46px);">答えと解説で覚える</h1>
+      <div class="read">時間も採点もなし。<b>めくって</b>ゆっくり覚えよう。</div>
+    </div>
+    <div class="sec-label">📖 学ぶ分野をえらぶ</div>
+    <div class="sec-hint">カードをめくると答えと解説が出ます。すべての問題をじっくり読めます。</div>
+    <div class="genres" id="study-list"></div>
+    <div class="btn-row"><button class="link-btn" onclick="showScreen('screen-top')">← TOPにもどる</button></div>
+  </div>
+
+  <!-- 学習モード：フラッシュカード -->
+  <div id="screen-flashcard" class="screen">
+    <div class="qhead">
+      <span class="qnum" id="fc-genre">学習</span>
+      <div class="pbar"><div class="pfill" id="fc-fill"></div></div>
+      <span class="qscore" id="fc-count">1 / 10</span>
+    </div>
+    <div class="qcard">
+      <div class="qtag" id="fc-tag">問 1</div>
+      <div class="qtext" id="fc-q"></div>
+      <div class="fc-answer" id="fc-answer">
+        <div class="fc-ans-lab">こたえ</div>
+        <div class="fc-ans" id="fc-a"></div>
+        <div class="fc-mean" id="fc-m"></div>
+      </div>
+    </div>
+    <button class="fc-reveal" id="fc-reveal" onclick="revealCard()">▼ こたえと解説を見る</button>
+    <div class="fc-nav">
+      <button class="fc-prev" id="fc-prev" onclick="studyPrev()">← 前へ</button>
+      <button class="fc-shuffle" onclick="studyShuffle()">🔀 シャッフル</button>
+      <button class="fc-next" id="fc-next" onclick="studyNext()">次へ →</button>
+    </div>
+    <div class="btn-row"><button class="link-btn" onclick="openStudy()">← 分野えらびにもどる</button></div>
+  </div>
+
+  <!-- ランキング -->
+  <div id="screen-ranking" class="screen">
+    <div class="sec-label" id="rank-title">🏆 ランキング</div>
+    <div class="sec-hint">この端末に保存された記録（上位20位）</div>
+    <div id="ranking-list"></div>
+    <div class="btn-row" style="display:flex;gap:10px;justify-content:center;">
+      <button class="rank-del" onclick="deleteRanking()">🗑️ この分野の記録を消す</button>
+      <button class="link-btn" onclick="showScreen('screen-top')">← もどる</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- 判定オーバーレイ -->
+<div id="overlay" class="overlay">
+  <div class="ov-card">
+    <div class="stamp" id="ov-stamp">正</div>
+    <div class="ov-fb" id="ov-fb"></div>
+    <div class="ov-ans-lab">正解</div>
+    <div class="ov-ans" id="ov-ans"></div>
+    <div class="ov-mean" id="ov-mean"></div>
+    <button class="ov-next" onclick="nextQuestion()">次の問題へ →</button>
+  </div>
+</div>
+
+<button class="quit" id="quit-btn" onclick="quitToTop()" style="display:none;">やめる ✕</button>
+
+<div id="toast"></div>
+<a class="portal" href="https://pecpec37-gift.github.io/portal/">← TomTom TOWNS</a>
+
+<!-- ポータル共通：花丸スタンプ送信 -->
+<script src="https://pecpec37-gift.github.io/portal/stamp.js"></script>
+
+<script>
+/* =========================================================
+   薬屋のひとりごとクイズ道場（TomTom TOWNS）
+   - 制限時間30秒 / 全10問 / 4択のみ
+   - 正解 +10点 + 時間+5秒
+   - 不正解 減点なし・時間ペナルティなし
+   - 回答後〜「次の問題へ→」までタイマー停止（解説を読むため）
+   - 残り時間がそのままボーナス点
+   - 合計100点以上で花丸（ポータル stamp.js へ送信）
+   - 表示時に選択肢をシャッフル（正解位置の偏り防止）
+   ========================================================= */
+const START_TIME=30;
+const HANAMARU_LINE=100;
+const LS_KEY='kusuriya-quiz-ranking-v1';
+const STAMP_GAME_ID='kusuriya-quiz';  /* ポータル花丸スタンプ用ID（GAME_NAMESのキーと一致） */
+
+const GENRES=[
+  {id:'omakase',  ico:'🎲', name:'おまかせ出題',   color:'#c9a227', desc:'全分野からランダムに10問。腕だめしに。'},
+  {id:'jinbutsu', ico:'🐱', name:'登場人物',       color:'#3f9d7a', desc:'猫猫・壬氏・高順・羅漢・小蘭…。キャラクターの素顔と関係。'},
+  {id:'kokyu',    ico:'🏯', name:'後宮と宮廷',     color:'#c0392b', desc:'四夫人の位と宮、茘の国、宦官・下女のしくみ。'},
+  {id:'kusuri',   ico:'🌿', name:'薬と毒',         color:'#7a9d2f', desc:'おしろいの毒、はちみつ、冬虫夏草…。作中と現実の薬学ちしき。'},
+  {id:'jiken',    ico:'🔍', name:'事件と謎解き',   color:'#8e44ad', desc:'城壁の幽霊、園遊会、子の一族、第3期の“いなご”まで。'},
+  {id:'anime',    ico:'🎬', name:'アニメ・声優・主題歌', color:'#2f6fb0', desc:'キャスト、OP・ED全10曲、放送枠、劇場版『亡妃の秘宝』。'},
+  {id:'gensaku',  ico:'📚', name:'原作と展開',     color:'#d8862f', desc:'日向夏の原作小説、2つのコミカライズ、累計部数。'},
+];
+
+/* q:問題文 / c:選択肢（先頭が正解・表示時シャッフル） / a:正解index(=0) / m:解説 */
+const DB={
+  jinbutsu:[
+    {q:'主人公「猫猫」の読み方は？',c:['マオマオ','ネコネコ','ミャオミャオ','ニャンニャン'],a:0,m:'猫猫（マオマオ）。花街で薬師をしていた少女で、薬と毒に目がない。'},
+    {q:'猫猫が生まれ育った場所は？',c:['花街','西都','港町','山奥の村'],a:0,m:'猫猫は花街で育ち、そこで薬師として働いていた。'},
+    {q:'猫猫の養父で、薬の師匠でもある人物は？',c:['羅門（ルォメン）','羅漢（ラカン）','羅半（ラハン）','高順（ガオシュン）'],a:0,m:'養父・羅門は元宮廷医官の宦官。のちに逆子の玉葉妃のため後宮に呼ばれる。'},
+    {q:'後宮を取り仕切る、天女のような美貌の宦官は？',c:['壬氏（ジンシ）','李白（リハク）','馬閃（バセン）','高順（ガオシュン）'],a:0,m:'壬氏は「女に生まれていたら傾国」と言われるほどの美形。猫猫に厄介事を持ち込む。'},
+    {q:'壬氏に仕える、まじめで気配り上手な従者は？',c:['高順（ガオシュン）','李白（リハク）','羅半（ラハン）','虞淵（グエン）'],a:0,m:'高順は壬氏のお目付け役の武官。猫猫いわく「癒し系」。'},
+    {q:'高順の息子で、馬の一族の武官は？',c:['馬閃（バセン）','李白（リハク）','陸孫（リクソン）','趙迂（チョウウ）'],a:0,m:'馬閃は高順の息子。武官として壬氏の護衛をつとめる。'},
+    {q:'変わり者の天才「軍師」として知られる人物は？',c:['羅漢（ラカン）','羅門（ルォメン）','子昌（シショウ）','壬氏（ジンシ）'],a:0,m:'羅漢は軍部の高官。胡散臭いが、慧眼と采配でいまの地位にのぼった。'},
+    {q:'羅漢には、人の顔がどのように見えている？',c:['碁石','将棋の駒','花','動物'],a:0,m:'羅漢は人の顔の見分けがつかず、碁石のように見えている。囲碁・将棋の名手でもある。'},
+    {q:'猫猫の実の父親は誰？',c:['羅漢（ラカン）','羅門（ルォメン）','高順（ガオシュン）','皇帝'],a:0,m:'猫猫は羅漢と緑青館の妓女・鳳仙のあいだに生まれた娘。第1期第18話ごろで明らかになる。'},
+    {q:'緑青館の人気妓女「三姫」に入っていないのは？',c:['小蘭（シャオラン）','白鈴（パイリン）','梅梅（メイメイ）','女華（ジョカ）'],a:0,m:'三姫は白鈴・梅梅・女華。小蘭は後宮の下女で猫猫の友人。'},
+    {q:'猫猫の友人で、お菓子とうわさ話が大好きな下女は？',c:['小蘭（シャオラン）','翠苓（スイレイ）','水蓮（スイレン）','桜花（インファ）'],a:0,m:'小蘭は猫猫の数少ない友人。のちに外伝『小蘭回想録』も刊行された。'},
+    {q:'猫猫が初対面で「大型犬」のようだと感じた武官は？',c:['李白（リハク）','馬閃（バセン）','高順（ガオシュン）','羅半（ラハン）'],a:0,m:'李白は鍛えた体とまっすぐな性格の武官。猫猫の花街への里帰りにも付き添った。'},
+    {q:'後宮の医官で、猫猫から陰で「やぶ医者」と呼ばれている宦官の本名は？',c:['虞淵（グエン）','羅門（ルォメン）','高順（ガオシュン）','子昌（シショウ）'],a:0,m:'やぶ医者こと虞淵。腕前はいまひとつだが、猫猫とはお茶飲み友達。'},
+    {q:'壬氏に仕える、初老だが有能な侍女は？',c:['水蓮（スイレン）','翠苓（スイレイ）','紅娘（ホンニャン）','風明（フォンミン）'],a:0,m:'水蓮は壬氏の身の回りをひとりで切り盛りする侍女。'},
+    {q:'猫猫の実の母で、緑青館の妓女だった女性は？',c:['鳳仙（フォンシェン）','白鈴（パイリン）','梅梅（メイメイ）','阿多（アードゥオ）'],a:0,m:'鳳仙は羅漢と恋仲だった妓女。二人の悲しい恋は第1期の大きな見どころ。'},
+  ],
+  kokyu:[
+    {q:'物語の舞台となる大国の名前は？',c:['茘（リー）','華（ホア）','唐（タン）','翠（スイ）'],a:0,m:'舞台は大陸の中央にある大国・茘（リー）。第3期では隣国へも舞台が広がる。'},
+    {q:'皇帝の上級妃4人をまとめて何と呼ぶ？',c:['四夫人','四天王','四神','四大美女'],a:0,m:'貴妃・賢妃・徳妃・淑妃の上級妃4人を「四夫人」と呼ぶ。'},
+    {q:'帝の寵愛をもっとも受けている玉葉妃の位は？',c:['貴妃','賢妃','徳妃','淑妃'],a:0,m:'玉葉妃は四夫人の「貴妃」。猫猫を侍女に迎えた。'},
+    {q:'梨花妃の位は？',c:['賢妃','貴妃','徳妃','淑妃'],a:0,m:'梨花妃は「賢妃」。御子を亡くして衰弱したが、猫猫の看病で回復した。'},
+    {q:'四夫人で最年少の里樹妃の位は？',c:['徳妃','賢妃','貴妃','淑妃'],a:0,m:'里樹妃は「徳妃」。数え年14歳と若く、金剛宮で暮らす。'},
+    {q:'玉葉妃が暮らす宮は？',c:['翡翠宮','水晶宮','金剛宮','柘榴宮'],a:0,m:'翡翠宮（ひすいきゅう）。猫猫はここで毒見役として働く。'},
+    {q:'梨花妃が暮らす宮は？',c:['水晶宮','翡翠宮','金剛宮','柘榴宮'],a:0,m:'梨花妃は水晶宮（すいしょうきゅう）の主。'},
+    {q:'阿多妃、のちに楼蘭妃が暮らした淑妃の宮は？',c:['柘榴宮','翡翠宮','水晶宮','金剛宮'],a:0,m:'淑妃の宮は柘榴宮（ざくろきゅう）。阿多妃が後宮を去ったあと楼蘭妃が入った。'},
+    {q:'玉葉妃の見た目の特徴として正しいのは？',c:['赤い髪と翡翠色の目','銀の髪と赤い目','黒髪と金色の目','金髪と青い目'],a:0,m:'玉葉妃は赤い髪と翡翠の目を持つ、異国の血を引く妃。'},
+    {q:'玉葉妃と皇帝のあいだに生まれた公主の名前は？',c:['鈴麗（リンリー）','梅梅（メイメイ）','桜花（インファ）','小蘭（シャオラン）'],a:0,m:'鈴麗公主。おしろいの毒で危うかったが、猫猫の匿名の警告で一命をとりとめた。'},
+    {q:'里樹妃が最初に後宮入りしたのは、誰の妃としてだった？',c:['先帝','現皇帝','皇太后の弟','壬氏'],a:0,m:'里樹妃は9歳で先帝の妃として入内。先帝崩御で出家し、現皇帝の妃として戻った。'},
+    {q:'猫猫が後宮で働くことになったきっかけは？',c:['人さらいに遭い売られた','自分から志願した','羅門に勧められた','壬氏にスカウトされた'],a:0,m:'薬草を採りに出たところを人さらいに遭い、後宮に売り飛ばされた。'},
+    {q:'後宮に来たばかりの猫猫の身分は？',c:['下女','上級妃','女官長','医官'],a:0,m:'最初は目立たない下女。年季が明けるまで静かに過ごすつもりだった。'},
+    {q:'後宮で働く「宦官」とは、どんな人たち？',c:['去勢された男性の官吏','女性の医師','皇帝の親族','後宮の警備をする女性兵'],a:0,m:'宦官は去勢された男性の官吏。後宮では男子禁制のため宦官が仕える。'},
+    {q:'猫猫が毒見役として仕えることになった妃は？',c:['玉葉妃','梨花妃','里樹妃','楼蘭妃'],a:0,m:'壬氏に見抜かれ、翡翠宮の玉葉妃付きの毒見役に抜擢された。'},
+  ],
+  kusuri:[
+    {q:'帝の御子たちが次々と弱っていった原因は？',c:['おしろいに含まれる毒','井戸水の汚れ','後宮の呪い','香の煙'],a:0,m:'原因はおしろい（白粉）の毒。猫猫は匿名でそれを妃たちに伝えた。'},
+    {q:'昔のおしろいに使われ、現実でも健康被害を起こした金属は？',c:['鉛','金','銅','アルミニウム'],a:0,m:'鉛白（なまりのおしろい）は江戸時代などに使われ、鉛中毒の原因になった。'},
+    {q:'猫猫の後宮での主な役目は？',c:['毒見役','料理番','書記係','衣装係'],a:0,m:'妃の食事に毒がないか確かめる毒見役。猫猫にとっては毒を味わえる“おいしい”仕事。'},
+    {q:'猫猫は毒や薬を試すとき、主にどこを実験台にしている？',c:['自分の腕','ネズミ','鳥','植木'],a:0,m:'自分の腕で試すため、猫猫の腕は傷だらけで包帯が巻かれている。'},
+    {q:'現実で「1歳未満の赤ちゃんに与えてはいけない」とされる食品は？（作中の重要な鍵）',c:['はちみつ','白湯','すりおろしりんご','おかゆ'],a:0,m:'はちみつは乳児ボツリヌス症の危険がある。作中では阿多妃の御子の死に関わる鍵になった。'},
+    {q:'「冬虫夏草」とは何？',c:['虫に寄生したキノコ（菌類）','冬に咲く花','夏にだけ出る虫','薬草を干した茶'],a:0,m:'冬虫夏草は昆虫に寄生した菌類。漢方の生薬として珍重され、作中にも登場する。'},
+    {q:'猫猫が媚薬（びやく）として作った菓子に使ったのは？',c:['チョコレート（カカオ）','もち米','あんこ','くるみ'],a:0,m:'壬氏の頼みで作った媚薬の正体はチョコレート。つまみ食いした侍女たちや壬氏がとろんとした状態に…（第2話）。'},
+    {q:'翠苓が、死んだように見せかけるために使った薬は？',c:['蘇りの薬','眠り薬の香','不老不死の薬','若返りの水'],a:0,m:'翠苓は仮死状態にする「蘇りの薬」で死を装い、姿を消した。'},
+    {q:'主題歌「クスシキ」のタイトルの由来で、「薬」の語源とされる言葉は？',c:['奇し（くすし）','薬師（やくし）','草子（そうし）','苦し（くるし）'],a:0,m:'「奇し」は神秘的・不思議という意味で、“薬”の語源とされる。'},
+    {q:'猫猫のような毒好きも知っておきたい、フグの毒の名前は？',c:['テトロドトキシン','カフェイン','ニコチン','アコニチン'],a:0,m:'フグの毒はテトロドトキシン。アコニチンはトリカブトの毒。'},
+    {q:'昔から毒見に「銀の食器」が使われた理由は？',c:['ヒ素などに反応して黒ずむから','冷たくて食べ物が傷まないから','重くて落とさないから','光って美しいから'],a:0,m:'昔のヒ素には硫黄分がまじり、銀が反応して黒く変色したため毒の目印にされた。'},
+    {q:'梨花妃が衰弱した原因は、何を使い続けていたこと？',c:['毒の入ったおしろい','強すぎる香','腐った井戸水','古い薬酒'],a:0,m:'御子と同じく毒入りのおしろいが原因。猫猫が帝の命で看病し回復させた。'},
+    {q:'トリカブトの毒として知られる成分は？',c:['アコニチン','テトロドトキシン','カプサイシン','ビタミンC'],a:0,m:'トリカブトの毒はアコニチン。昔から「毒草の代表」として知られる。'},
+  ],
+  jiken:[
+    {q:'夜の城壁の上で踊る「幽霊」の正体は？',c:['芙蓉妃','里樹妃','梨花妃','小蘭'],a:0,m:'正体は中級妃の芙蓉妃。幼なじみの武官のもとへ下賜されることが決まっていた。'},
+    {q:'猫猫は、御子が弱る原因をどうやって妃たちに伝えた？',c:['名前を伏せて匿名で','帝に直訴した','壬氏に直接話した','医官に手紙を出した'],a:0,m:'目立ちたくない猫猫は匿名で警告。しかし筆跡などから壬氏に見抜かれた。'},
+    {q:'園遊会で、猫猫が壬氏から贈られたものは？',c:['簪（かんざし）','扇子','手鏡','首飾り'],a:0,m:'園遊会では妃や高官が気に入った侍女に簪を贈る。猫猫は壬氏からも受け取った。'},
+    {q:'阿多妃の侍女頭で、里樹妃の毒殺未遂に関わった人物は？',c:['風明（フォンミン）','水蓮（スイレン）','翠苓（スイレイ）','紅娘（ホンニャン）'],a:0,m:'風明は阿多妃の御子の死に関わる秘密を守るため、里樹妃を狙った。'},
+    {q:'梨花妃を看病して回復させるよう猫猫に命じたのは？',c:['皇帝','玉葉妃','羅門','高順'],a:0,m:'帝の命で猫猫は水晶宮へ。毒のおしろいを遠ざけ、梨花妃を回復させた。'},
+    {q:'後宮を一度解雇された猫猫が、その後に勤めたのは？',c:['壬氏のお付きとして外廷','緑青館の妓女','西都の薬屋','軍の厨房'],a:0,m:'花街に戻った猫猫は、まもなく壬氏のお付きとして外廷に出仕する。'},
+    {q:'第1期の終盤、羅漢が緑青館で身請けした妓女は？',c:['鳳仙','白鈴','梅梅','女華'],a:0,m:'羅漢は長年の思い人・鳳仙を身請けした。'},
+    {q:'玉葉妃のお腹の子が逆子とわかり、猫猫が後宮に入れるよう提案した人物は？',c:['羅門','羅漢','李白','やぶ医者'],a:0,m:'ろくな医官のいない後宮での逆子出産は命に関わるため、養父・羅門を推した。'},
+    {q:'子翠（シスイ）の正体は？',c:['楼蘭妃','里樹妃の侍女','玉葉妃の侍女','壬氏の侍女'],a:0,m:'虫好きの侍女・子翠の正体は楼蘭妃。子翠／楼蘭役はどちらも瀬戸麻沙美。'},
+    {q:'楼蘭妃の父で、かつて女帝に重用された宰相は？',c:['子昌（シショウ）','羅漢（ラカン）','玉袁（ギョクエン）','高順（ガオシュン）'],a:0,m:'楼蘭妃の父・子昌。子の一族をめぐる事件が第2期の大きな山場。'},
+    {q:'子翠が大好きなものは？',c:['虫','宝石','甘いお菓子','刺繍'],a:0,m:'子翠は虫が大好き。第26話では猫猫と虫の話で意気投合した。'},
+    {q:'第3期で猫猫が“違和感”を覚えるきっかけになった、朝餉の食材は？',c:['いなご','たけのこ','ふぐ','うなぎ'],a:0,m:'朝餉のいなごから異変に気づく。国を襲う災害の予兆へとつながっていく。'},
+    {q:'第3期で巷を騒がせる、白い髪と赤い瞳の謎の仙女は？',c:['白娘々（パイニャンニャン）','白鈴（パイリン）','梅梅（メイメイ）','翠苓（スイレイ）'],a:0,m:'白娘々は第3期の新キャラクター。声は上田麗奈。'},
+    {q:'第3期で壬氏が向き合い始める、本来の身分は？',c:['皇弟（皇帝の弟）','宰相','将軍','異国の王子'],a:0,m:'宦官を装っていた壬氏は、第3期で皇弟としての責務に向き合う。'},
+  ],
+  anime:[
+    {q:'猫猫の声を演じているのは？',c:['悠木碧','種﨑敦美','瀬戸麻沙美','上田麗奈'],a:0,m:'猫猫役は悠木碧。Crunchyroll Anime Awards 2026で最優秀声優賞を受賞した。'},
+    {q:'壬氏の声を演じているのは？',c:['大塚剛央','小西克幸','桐本拓哉','赤羽根健治'],a:0,m:'壬氏役は大塚剛央（おおつか たけお）。'},
+    {q:'高順の声を演じているのは？（『鬼滅の刃』宇髄天元役でも有名）',c:['小西克幸','家中宏','桐本拓哉','大塚剛央'],a:0,m:'高順役は小西克幸。'},
+    {q:'羅漢の声を演じているのは？',c:['桐本拓哉','家中宏','遠藤大智','かぬか光明'],a:0,m:'羅漢役は桐本拓哉。'},
+    {q:'玉葉妃の声を演じているのは？',c:['種﨑敦美','石川由依','木野日菜','甲斐田裕子'],a:0,m:'玉葉妃役は種﨑敦美。梨花妃は石川由依、里樹妃は木野日菜、阿多妃は甲斐田裕子。'},
+    {q:'作品のナレーションを担当しているのは？',c:['島本須美','斉藤貴美子','名塚佳織','久野美咲'],a:0,m:'ナレーションは島本須美。'},
+    {q:'第1期第1クールのオープニング「花になって」を歌ったのは？',c:['緑黄色社会','Uru','幾田りら','ヨルシカ'],a:0,m:'緑黄色社会「花になって」。“日陰に咲く花”がテーマ。'},
+    {q:'第1期第1クールのエンディング「アイコトバ」を歌ったのは？',c:['アイナ・ジ・エンド','wacci','平井大','Eve'],a:0,m:'アイナ・ジ・エンド「アイコトバ」。作詞作曲は石崎ひゅーい。'},
+    {q:'第1期第2クールのオープニング「アンビバレント」を歌ったのは？',c:['Uru','緑黄色社会','Mrs. GREEN APPLE','Omoinotake'],a:0,m:'Uru「アンビバレント」。壬氏の目線から猫猫を描いた歌詞。'},
+    {q:'第1期第2クールのエンディング曲は？',c:['wacci「愛は薬」','平井大「幸せのレシピ」','Eve「AIYOU」','Omoinotake「ひとりごと」'],a:0,m:'wacci「愛は薬」。作詞作曲は橋口洋平。'},
+    {q:'第2期第1クールのオープニング「百花繚乱」を歌ったのは？',c:['幾田りら','緑黄色社会','Uru','アイナ・ジ・エンド'],a:0,m:'幾田りら「百花繚乱」。ソロとして初のテレビアニメOP担当。'},
+    {q:'第2期第1クールのエンディング「幸せのレシピ」を歌ったのは？',c:['平井大','wacci','Omoinotake','Eve'],a:0,m:'平井大「幸せのレシピ」。猫猫と出会って変わっていく壬氏の世界を描いた映像。'},
+    {q:'第2期第2クールのオープニング「クスシキ」を歌ったのは？',c:['Mrs. GREEN APPLE','ヨルシカ','緑黄色社会','幾田りら'],a:0,m:'Mrs. GREEN APPLE「クスシキ」。二胡や琴を取り入れたサウンド。'},
+    {q:'第2期第2クールのエンディング「ひとりごと」を歌ったのは？',c:['Omoinotake','wacci','平井大','Uru'],a:0,m:'Omoinotake「ひとりごと」。'},
+    {q:'第3期のオープニング「雲を抜け風下へ私だけ」を歌うのは？',c:['ヨルシカ','Mrs. GREEN APPLE','緑黄色社会','Eve'],a:0,m:'ヨルシカは第3期で初めて本作の主題歌を担当。'},
+    {q:'第3期のエンディング「AIYOU」を歌うのは？',c:['Eve','ヨルシカ','幾田りら','アイナ・ジ・エンド'],a:0,m:'Eve「AIYOU」（アイユウ）。皇弟としての責務を課される壬氏に寄り添う曲。'},
+    {q:'テレビアニメ第1期の放送が始まったのはいつ？',c:['2023年10月','2021年4月','2022年7月','2025年1月'],a:0,m:'2023年10月21日、初回3話一挙放送でスタート。'},
+    {q:'第2期・第3期が放送された日本テレビ系の金曜夜11時の枠は？',c:['FRIDAY ANIME NIGHT（フラアニ）','ノイタミナ','アニメイズム','スーパーアニメイズム'],a:0,m:'「FRIDAY ANIME NIGHT」枠。第3期は2026年10月2日から放送。'},
+    {q:'2026年12月11日公開の劇場版のサブタイトルは？',c:['亡妃の秘宝','後宮の呪い','花街の約束','翡翠の涙'],a:0,m:'『劇場版 薬屋のひとりごと 亡妃の秘宝（ぼうひのひほう）』。原作者・日向夏による完全新作ストーリー。'},
+    {q:'第1期の監督・シリーズ構成で、劇場版の監督もつとめるのは？',c:['長沼範裕','筆坂明規','新海誠','庵野秀明'],a:0,m:'長沼範裕。第2期では総監督、第3期の監督は筆坂明規。'},
+    {q:'第3期で新登場する謎の仙女・白娘々の声を演じるのは？',c:['上田麗奈','悠木碧','瀬戸麻沙美','伊瀬茉莉也'],a:0,m:'白娘々役は上田麗奈。伊瀬茉莉也は劇場版の少年・沐清役。'},
+  ],
+  gensaku:[
+    {q:'原作小説の作者は？',c:['日向夏','しのとうこ','ねこクラゲ','倉田三ノ路'],a:0,m:'作者は日向夏（ひゅうが なつ）。'},
+    {q:'原作小説のイラスト（キャラクター原案）を担当しているのは？',c:['しのとうこ','日向夏','ねこクラゲ','七緒一綺'],a:0,m:'イラストはしのとうこ。アニメでもキャラクター原案としてクレジットされている。'},
+    {q:'原作がもともと投稿されていた小説投稿サイトは？',c:['小説家になろう','カクヨム','pixiv','エブリスタ'],a:0,m:'「小説家になろう」発の作品。'},
+    {q:'原作小説が刊行されているレーベルは？',c:['ヒーロー文庫','電撃文庫','角川スニーカー文庫','講談社ラノベ文庫'],a:0,m:'ヒーロー文庫（イマジカインフォス刊）。'},
+    {q:'ヒーロー文庫版の第1巻が刊行されたのは？',c:['2014年','2008年','2018年','2021年'],a:0,m:'2014年8月末に第1巻を刊行。“後宮ブーム”の先駆けとなった。'},
+    {q:'コミカライズが連載されている雑誌の組み合わせとして正しいのは？',c:['月刊ビッグガンガンと月刊サンデーGX','週刊少年ジャンプと週刊少年マガジン','りぼんとなかよし','モーニングとビッグコミック'],a:0,m:'スクウェア・エニックスの「月刊ビッグガンガン」と、小学館の「月刊サンデーGX」の2誌で別々に漫画化。'},
+    {q:'スクウェア・エニックス版コミックの作画を担当しているのは？',c:['ねこクラゲ','倉田三ノ路','しのとうこ','日向夏'],a:0,m:'スクエニ版は作画ねこクラゲ・構成七緒一綺。'},
+    {q:'小学館版コミックのサブタイトルは？',c:['猫猫の後宮謎解き手帳','壬氏の後宮日誌','花街の薬師','後宮毒見帖'],a:0,m:'小学館版は『薬屋のひとりごと〜猫猫の後宮謎解き手帳〜』（倉田三ノ路）。'},
+    {q:'コミカライズの連載が始まったのは？',c:['2017年','2012年','2020年','2023年'],a:0,m:'2017年から2誌で連載がスタート。'},
+    {q:'2026年、海外翻訳版も合わせたシリーズ全世界累計部数は？',c:['5700万部突破','1000万部突破','2400万部突破','1億部突破'],a:0,m:'世界16言語の翻訳版を合算し5700万部を突破。アニメ第1期前は2400万部だった。'},
+    {q:'2025年11月に刊行された、初の公式外伝のタイトルは？',c:['小蘭回想録','壬氏夜話','羅漢碁譜','緑青館日記'],a:0,m:'『薬屋のひとりごと外伝 小蘭回想録』。猫猫の友人・小蘭が主役。'},
+    {q:'2025年12月に「小説『薬屋のひとりごと』原作展」が開かれた場所は？',c:['東京ソラマチ','大阪城ホール','福岡タワー','札幌ドーム'],a:0,m:'東京ソラマチ「スペース634」で開催された初の大規模原作展。'},
+    {q:'第2期が1位を獲得した、北米のアニメ配信サービスは？',c:['Crunchyroll','Hulu','Disney+','Twitch'],a:0,m:'Crunchyrollの2025年4月期ランキングで1位。Anime Awards 2026でも4部門を受賞。'},
+  ]
+};
+
+/* ---------- 状態 ---------- */
+let currentGenre=null,questions=[],qIndex=0,score=0,correctCount=0;
+let timeLeft=START_TIME,timer=null,answered=false,wrongAnswers=[],playerName='';
+let curChoices=[],curCorrectIdx=-1,viewingGenreId=null,lastResult=null;
+
+/* ---------- ユーティリティ ---------- */
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+/* 選択肢表示用：読みがな等の（カッコ）を除去（全角・半角）。データ本体は変更しない。 */
+function stripReading(s){return String(s).replace(/[（(][^（()）]*[）)]/g,'').replace(/\s+/g,' ').trim();}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('quit-btn').style.display=(id==='screen-quiz')?'block':'none';window.scrollTo(0,0);}
+function poolOf(gid){return gid==='omakase'?GENRES.filter(g=>g.id!=='omakase').flatMap(g=>DB[g.id]):DB[gid];}
+
+/* ---------- トースト ---------- */
+let toastTimer=null;
+function showToast(msg,cls){const t=document.getElementById('toast');t.textContent=msg;t.className='show '+(cls||'');clearTimeout(toastTimer);toastTimer=setTimeout(hideToast,1600);}
+function hideToast(){document.getElementById('toast').className='';}
+
+/* ---------- 画面構築 ---------- */
+function buildGenres(){
+  document.getElementById('genres').innerHTML=GENRES.map(g=>{
+    const n=poolOf(g.id).length;
+    return `<div class="gcard ${g.id==='omakase'?'omakase':''}" style="--accent:${g.color};" onclick="selectGenre('${g.id}')">
+      <span class="ico">${g.ico}</span>
+      <div class="gname">${g.name}</div>
+      <div class="gdesc">${g.desc}</div>
+      <div class="gcount">全${n}問 ／ 10問ランダム</div>
+      <span class="go">挑む ▶</span>
+    </div>`;
+  }).join('');
+}
+function selectGenre(id){
+  currentGenre=GENRES.find(g=>g.id===id);
+  document.getElementById('intro-ico').textContent=currentGenre.ico;
+  document.getElementById('intro-name').textContent=currentGenre.name;
+  document.getElementById('intro-desc').textContent=currentGenre.desc;
+  const saved=loadName();const inp=document.getElementById('name-input');if(saved&&!inp.value)inp.value=saved;
+  showScreen('screen-intro');
+}
+
+/* ---------- ゲーム進行 ---------- */
+function startGame(){
+  playerName=document.getElementById('name-input').value.trim()||'名もなき下女';
+  saveName(playerName);
+  const typed=document.getElementById('name-input').value.trim();
+  try{if(window.TomyStamp&&typed)TomyStamp.setPlayer(typed);}catch(e){}
+  questions=shuffle(poolOf(currentGenre.id)).slice(0,10);
+  qIndex=0;score=0;correctCount=0;wrongAnswers=[];
+  showScreen('screen-quiz');
+  showQuestion();
+  startTimer();
+}
+function retryGame(){showScreen('screen-intro');}
+function quitToTop(){
+  if(!confirm('途中でやめてTOPに戻りますか？\n（このゲームのスコアは記録されません）'))return;
+  clearInterval(timer);document.getElementById('overlay').classList.remove('show');hideToast();
+  showScreen('screen-top');
+}
+
+/* タイマー（回答後は停止、「次の問題へ」で再開） */
+function startTimer(){clearInterval(timer);timeLeft=START_TIME;updateTimer();runTimer();}
+function runTimer(){clearInterval(timer);timer=setInterval(()=>{timeLeft--;if(timeLeft<=0){timeLeft=0;updateTimer();clearInterval(timer);endGame();return;}updateTimer();},1000);}
+function pauseTimer(){clearInterval(timer);}
+function updateTimer(){const el=document.getElementById('qtime');el.textContent=timeLeft;el.className='qtime'+(timeLeft<=10?' danger':'');}
+
+function showQuestion(){
+  const q=questions[qIndex];answered=false;
+  document.getElementById('qnum').textContent=`其ノ${qIndex+1} / 10`;
+  document.getElementById('pfill').style.width=`${(qIndex/10)*100}%`;
+  document.getElementById('qscore').textContent=`${score}点`;
+  document.getElementById('qtag').textContent=`問 ${qIndex+1}`;
+  document.getElementById('qtext').textContent=q.q;
+  // 選択肢をシャッフルして出題
+  const pairs=q.c.map((text,i)=>({text,correct:i===(q.a||0)}));
+  curChoices=shuffle(pairs);
+  curCorrectIdx=curChoices.findIndex(p=>p.correct);
+  const lab=['一','二','三','四'];
+  // 出題時は読みがな等の（カッコ）を隠す（正解だけカッコ付きで分かってしまうのを防ぐ）。
+  // 読みは正解発表・解説・学習モードで表示される。
+  document.getElementById('choices').innerHTML=curChoices.map((p,i)=>
+    `<button class="choice" onclick="answer(${i})"><span class="lab">${lab[i]}</span>${escapeHtml(stripReading(p.text))}</button>`
+  ).join('');
+}
+
+function answer(idx){
+  if(answered)return;answered=true;
+  pauseTimer();
+  const q=questions[qIndex];
+  const btns=document.querySelectorAll('.choice');
+  btns.forEach(b=>b.disabled=true);
+  btns[curCorrectIdx].classList.add('correct');
+  if(idx!==curCorrectIdx)btns[idx].classList.add('wrong');
+  const isCorrect=(idx===curCorrectIdx);
+  const correctAns=curChoices[curCorrectIdx].text;
+  const userAns=curChoices[idx].text;
+  setTimeout(()=>showResult(isCorrect,correctAns,userAns,q.q,q.m),550);
+}
+
+function showResult(isCorrect,correctAns,userAns,qText,mean){
+  if(isCorrect){score+=10;correctCount++;timeLeft=Math.min(timeLeft+5,999);}
+  else{wrongAnswers.push({q:qText,a:correctAns,m:mean||''});}
+  updateTimer();
+  document.getElementById('qscore').textContent=`${score}点`;
+  const stamp=document.getElementById('ov-stamp');
+  stamp.textContent=isCorrect?'正':'否';
+  stamp.className='stamp '+(isCorrect?'ok':'ng');
+  if(isCorrect){
+    document.getElementById('ov-fb').innerHTML='<span class="plus">✅ 正解！　+10点　のこり時間 ＋5秒</span>';
+    showToast('✅正解！ ＋5秒','ok');
+  }else{
+    document.getElementById('ov-fb').innerHTML=`あなたの答え：「${escapeHtml(userAns)}」（減点なし）`;
+    showToast('❌ ざんねん（減点なし）','ng');
+  }
+  document.getElementById('ov-ans').textContent=correctAns;
+  document.getElementById('ov-mean').innerHTML=mean?('💡 '+escapeHtml(mean)):'';
+  document.getElementById('overlay').classList.add('show');
+}
+
+function nextQuestion(){
+  document.getElementById('overlay').classList.remove('show');hideToast();
+  qIndex++;
+  if(qIndex>=10){clearInterval(timer);endGame();}
+  else{showQuestion();runTimer();}
+}
+
+function endGame(){
+  clearInterval(timer);
+  document.getElementById('overlay').classList.remove('show');hideToast();
+  const bonus=Math.max(timeLeft,0);
+  const base=correctCount*10;
+  const total=base+bonus;
+  lastResult={genre:currentGenre.id,total,correct:correctCount};
+  document.getElementById('res-genre').textContent=currentGenre.ico+' '+currentGenre.name;
+  document.getElementById('res-emoji').textContent=correctCount>=9?'🏆':correctCount>=6?'🎊':correctCount>=3?'💪':'🔰';
+  document.getElementById('res-total').textContent=total;
+  document.getElementById('res-correct').textContent=correctCount;
+  document.getElementById('res-base').textContent=base;
+  document.getElementById('res-bonus').textContent='+'+bonus;
+
+  let label;
+  if(correctCount>=10)label='🏆 全問正解！ 猫猫もうなる名薬師！';
+  else if(correctCount>=8)label='🌟 おみごと！ 玉葉妃の侍女に推薦です';
+  else if(correctCount>=5)label='👍 なかなかの観察眼！ もう一息';
+  else label='📖 学習モードで後宮を探検しよう！';
+  document.getElementById('rank-label').textContent=label;
+
+  const ws=document.getElementById('wrong-wrap');
+  if(wrongAnswers.length>0){
+    ws.innerHTML=`<div class="wrong-head">📝 まちがえた問題（${wrongAnswers.length}問）— ここでしっかり覚えよう</div>`+
+      wrongAnswers.map(w=>`<div class="witem"><div class="wq">${escapeHtml(w.q)}</div><div class="wa">正解：<b>${escapeHtml(w.a)}</b></div>${w.m?`<div class="wm">💡 ${escapeHtml(w.m)}</div>`:''}</div>`).join('');
+  }else{
+    ws.innerHTML='<div class="allok">🎉 まちがいなし！ お見事！</div>';
+  }
+  document.getElementById('res-study').textContent=(currentGenre.id==='omakase')?'📖 全分野を学習する':'📖 この分野を学習する';
+  saveRanking(currentGenre.id,playerName,total,correctCount);
+  handleHanamaru(total);
+  showScreen('screen-result');
+}
+
+/* ---------- 花丸（合計100点以上） ---------- */
+function handleHanamaru(total){
+  const hm=document.getElementById('hanamaru'),goal=document.getElementById('hm-goal'),sub=document.getElementById('hm-s');
+  if(total>=HANAMARU_LINE){
+    hm.classList.add('show');goal.textContent='';
+    const named=window.TomyStamp&&TomyStamp.getPlayer();
+    if(named){
+      sub.textContent='100点以上を達成。ポータルの花丸ランキングに反映されます。';
+      /* stamp.js は「correct>=9」で送信可否を判定するため、花丸達成時は10を渡す（GAS側は1回=花丸1個で加算） */
+      try{TomyStamp.send(STAMP_GAME_ID,currentGenre.name,10);}catch(e){}
+    }else{
+      sub.textContent='なまえを入れて挑戦すると、ポータルの花丸ランキングに反映されます。';
+    }
+  }else{
+    hm.classList.remove('show');
+    goal.textContent=`🌸 花丸まで あと ${HANAMARU_LINE-total} 点（100点以上で花丸）`;
+  }
+}
+
+/* ---------- ランキング（localStorage） ---------- */
+function readRanking(){try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}');}catch(e){return {};}}
+function saveRanking(gid,name,sc,correct){
+  const data=readRanking();
+  if(!data[gid])data[gid]=[];
+  data[gid].push({name,score:sc,correct,date:new Date().toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'})});
+  data[gid].sort((a,b)=>b.score-a.score);
+  data[gid]=data[gid].slice(0,20);
+  try{localStorage.setItem(LS_KEY,JSON.stringify(data));}catch(e){}
+}
+function renderRanking(gid){
+  viewingGenreId=gid;
+  const g=GENRES.find(x=>x.id===gid)||GENRES[0];
+  document.getElementById('rank-title').textContent=`🏆 ${g.ico} ${g.name}｜ランキング`;
+  const rows=(readRanking()[gid])||[];
+  const list=document.getElementById('ranking-list');
+  if(!rows.length){list.innerHTML='<div class="rank-empty">まだ記録がありません。<br>最初の記録をつくろう！</div>';return;}
+  list.innerHTML=rows.map((r,i)=>{
+    const pos=i+1;const pc=pos===1?'g':pos===2?'s':pos===3?'b':'';
+    return `<div class="rank-row ${pos===1?'t1':''}"><span class="rank-pos ${pc}">${pos}</span><span class="rank-name">${escapeHtml(r.name)}</span><span class="rank-cc">${r.correct}/10</span><span class="rank-sc">${r.score}</span><span class="rank-date">${r.date||''}</span></div>`;
+  }).join('');
+}
+function showRanking(){renderRanking(viewingGenreId||(currentGenre&&currentGenre.id)||'omakase');showScreen('screen-ranking');}
+function showRankingFrom(){renderRanking(currentGenre?currentGenre.id:'omakase');showScreen('screen-ranking');}
+function deleteRanking(){
+  const gid=viewingGenreId||'omakase';
+  const g=GENRES.find(x=>x.id===gid);
+  if(!confirm(`「${g?g.name:gid}」の記録を全部消しますか？`))return;
+  const data=readRanking();delete data[gid];
+  try{localStorage.setItem(LS_KEY,JSON.stringify(data));}catch(e){}
+  renderRanking(gid);
+}
+
+/* ---------- 学習モード（フラッシュカード） ---------- */
+let studyGenre=null,studyCards=[],studyIdx=0,studyShuffled=false;
+function studyPool(gid){return gid==='all'?GENRES.filter(g=>g.id!=='omakase').flatMap(g=>DB[g.id]):DB[gid];}
+function openStudy(){
+  const opts=[{id:'all',ico:'📚',name:'すべての分野',color:'#e2b85a',desc:'全ての問題をまとめて学習します。'}]
+    .concat(GENRES.filter(g=>g.id!=='omakase'));
+  document.getElementById('study-list').innerHTML=opts.map(g=>{
+    const n=studyPool(g.id).length;
+    return `<div class="gcard ${g.id==='all'?'omakase':''}" style="--accent:${g.color};" onclick="startStudy('${g.id}')">
+      <span class="ico">${g.ico}</span>
+      <div class="gname">${g.name}</div>
+      <div class="gdesc">${g.desc}</div>
+      <div class="gcount">全${n}問を学習</div>
+      <span class="go">学ぶ ▶</span>
+    </div>`;
+  }).join('');
+  showScreen('screen-study');
+}
+function startStudy(gid){
+  studyGenre=gid;studyShuffled=false;
+  studyCards=studyPool(gid).map(q=>({q:q.q,a:q.c[q.a||0],m:q.m||''}));
+  studyIdx=0;
+  renderCard();
+  showScreen('screen-flashcard');
+}
+function studyShuffle(){
+  studyShuffled=!studyShuffled;
+  studyCards=shuffle(studyCards);
+  studyIdx=0;renderCard();
+  showToast(studyShuffled?'🔀 順番をシャッフルしました':'🔀 シャッフルしました','ok');
+}
+function genreName(gid){if(gid==='all')return '📚 すべての巻';const g=GENRES.find(x=>x.id===gid);return g?g.ico+' '+g.name:'学習';}
+function renderCard(){
+  const c=studyCards[studyIdx];const total=studyCards.length;
+  document.getElementById('fc-genre').textContent=genreName(studyGenre);
+  document.getElementById('fc-count').textContent=`${studyIdx+1} / ${total}`;
+  document.getElementById('fc-fill').style.width=`${((studyIdx+1)/total)*100}%`;
+  document.getElementById('fc-tag').textContent=`問 ${studyIdx+1}`;
+  document.getElementById('fc-q').textContent=c.q;
+  document.getElementById('fc-a').textContent=c.a;
+  document.getElementById('fc-m').innerHTML=c.m?('💡 '+escapeHtml(c.m)):'';
+  // こたえは隠した状態にリセット
+  document.getElementById('fc-answer').classList.remove('show');
+  document.getElementById('fc-reveal').classList.remove('done');
+  document.getElementById('fc-prev').disabled=(studyIdx===0);
+  document.getElementById('fc-next').textContent=(studyIdx===total-1)?'おわり ✓':'次へ →';
+  window.scrollTo(0,0);
+}
+function revealCard(){
+  document.getElementById('fc-answer').classList.add('show');
+  document.getElementById('fc-reveal').classList.add('done');
+}
+function studyNext(){
+  if(studyIdx>=studyCards.length-1){openStudy();showToast('📖 この分野を学習しました！','ok');return;}
+  studyIdx++;renderCard();
+}
+function studyPrev(){if(studyIdx>0){studyIdx--;renderCard();}}
+/* クイズ結果画面から、同じ巻をそのまま学習 */
+function studyThisGenre(){
+  const gid=(currentGenre&&currentGenre.id!=='omakase')?currentGenre.id:'all';
+  startStudy(gid);
+}
+
+/* 名前の保存（この端末） */
+function saveName(n){try{localStorage.setItem('kusuriya-quiz-name',n);}catch(e){}}
+function loadName(){try{return localStorage.getItem('kusuriya-quiz-name')||(window.TomyStamp&&TomyStamp.getPlayer())||'';}catch(e){return '';}}
+
+/* ---------- 初期化 ---------- */
+buildGenres();
+
+</script>
+</body>
+</html>
